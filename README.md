@@ -10,12 +10,12 @@
 
 ## Integrantes 
 
-* Angelica
-* Carla
-* Ícaro
-* Mateus
-* Laís
-* Mariane
+* Angelica Cristina Pereira de Assis
+* Carla Rodrigues Castelo
+* Icaro Dos Santos Costa
+* Mateus Vitor Augusto dos Santos
+* Lais Fernanda Alves Cruz
+* Mariane de Moraes e Souza
 
   ## Orientador
 
