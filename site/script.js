@@ -1,17 +1,7 @@
 "use strict";
 
-/* ============ ARMAZENAMENTO ============ */
-const Guardar = (() => {
-  let ok = true, mem = {};
-  try{ localStorage.setItem("__t","1"); localStorage.removeItem("__t"); }catch(e){ ok = false; }
-  return {
-    ler(k){ try{ return ok ? JSON.parse(localStorage.getItem(k)) : (mem[k] ?? null); }catch(e){ return null; } },
-    gravar(k,v){ try{ ok ? localStorage.setItem(k,JSON.stringify(v)) : mem[k]=v; }catch(e){ mem[k]=v; } },
-    apagar(k){ try{ ok ? localStorage.removeItem(k) : delete mem[k]; }catch(e){} }
-  };
-})();
-const K_US="doce.usuarios", K_SE="doce.sessao", K_PR="doce.progresso.";
-const cifrar = t => { let h=5381; for(let i=0;i<t.length;i++) h=((h<<5)+h+t.charCodeAt(i))|0; return "h"+(h>>>0).toString(36); };
+/* ============ CONFIGURAÇÃO DA API ============ */
+const API_URL = "/api";
 
 /* ============ RETRATOS ============ */
 function retrato(p){
@@ -397,7 +387,21 @@ const aliados = () => Object.values(jogo.confianca).filter(v=>v>=60).length;
 const chaves = () => jogo.provas.filter(p=>PISTAS[p].k).length;
 const resta = () => Math.max(0, FIM - jogo.rel);
 const anotar = t => { jogo.registro.unshift(`<i>${relogio(jogo.rel)}</i> ${t}`); if(jogo.registro.length>40) jogo.registro.pop(); };
-function salvar(){ if(!usuario) return; jogo.ultimaTela = telaAtual; Guardar.gravar(K_PR+usuario.email, jogo); }
+async function salvar() {
+  if (!usuario) return;
+  jogo.ultimaTela = telaAtual;
+
+  try {
+    await fetch(`${API_URL}/progresso`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ dados_jogo: jogo })
+    });
+  } catch (e) {
+    console.error("Erro ao salvar progresso no servidor:", e);
+  }
+}
 
 function receber(id, origem){
   if(jogo.provas.includes(id)||jogo.destruidas.includes(id)) return false;
@@ -466,52 +470,101 @@ $("#galeria-site").innerHTML = ["angelica","mariane","carla","lais"].map(id=>{
   const p=ELENCO[id];
   return `<div class="polaroid">${retrato(p)}<div class="legenda"><strong>${p.nome}</strong><em>${p.papel}</em></div></div>`;
 }).join("");
-$("#ir-entrar").onclick = () => { const e=Guardar.ler(K_SE), u=e&&usuarios()[e]; u?entrarComo(u):ir("login"); };
+$("#ir-entrar").onclick = () => { usuario ? entrarComo(usuario) : ir("login"); };
 
 /* ============ CONTA ============ */
-const usuarios = () => Guardar.ler(K_US) || {};
 $("#ir-cadastro").onclick=()=>ir("cadastro");
 $("#ir-login").onclick=()=>ir("login");
 $("#btn-site").onclick=()=>ir("site");
 
-$("#btn-cadastrar").onclick=()=>{
-  const nome=$("#c-nome").value.trim(), email=$("#c-email").value.trim().toLowerCase();
-  const s1=$("#c-senha").value, s2=$("#c-senha2").value, e=$("#c-erro");
-  if(!nome) return e.textContent="Escreva um nome.";
-  if(!/^\S+@\S+\.\S+$/.test(email)) return e.textContent="Esse e-mail não parece válido.";
-  if(s1.length<6) return e.textContent="A senha precisa de pelo menos 6 caracteres.";
-  if(s1!==s2) return e.textContent="As duas senhas não batem.";
-  const us=usuarios();
-  if(us[email]) return e.textContent="Já existe um cadastro com esse e-mail.";
-  us[email]={nome,email,senha:cifrar(s1+"::"+email)}; Guardar.gravar(K_US,us); e.textContent="";
-  entrarComo(us[email]);
+$("#btn-cadastrar").onclick = async () => {
+  const nome = $("#c-nome").value.trim();
+  const email = $("#c-email").value.trim().toLowerCase();
+  const s1 = $("#c-senha").value;
+  const s2 = $("#c-senha2").value;
+  const e = $("#c-erro");
+
+  if (!nome) return (e.textContent = "Escreva um nome.");
+  if (!/^\S+@\S+\.\S+$/.test(email)) return (e.textContent = "Esse e-mail não parece válido.");
+  if (s1.length < 6) return (e.textContent = "A senha precisa de pelo menos 6 caracteres.");
+  if (s1 !== s2) return (e.textContent = "As duas senhas não batem.");
+
+  try {
+    const res = await fetch(`${API_URL}/cadastro`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ nome, email, senha: s1 })
+    });
+    const dados = await res.json();
+
+    if (!res.ok) return (e.textContent = dados.erro || "Erro no cadastro.");
+
+    e.textContent = "";
+    entrarComo(dados.usuario);
+  } catch (err) {
+    e.textContent = "Erro ao conectar com o servidor.";
+  }
 };
-$("#btn-entrar").onclick=()=>{
-  const email=$("#l-email").value.trim().toLowerCase(), u=usuarios()[email];
-  const s=$("#l-senha").value;
-  if(!u || (u.senha!==cifrar(s+"::"+email) && u.senha!==s))
-    return $("#l-erro").textContent="E-mail ou senha não conferem.";
-  if(u.senha===s){ u.senha=cifrar(s+"::"+email); const us=usuarios(); us[email]=u; Guardar.gravar(K_US,us); }
-  $("#l-erro").textContent=""; entrarComo(u);
+$("#btn-entrar").onclick = async () => {
+  const email = $("#l-email").value.trim().toLowerCase();
+  const s = $("#l-senha").value;
+  const e = $("#l-erro");
+
+  try {
+    const res = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ email, senha: s })
+    });
+    const dados = await res.json();
+
+    if (!res.ok) return (e.textContent = dados.erro || "E-mail ou senha incorretos.");
+
+    e.textContent = "";
+    entrarComo(dados.usuario);
+  } catch (err) {
+    e.textContent = "Erro ao conectar com o servidor.";
+  }
 };
-function entrarComo(u){
-  usuario=u; Guardar.gravar(K_SE,u.email); $("#quem").textContent=u.nome;
-  const s=Guardar.ler(K_PR+u.email);
-  $("#saudacao").textContent = "Caso 4471, "+u.nome;
-  $("#status-save").textContent = s
-    ? `${relogio(s.rel||INICIO)} · ${s.provas.length} provas · última ação: ${s.ultimaEscolha}`
-    : "investigação ainda não iniciada";
-  $("#btn-continuar").disabled=!s;
+async function entrarComo(u) {
+  usuario = u;
+  $("#quem").textContent = u.nome;
+  $("#saudacao").textContent = "Caso 4471, " + u.nome;
+
+  // Busca o progresso do usuário no banco Python
+  try {
+    const res = await fetch(`${API_URL}/progresso`, { credentials: "include" });
+    const dados = await res.json();
+
+    if (res.ok && dados.dados_jogo) {
+      const s = dados.dados_jogo;
+      $("#status-save").textContent = `${relogio(s.rel || INICIO)} · ${s.provas.length} provas · última ação: ${s.ultimaEscolha}`;
+      $("#btn-continuar").disabled = false;
+      window.progressoCarregado = s; // guarda temporariamente
+    } else {
+      $("#status-save").textContent = "investigação ainda não iniciada";
+      $("#btn-continuar").disabled = true;
+    }
+  } catch (err) {
+    $("#status-save").textContent = "erro ao buscar progresso";
+  }
+
   ir("menu");
 }
-$("#btn-continuar").onclick=()=>{
-  const s=Guardar.ler(K_PR+usuario.email); if(!s) return;
-  jogo=Object.assign(novoJogo(),s);
-  ir(["prologo","mansao","comodo","mural","suspeitos","acusacao"].includes(s.ultimaTela)?s.ultimaTela:"mansao");
+
+$("#btn-continuar").onclick = () => {
+  if (!window.progressoCarregado) return;
+  jogo = Object.assign(novoJogo(), window.progressoCarregado);
+  ir(["prologo", "mansao", "comodo", "mural", "suspeitos", "acusacao"].includes(jogo.ultimaTela) ? jogo.ultimaTela : "mansao");
 };
-$("#btn-nova").onclick=()=>{ jogo=novoJogo(); Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
-$("#btn-sair").onclick=()=>{ Guardar.apagar(K_SE); usuario=null; ir("site"); };
-$("#btn-menu").onclick=()=>entrarComo(usuario);
+
+$("#btn-sair").onclick = async () => {
+  await fetch(`${API_URL}/logout`, { method: "POST", credentials: "include" });
+  usuario = null;
+  ir("site");
+};
 
 /* ============ PRÓLOGO ============ */
 function pintarCena(){
@@ -973,7 +1026,7 @@ function encerrar(k){
 }
 $("#btn-acusar").onclick=()=>encerrar(calcularFinal());
 $("#btn-queimar").onclick=()=>encerrar("f3");
-$("#btn-rejogar").onclick=()=>{ jogo=novoJogo(); if(usuario) Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
+$("#btn-rejogar").onclick = () => { jogo = novoJogo(); salvar(); ir("prologo"); };
 
 /* ============ INÍCIO ============ */
 (async()=>{
@@ -984,5 +1037,17 @@ $("#btn-rejogar").onclick=()=>{ jogo=novoJogo(); if(usuario) Guardar.apagar(K_PR
   iaResolvida=true;
   if(telaAtual==="suspeitos") pintarSala();
 })();
-(function(){ const e=Guardar.ler(K_SE), u=e&&usuarios()[e]; if(u){ usuario=u; $("#quem").textContent=u.nome; } ir("site"); })();
 
+(async function () {
+  try {
+    const res = await fetch(`${API_URL}/usuario`, { credentials: "include" });
+    const dados = await res.json();
+    if (res.ok && dados.usuario) {
+      usuario = dados.usuario;
+      $("#quem").textContent = usuario.nome;
+    }
+  } catch (e) {
+    console.log("Nenhum usuário logado.");
+  }
+  ir("site");
+})();
