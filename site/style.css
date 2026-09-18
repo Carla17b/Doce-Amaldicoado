@@ -3,7 +3,6 @@
   --papel:#DCD2BC; --papel-2:#AFA286; --papel-3:#7C7261;
   --lampada:#E0A94F; --barbante:#8E2F28; --frio:#5C8283;
   --texto:#E2DACA; --fraco:#8A9491; --borda:rgba(220,210,188,.16);
-  --verde:#6E9B6E;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,6 +29,7 @@ button{cursor:pointer;background:none;border:none}
   font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.08em;padding:4px 11px;transform:rotate(-2.5deg)}
 
 /* ================= SITE (rolagem) ================= */
+#site{scroll-snap-type:none}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
   position:relative;overflow:hidden;
   background:radial-gradient(ellipse 60% 45% at 50% 38%,#20302F 0%,transparent 72%),var(--carvao)}
@@ -50,22 +50,15 @@ button{cursor:pointer;background:none;border:none}
 
 section.bloco{padding:92px 0;border-top:1px solid var(--borda)}
 .bloco h2{font-size:clamp(26px,4.4vw,38px);color:var(--papel);margin:14px 0 26px;line-height:1.15}
-.bloco p{max-width:64ch}
+.bloco p{max-width:62ch}
 .duas{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
 @media(max-width:760px){.duas{grid-template-columns:1fr;gap:30px}}
 
-.capitulo{max-width:70ch;margin-bottom:50px;padding-bottom:6px}
-.capitulo:last-child{margin-bottom:0}
-.num-cap{font-family:'Special Elite',monospace;font-size:11px;color:var(--frio);letter-spacing:.08em}
-.capitulo h3{font-size:23px;color:var(--papel);margin:8px 0 14px}
-.capitulo p{margin:0 0 14px;color:var(--papel-2)}
-.capitulo b{color:var(--papel)}
-
-.mecanicas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:10px}
-.mec h3{color:var(--lampada);font-size:16px;margin:0 0 8px}
-.mec p{font-size:14.5px;color:var(--papel-2);margin:0}
-.chamada{text-align:center;padding:104px 0}
-.chamada h2{margin-bottom:10px}
+.crono{list-style:none;padding:0;margin:34px 0 0;border-left:1px solid var(--borda)}
+.crono li{padding:0 0 22px 22px;position:relative;font-size:15px}
+.crono li::before{content:"";position:absolute;left:-4.5px;top:11px;width:8px;height:8px;
+  background:var(--lampada);border-radius:50%}
+.crono b{font-family:'Special Elite',monospace;color:var(--lampada);font-weight:400;display:block;font-size:13px}
 
 /* polaroides */
 .galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:22px}
@@ -79,7 +72,15 @@ section.bloco{padding:92px 0;border-top:1px solid var(--borda)}
 .polaroid .legenda{padding:11px 5px 15px}
 .polaroid .legenda strong{font-family:'Special Elite',monospace;font-weight:400;font-size:15px;display:block}
 .polaroid .legenda em{font-size:11.5px;color:#6A6151;font-style:normal;display:block;margin-top:3px;line-height:1.4}
+.polaroid .mini{height:4px;background:rgba(0,0,0,.14);margin-top:9px}
+.polaroid .mini span{display:block;height:100%;background:#8E2F28;transition:width .4s}
 .polaroid.morto svg{filter:grayscale(1) contrast(.92)}
+
+.mecanicas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:10px}
+.mec h3{color:var(--lampada);font-size:16px;margin:0 0 8px}
+.mec p{font-size:14.5px;color:var(--papel-2);margin:0}
+.chamada{text-align:center;padding:104px 0}
+.chamada h2{margin-bottom:10px}
 
 /* ================= TELAS DE JOGO ================= */
 .tela{min-height:100vh;padding:40px 0 100px}
@@ -93,8 +94,7 @@ input,textarea{width:100%;background:#080C0E;border:1px solid var(--borda);color
   padding:11px 12px;margin-bottom:16px}
 input:focus,textarea:focus{border-color:var(--lampada);outline:none}
 .erro{color:#C2655F;font-size:13px;margin:-8px 0 14px;min-height:18px}
-.sucesso{color:var(--verde);font-size:13px;margin:-8px 0 14px;min-height:18px}
-.troca{font-size:13px;color:var(--fraco);margin-top:16px}
+.troca{font-size:13px;color:var(--fraco);margin-top:20px}
 .troca button{color:var(--lampada);text-decoration:underline;padding:0}
 
 /* prólogo */
@@ -123,9 +123,13 @@ input:focus,textarea:focus{border-color:var(--lampada);outline:none}
 .pino{color:var(--barbante);font-size:10px;vertical-align:super}
 .quem{font-family:'Special Elite',monospace;font-size:12px;color:var(--fraco)}
 
-.contador-provas{font-family:'Special Elite',monospace;font-size:13px;color:var(--papel-2);
-  padding:20px 0 18px;border-bottom:1px solid var(--borda);margin-bottom:26px}
-.contador-provas b{color:var(--lampada);font-weight:400}
+.medidores{display:flex;gap:26px;flex-wrap:wrap;padding:20px 0 24px;
+  border-bottom:1px solid var(--borda);margin-bottom:30px}
+.medidor{min-width:158px;flex:1}
+.rot{font-family:'Special Elite',monospace;font-size:11.5px;color:var(--fraco);display:flex;justify-content:space-between}
+.mbar{height:5px;background:rgba(220,210,188,.12);margin-top:7px;overflow:hidden}
+.mbar span{display:block;height:100%;transition:width .5s ease}
+.mbar.a span{background:var(--frio)} .mbar.b span{background:var(--barbante)}
 
 /* planta baixa */
 .planta{border:1px solid var(--borda);background:#0A0F11;padding:16px;margin-bottom:12px}
@@ -178,21 +182,22 @@ input:focus,textarea:focus{border-color:var(--lampada);outline:none}
 .vazio{border:1px dashed var(--borda);padding:40px;text-align:center;color:var(--fraco);
   font-family:'Special Elite',monospace;font-size:14px}
 
-/* interrogatório — perguntas fixas */
+/* interrogatório */
 .sala{border:1px solid var(--borda);background:linear-gradient(180deg,#131E21,#0E1719);padding:22px;margin-top:6px}
-.conversa{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;margin-bottom:22px}
+.conversa{max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;margin-bottom:20px}
 .msg{max-width:86%;font-size:15.5px;line-height:1.55}
 .msg.eu{align-self:flex-end;text-align:right;color:var(--papel-2)}
 .msg.eu span{border-right:2px solid var(--frio);padding-right:13px;display:inline-block}
 .msg.ele{align-self:flex-start;font-style:italic;color:var(--papel)}
 .msg.ele span{border-left:2px solid var(--lampada);padding-left:14px;display:inline-block}
 .msg.sistema{align-self:center;font-family:'Special Elite',monospace;font-size:11.5px;color:var(--frio);text-align:center}
-.perguntas{display:flex;flex-direction:column;gap:8px}
-.pergunta-btn{border:1px solid var(--borda);text-align:left;padding:13px 16px;font-size:15px;
-  color:var(--papel-2);transition:border-color .15s,color .15s}
-.pergunta-btn:hover:not(:disabled){border-color:var(--lampada);color:var(--papel)}
-.pergunta-btn:disabled{opacity:.4;border-style:dashed;cursor:default}
-.pergunta-btn .marcado{font-family:'Special Elite',monospace;font-size:10.5px;color:var(--frio);display:block;margin-top:4px}
+.sugestoes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.sugestoes button{border:1px solid var(--borda);color:var(--fraco);
+  font-family:'Special Elite',monospace;font-size:12px;padding:6px 12px}
+.sugestoes button:hover{border-color:var(--lampada);color:var(--lampada)}
+.linha-envio{display:flex;gap:10px;align-items:flex-end}
+.linha-envio textarea{margin:0;resize:vertical;min-height:54px}
+.dica-tom{font-size:13px;color:var(--papel-3);margin:0 0 16px}
 
 /* acusação e final */
 .aviso{border:1px solid var(--barbante);padding:15px;font-size:14.5px;color:var(--papel-2);margin-bottom:26px}
