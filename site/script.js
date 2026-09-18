@@ -11,9 +11,8 @@ const Guardar = (() => {
   };
 })();
 const K_US="doce.usuarios", K_SE="doce.sessao", K_PR="doce.progresso.";
-const cifrar = t => { let h=5381; for(let i=0;i<t.length;i++) h=((h<<5)+h+t.charCodeAt(i))|0; return "h"+(h>>>0).toString(36); };
 
-/* ============ RETRATOS ============ */
+/* ============ RETRATOS (SVG, estilo polaroide desenhada) ============ */
 function retrato(p){
   return `<svg viewBox="0 0 160 190" role="img" aria-label="Retrato de ${p.nome}">
     <defs><linearGradient id="g${p.id}" x1="0" y1="0" x2="0" y2="1">
@@ -33,6 +32,13 @@ function retrato(p){
     <rect width="160" height="190" fill="#C8A05A" opacity=".08"/></svg>`;
 }
 const ELENCO = {
+  icaro:{id:"icaro",nome:"Ícaro",papel:"convidado distante · seus olhos nesta noite",
+    f1:"#2A3238",f2:"#12181A",roupa:"#33424A",pele:"#C79E7C",olho:3,
+    cabelo:`<path d="M48 82q0-44 32-44t32 44q0-22-32-22T48 82z" fill="#3A2E23"/>`,
+    sob:"M62 71h14 M84 71h14",boca:"M73 102h14",
+    frente:`<circle cx="46" cy="90" r="10" fill="none" stroke="#1B1712" stroke-width="3"/>
+            <circle cx="114" cy="90" r="10" fill="none" stroke="#1B1712" stroke-width="3"/>
+            <path d="M56 90h48" stroke="#1B1712" stroke-width="3"/>`},
   mateus:{id:"mateus",nome:"Mateus",papel:"anfitrião · vítima",morto:true,
     f1:"#2A2E33",f2:"#14181B",roupa:"#39424A",pele:"#C9A183",olho:.6,
     cabelo:`<path d="M48 76q2-42 32-42t32 42q-6-20-32-20T48 76z" fill="#2E2620"/>`,
@@ -113,7 +119,7 @@ const PISTAS = {
     a:"Outra leitura: deixaram a chave ali para que ela fosse vista com a chave na mão."}
 };
 
-/* ============ MANSÃO ============ */
+/* ============ MANSÃO (planta baixa + objetos) ============ */
 const COMODOS = {
   jantar:{nome:"Sala de jantar",x:24,y:24,w:296,h:186,
     atmosfera:"O corpo já foi coberto com a toalha. As velas continuam acesas porque ninguém teve coragem de apagá-las.",
@@ -126,7 +132,7 @@ const COMODOS = {
   estar:{nome:"Sala de estar",x:24,y:222,w:296,h:210,
     atmosfera:"A lareira ainda está quente. Foi aqui que Mateus discutiu com Carla por vinte minutos antes do jantar.",
     objetos:[
-      {id:"lareira",nome:"A lareira",txt:"Sob as brasas, papel que não terminou de queimar.",pista:"cinzas",medo:5},
+      {id:"lareira",nome:"A lareira",txt:"Sob as brasas, papel que não terminou de queimar.",pista:"cinzas"},
       {id:"poltrona",nome:"A poltrona de Mateus",txt:"Entre a almofada e o braço, um comprovante de farmácia com o nome dele. Ele estava doente e não contou a ninguém."},
       {id:"disco",nome:"A vitrola",txt:"O disco parou no mesmo ponto a noite toda. Alguém levantou a agulha às nove em ponto."}
     ]},
@@ -134,66 +140,82 @@ const COMODOS = {
     atmosfera:"Escuro, estreito, com um tapete comprido que abafa o som. De onde vieram os passos durante o apagão.",
     objetos:[
       {id:"tapete",nome:"O tapete comprido",txt:"Marcas de pressão recentes, espaçadas de forma estranha: três, pausa, duas.",pista:"passos"},
-      {id:"telefone",nome:"O telefone da parede",txt:"O fio pende cortado, com corte limpo.",pista:"telefone",medo:5},
+      {id:"telefone",nome:"O telefone da parede",txt:"O fio pende cortado, com corte limpo.",pista:"telefone"},
       {id:"quadro",nome:"O quadro torto",txt:"Uma foto do grupo há três anos. Davi aparece no canto, cortado pela moldura."}
     ]},
   cozinha:{nome:"Cozinha",x:464,y:24,w:312,h:160,
     atmosfera:"Carla esteve aqui sozinha por quatro minutos. Mariane viu uma mão mexendo no pote de cacau.",
     objetos:[
       {id:"cacau",nome:"O pote de cacau",txt:"Uma digital parcial na borda e resíduo fino.",pista:"cacau"},
-      {id:"pia",nome:"A pia",txt:"Um copo pela metade com sedimento no fundo.",pista:"copo",medo:8},
-      {id:"fundos",nome:"A porta dos fundos",txt:"Trancada, e a tranca está deste lado.",pista:"fundos",medo:5},
+      {id:"pia",nome:"A pia",txt:"Um copo pela metade com sedimento no fundo.",pista:"copo"},
+      {id:"fundos",nome:"A porta dos fundos",txt:"Trancada, e a tranca está deste lado.",pista:"fundos"},
       {id:"lixo",nome:"O lixo",txt:"Papéis de doce, todos rasgados do mesmo jeito. Menos um, aberto com cuidado pela dobra."}
     ]},
-  escritorio:{nome:"Escritório",x:464,y:196,w:312,h:130,exige:"chave",
-    bloqueio:"trancado",
+  escritorio:{nome:"Escritório",x:464,y:196,w:312,h:130,exige:"chave",bloqueio:"trancado",
     atmosfera:"O cômodo que Mateus prometeu abrir no jantar. Cheiro de papel guardado e fita magnética.",
     objetos:[
-      {id:"gravador",nome:"O gravador de fita",txt:"Uma fita rotulada apenas com uma data de três anos atrás.",pista:"gravacao",medo:8},
+      {id:"gravador",nome:"O gravador de fita",txt:"Uma fita rotulada apenas com uma data de três anos atrás.",pista:"gravacao"},
       {id:"arquivo",nome:"O arquivo de aço",txt:"Pastas organizadas por pessoa. A mais grossa tem o nome de Carla.",pista:"transferencias"},
-      {id:"gaveta",nome:"A gaveta trancada",txt:"Cede com a chave. Dentro, um recibo que Mateus guardou como quem guarda uma arma.",pista:"recibo",medo:5}
+      {id:"gaveta",nome:"A gaveta trancada",txt:"Cede com a chave. Dentro, um recibo que Mateus guardou como quem guarda uma arma.",pista:"recibo"}
     ]},
   quarto:{nome:"Quarto de hóspedes",x:464,y:338,w:312,h:94,
     atmosfera:"Três malas, nenhuma desfeita por completo. Ninguém pretendia ficar muito tempo.",
     objetos:[
-      {id:"mala",nome:"A mala de Laís",txt:"No forro, um aparelho antigo, descarregado e cuidadosamente embrulhado.",pista:"celular",medo:8},
+      {id:"mala",nome:"A mala de Laís",txt:"No forro, um aparelho antigo, descarregado e cuidadosamente embrulhado.",pista:"celular"},
       {id:"caderno",nome:"Um caderno de anotações",txt:"Observações sobre cada convidado: horários, hábitos, o que cada um bebe. Nenhuma assinatura."},
       {id:"casaco",nome:"Um casaco de manga escura",txt:"Manga escura, como a que Mariane descreveu. Está pendurado onde qualquer um poderia ter pegado."}
     ]},
   subsolo:{nome:"Subsolo",x:24,y:462,w:752,h:88,
     atmosfera:"Frio, úmido, com o gerador estalando desde a hora da morte. O som enche a casa inteira.",
     objetos:[
-      {id:"gerador",nome:"O gerador",txt:"Um cabo foi religado fora de ordem. A pane tinha hora marcada.",pista:"gerador",medo:10},
+      {id:"gerador",nome:"O gerador",txt:"Um cabo foi religado fora de ordem. A pane tinha hora marcada.",pista:"gerador"},
       {id:"ferramentas",nome:"A caixa de ferramentas",txt:"Falta um alicate. O contorno de poeira mostra que sumiu há pouco."}
     ]}
 };
 
-/* ============ PERSONAS FIXAS ============ */
-const PERSONAS = {
-  angelica:{ pista:"cacau", exemplos:["Por que você riu quando ele caiu?","Você usou o caso do Davi no seu programa.","A que horas você saiu da festa naquela noite?"],
-    persona:`Você é Angélica, comediante de humor mórbido. Ri de tudo, inclusive de cadáveres, e usa piada como escudo — inclusive rindo alto no instante em que Mateus caiu, e chamando isso de mecanismo de defesa. Suas piadas escondem informações verdadeiras e precisas sobre o grupo.
-SEGREDO: você usou a morte de Davi como material no seu programa sem contar a origem, e teme perder a carreira. Você mentiu sobre o horário em que deixou a festa há três anos.
-Você conhecia o crime antigo, mas afirma não saber quem o encobriu.` },
-  mariane:{ pista:"chave", exemplos:["O que é essa chave na sua mão?","O que você viu na cozinha?","Você reconhece o som do gerador?"],
-    persona:`Você é Mariane, nervosa e desconfiada, ex-funcionária temporária do local onde Davi morreu. Fala em frases curtas e fragmentadas, repete palavras quando se assusta, e diz que as paredes desta casa repetem o que ouvem. Acredita que todos querem manipulá-la.
-SEGREDO: você viu alguém na cozinha e guardou uma chave que achou no corredor. Você viu parte da discussão que terminou com a queda de Davi.
-Você é uma testemunha pouco confiável mas muito observadora: menciona detalhes que ninguém deveria conhecer. Tratada com paciência, entrega a chave. Pressionada com agressividade, se fecha e destrói o que sabia.` },
-  carla:{ pista:"transferencias", exemplos:["Você ficou sozinha na cozinha.","Mateus estava te chantageando.","Para quem ele mandou cópia dos documentos?"],
-    persona:`Você é Carla, executiva prática e agressiva. Fala em frases curtas e objetivas e devolve pergunta com pergunta. É a principal suspeita e sabe disso.
-SEGREDO: você desviou dinheiro do projeto ligado ao crime antigo e subornou uma testemunha. Mateus te chantageava há onze meses. Você esteve sozinha na cozinha por quatro minutos antes do jantar.
-Você nunca admite culpa, mas deixa escapar que Mateus enviou cópia dos documentos para outra pessoa.` },
-  lais:{ pista:"recibo", exemplos:["Você sabia qual brigadeiro ele ia escolher.","Existe uma compra de composto no seu nome.","O gerador foi mexido, e o ruído está na gravação."],
-    persona:`Você é Laís, calma, prestativa e racional — e a manipuladora oculta desta noite. Fala devagar, com frases bem construídas, e nunca perde a compostura.
-SEGREDO: você estudou as reações do grupo e alterou o ambiente de propósito. Colocou um marcador invisível numa embalagem para descobrir quem tinha acesso à caixa, espalhou informações falsas entre os convidados para fazê-los desconfiar uns dos outros, e alterou o sistema do gerador. Comprou o composto químico. Há três anos, recolheu o celular de Davi antes da polícia chegar.
-Você afirma que queria uma confissão, não um corpo — e que Carla aproveitou o seu plano. Nunca confessa mais do que o investigador já consegue provar.` }
+/* ============ INTERROGATÓRIO — perguntas e respostas fixas ============
+   As personalidades e segredos seguem exatamente o que já está definido
+   na história: nada aqui muda de acordo com o jogador. */
+const PERGUNTAS = {
+  angelica:[
+    { id:"riso", pergunta:"Por que você riu quando ele caiu?",
+      resposta:"— Mecanismo de defesa. Eu rio de caixão, de demissão, de tudo. Você queria o quê, uma reverência? Eu não escolhi rir, simplesmente ri." },
+    { id:"programa", pergunta:"Você usou a morte do Davi no seu programa.",
+      resposta:"— Usei. Mudei os nomes e dormi bem por dois anos. Mateus tinha o recorte impresso numa gaveta, como se fosse prova de alguma coisa.",
+      pista:null },
+    { id:"horario", pergunta:"A que horas você saiu da festa, há três anos?",
+      resposta:"— Falei que saí antes da confusão. Não saí. Fiquei perto o suficiente pra ouvir a discussão e longe o suficiente pra dizer que não vi nada." }
+  ],
+  mariane:[
+    { id:"chave", pergunta:"O que é essa chave na sua mão?",
+      resposta:"— Estava no corredor, no chão, limpa demais pro chão daqui. Pode ficar com você. Eu não quero mais.",
+      pista:"chave" },
+    { id:"cozinha", pergunta:"O que você viu na cozinha?",
+      resposta:"— Uma mão no pote de cacau. Manga escura. Não olhei o rosto. As paredes daqui repetem o que ouvem, sabia?",
+      pista:"cacau" },
+    { id:"paredes", pergunta:"O que você quer dizer com 'as paredes repetem'?",
+      resposta:"— O gerador. Esse barulho. Eu já ouvi esse barulho antes, há três anos, na noite em que o Davi caiu. Alguém trouxe a gente pra essa casa de propósito." }
+  ],
+  carla:[
+    { id:"sozinha", pergunta:"Você ficou sozinha na cozinha.",
+      resposta:"— Fiquei. Fui buscar gelo e respirar longe dele. Isso não põe a minha mão no doce. Quatro minutos, se você quer contar." },
+    { id:"dinheiro", pergunta:"Mateus estava te chantageando com o desvio.",
+      resposta:"— Estava. Há onze meses. Você acha que eu ia esperar a sobremesa de um sábado pra resolver isso do jeito mais estúpido possível?" },
+    { id:"documentos", pergunta:"Para quem ele mandou cópia dos documentos?",
+      resposta:"— Não sei. Só sei que ele disse isso pra me deixar quieta, e que agora ele está morto e eu continuo sem saber. Pergunte pra quem sabia demais sobre a rotina dele.",
+      pista:"transferencias" }
+  ],
+  lais:[
+    { id:"doce", pergunta:"Você sabia qual brigadeiro ele ia escolher.",
+      resposta:"— Sabia. Todos sabiam, se prestassem atenção: café, sempre café. Prestar atenção não é crime." },
+    { id:"composto", pergunta:"Existe uma compra de composto químico no seu nome.",
+      resposta:"— Existe. Eu marquei uma embalagem com um composto invisível pra saber quem abriria a caixa. Eu queria uma confissão, não um corpo.",
+      pista:"recibo" },
+    { id:"gerador", pergunta:"O gerador foi mexido. E o ruído dele está numa gravação antiga.",
+      resposta:"— Mateus escolheu essa casa por causa desse som. Ele queria que eu e a Mariane lembrássemos daquela noite. Eu só usei o mesmo som contra ele.",
+      pista:"gerador" }
+  ]
 };
-
-const CONTEXTO = `Você interpreta um personagem no jogo de investigação "O doce amaldiçoado".
-CENÁRIO: mansão isolada na serra, tempestade de neve. Mateus, o anfitrião, reuniu cinco pessoas sob o pretexto do aniversário de Angélica, mas pretendia expor um crime antigo: três anos atrás, o funcionário Davi caiu de uma varanda durante uma discussão, depois de descobrir um desvio de dinheiro. O grupo alegou acidente. Mateus chantageava os envolvidos desde então.
-Às 21h Mateus comeu um brigadeiro e morreu envenenado. O veneno estava num doce reservado, marcado por uma dobra na embalagem. A estrada está bloqueada, o gerador falhou e o telefone foi danificado.
-VERDADE OCULTA, que você NUNCA revela diretamente: Laís montou o cenário para forçar uma confissão; Carla aproveitou e colocou o veneno no brigadeiro marcado.
-QUEM PERGUNTA: Ícaro, convidado distante que usa fones e ouve detalhes que os outros ignoram.
-REGRAS: responda SEMPRE em português do Brasil, 1 a 3 frases curtas, em primeira pessoa, começando com travessão. Mantenha rigorosamente a personalidade descrita, sem suavizar nem exagerar. Nunca saia do personagem. Nunca declare o caso resolvido. Se a pergunta fugir do caso, desconverse com ironia ou irritação, conforme o seu temperamento.`;
 
 /* ============ PRÓLOGO ============ */
 const PROLOGO = [
@@ -207,18 +229,18 @@ const PROLOGO = [
       `Ele disse isso para cada convidado, com a mesma frase e a mesma pausa. E conferiu o relógio depois de cada um.`],
     escolha:{ pergunta:"Você responde o quê?",
       opcoes:[
-        { txt:"“Valeu o quê?” — e sustenta o olhar.", efeito:{}, nota:"Ele desvia o assunto. Mas registra que você perguntou." },
-        { txt:"Um aceno. Você recoloca o fone.", efeito:{}, nota:"Ele relaxa na hora. Já te descartou como plateia." }
+        { txt:"\u201cValeu o quê?\u201d — e sustenta o olhar.", nota:"Ele desvia o assunto. Mas registra que você perguntou." },
+        { txt:"Um aceno. Você recoloca o fone.", nota:"Ele relaxa na hora. Já te descartou como plateia." }
       ] } },
   { local:"sala de estar · 19h20",
     txt:[`Angélica contou uma piada sobre funeral antes mesmo de tirar o casaco. Carla riu por educação e voltou para o celular. Mariane não riu: ficou de pé perto da parede, olhando o corredor como quem espera alguém passar.`,
       `Laís foi a única que perguntou o seu nome duas vezes, e na segunda acertou a pronúncia.`],
     escolha:{ pergunta:"Antes do jantar, você se aproxima de quem?",
       opcoes:[
-        { txt:"De Mariane, que está sozinha e visivelmente mal.", efeito:{mariane:12}, nota:"Ela não fala muito. Mas para de olhar para o corredor enquanto você está ali." },
-        { txt:"De Angélica, para entrar na piada dela.", efeito:{angelica:12}, nota:"Ela te adota como plateia pelo resto da noite." },
-        { txt:"De Carla, que parece a única com pressa de ir embora.", efeito:{carla:10}, nota:"Ela responde em frases de três palavras, mas responde." },
-        { txt:"De ninguém. Você senta e escuta.", efeito:{lais:8}, nota:"Laís nota que você escolheu não falar com ninguém. E parece aprovar." }
+        { txt:"De Mariane, que está sozinha e visivelmente mal.", nota:"Ela não fala muito. Mas para de olhar para o corredor enquanto você está ali." },
+        { txt:"De Angélica, para entrar na piada dela.", nota:"Ela te adota como plateia pelo resto da noite." },
+        { txt:"De Carla, que parece a única com pressa de ir embora.", nota:"Ela responde em frases de três palavras, mas responde." },
+        { txt:"De ninguém. Você senta e escuta.", nota:"Laís nota que você escolheu não falar com ninguém. E parece aprovar." }
       ] } },
   { local:"corredor · 20h05",
     txt:[`Você foi buscar água e ouviu, através do fone, uma discussão na sala de estar. Mateus e Carla. Palavras soltas: <i>prazo</i>, <i>conta</i>, <i>não é ameaça</i>.`,
@@ -242,206 +264,57 @@ const PROLOGO = [
     fim:true }
 ];
 
-/* ============ FINAIS ============ */
+/* ============ ACUSAÇÃO — 5 finais, um por acusado ============ */
 const ACUSADOS = [
   {id:"carla",nome:"Carla",nota:"Motivo mais claro, acesso à cozinha, dinheiro desviado."},
   {id:"lais",nome:"Laís",nota:"Comprou o composto, alterou o gerador, marcou a embalagem."},
+  {id:"dupla",nome:"Laís e Carla, juntas",nota:"Duas responsabilidades diferentes na mesma noite — exige mais provas reunidas."},
   {id:"mariane",nome:"Mariane",nota:"Estava com a chave e viu parte do crime antigo."},
-  {id:"angelica",nome:"Angélica",nota:"Mentiu sobre o horário e lucrou com a tragédia."},
-  {id:"dupla",nome:"Laís montou, Carla envenenou",nota:"Duas responsabilidades diferentes na mesma noite."}
+  {id:"angelica",nome:"Angélica",nota:"Mentiu sobre o horário e lucrou com a tragédia."}
 ];
+
+const MIN_PARA_DUPLA = 7; // de 15 pistas possíveis
+
 const FINAIS = {
-  f1:{m:"final 1 de 5",t:"A verdade completa",p:[
-    "Você põe a embalagem marcada, o recibo e a gravação lado a lado sobre a mesa de mogno e deixa que eles falem sozinhos.",
-    "Laís admite o experimento: o marcador invisível, as informações falsas, o gerador. Ela queria uma confissão. Carla aproveitou o cenário pronto e trocou o conteúdo do doce reservado.",
-    "A polícia sobe a serra e encontra um grupo dividido, mas uma cadeia de acontecimentos que dá para reconstruir do começo ao fim — inclusive a noite em que Davi caiu."]},
-  f2:{m:"final 2 de 5",t:"A experiência perfeita",p:[
-    "Você aponta para Laís antes de ter com o que sustentar a acusação.",
-    "Ela não se defende: apenas alinha as contradições dos depoimentos que ela mesma ajudou a criar. Em vinte minutos, todos têm certeza de que Carla agiu sozinha.",
-    "Carla é presa. Laís some antes das viaturas, levando a gravação original. Você venceu só a camada de cima da investigação."]},
-  f3:{m:"final 3 de 5",t:"O pacto de silêncio",p:[
-    "Você descobre a verdade e a queima na lareira, folha por folha, para que Mariane não pague por um encobrimento que ela apenas assistiu.",
-    "Os sobreviventes combinam uma versão comum: um mal-estar, um doce estragado, uma noite infeliz.",
-    "Ninguém é condenado. E o grupo repete, com calma e acordo mútuo, o mesmo crime moral de três anos atrás."]},
-  f4:{m:"final 4 de 5",t:"Ninguém sai ileso",p:[
-    "Sem provas suficientes e com o medo alto demais, a casa se rompe antes da neve.",
-    "Uma discussão no corredor termina com alguém no chão. Laís desaparece pela mata durante o apagão seguinte.",
-    "Ícaro fica preso na mansão até o resgate chegar. A identidade do assassino permanece oficialmente desconhecida."]},
-  f5:{m:"final 5 de 5",t:"A última escolha de Laís",p:[
-    "Você entende, tarde e de uma vez, que Laís não controlava tudo — e a coloca diante de uma contradição pública, com o gerador, a gravação e a embalagem marcada na mão.",
-    "Ela admite ter preparado o experimento e afirma que Carla a usou como cobertura. Então oferece uma escolha: entregar todos os envolvidos, ou deixar a prova mais importante sumir em troca da liberdade de Mariane.",
-    "O jogo termina numa decisão moral, não policial."]}
+  carla:{ correto:true, m:"final: a experiência perfeita", t:"Carla é presa. Laís desaparece.",
+    p:["Você aponta para Carla, e as provas realmente sustentam a acusação: o desvio de dinheiro, os minutos sozinha na cozinha, a chantagem de Mateus.",
+       "Ela é presa ainda naquela madrugada. O que você não vê — e só descobre tarde demais — é Laís recolhendo a gravação original antes de qualquer policial subir a serra.",
+       "O caso se fecha oficialmente. Mas a pessoa que armou o cenário inteiro, que alterou o gerador e marcou a embalagem, sai pela porta da frente sem que ninguém pergunte nada."] },
+  lais:{ correto:true, m:"final: a última escolha de laís", t:"Você encurrala Laís — mas ela também te encurrala.",
+    p:["Você reúne o gerador, a gravação e a embalagem marcada e confronta Laís diretamente, diante de todos.",
+       "Ela não nega. Admite ter preparado o experimento inteiro para arrancar uma confissão, e afirma que Carla aproveitou o palco pronto para matar de verdade.",
+       "Então ela te oferece uma escolha, não uma prova: entregar todos os envolvidos agora, ou deixar a peça mais importante desaparecer em troca da liberdade de Mariane. O jogo termina numa decisão moral, não policial — e essa decisão é sua."] },
+  dupla:{ correto:true, m:"final: a verdade completa", t:"Você reconstrói a noite inteira.",
+    p:["Você põe a embalagem marcada, o recibo, o gerador e a gravação lado a lado sobre a mesa de mogno e deixa que as provas falem por si.",
+       "Diante de tudo isso, Laís admite o experimento — o marcador invisível, as informações falsas, o gerador adulterado. Ela queria uma confissão. Carla aproveitou o cenário pronto e trocou o conteúdo do doce reservado.",
+       "Quando a polícia finalmente sobe a serra, encontra um grupo dividido, mas uma cadeia de acontecimentos que dá para reconstruir do começo ao fim — inclusive a noite em que Davi caiu, três anos atrás."] },
+  mariane:{ correto:false, m:"acusação equivocada", t:"Um inocente é levado. O caso continua aberto.",
+    p:["Você aponta para Mariane. Ela tem a chave na mão, viu o crime antigo de perto e treme quando é confrontada — mas nada disso a torna culpada de envenenar ninguém.",
+       "A polícia a leva mesmo assim, porque é a única versão que alguém apresentou com convicção. Carla e Laís trocam um olhar rápido e voltam para dentro de casa.",
+       "Você acabou de prender uma testemunha assustada e deixar o verdadeiro plano intacto. A neve ainda não cedeu de vez — há tempo de reunir mais provas e tentar de novo."] },
+  angelica:{ correto:false, m:"acusação equivocada", t:"Um inocente é levado. O caso continua aberto.",
+    p:["Você aponta para Angélica. Ela mentiu sobre o horário, lucrou com a tragédia antiga e ri nos momentos errados — mas mentir e lucrar não é o mesmo que envenenar.",
+       "Ela é levada em meio a um riso nervoso que, dessa vez, não é resposta a piada nenhuma. Ninguém mais na sala parece surpreso o suficiente para ser inocente.",
+       "Você acabou de prender a pessoa errada. A neve ainda não cedeu de vez — há tempo de reunir mais provas e tentar de novo."] }
 };
-
-/* ============ CRUZAMENTOS ============ */
-const CRUZAMENTOS = [
-  {id:"veneno", par:["embalagem","cacau"], t:"O veneno entrou pelo cacau",
-   d:"O doce marcado foi polvilhado depois de pronto. Quem fez isso precisou de quatro minutos na cozinha e de saber qual papel tinha a dobra.", e:"acesso + método"},
-  {id:"casa", par:["gerador","gravacao"], t:"A gravação foi feita nesta casa",
-   d:"O zumbido irregular no fundo da fita é o mesmo do gerador do subsolo. A noite de Davi não foi gravada na festa: foi gravada aqui, depois.", e:"som + lugar"},
-  {id:"cenario", par:["recibo","gerador"], t:"Alguém montou o cenário com antecedência",
-   d:"O composto foi comprado seis semanas antes e a pane tinha hora marcada. Isso não é um crime de impulso: é uma encenação preparada.", e:"compra + preparo"},
-  {id:"motivo", par:["transferencias","gravacao"], t:"O dinheiro e a queda são a mesma história",
-   d:"Davi ameaçou denunciar o desvio e caiu na mesma noite. O motivo de três anos atrás continua de pé nesta mesa.", e:"motivo + horário"},
-  {id:"dentro", par:["copo","fundos"], t:"O assassino nunca saiu daqui",
-   d:"A segunda dose veio da água, horas depois da morte, e a única porta para a neve está trancada por dentro.", e:"acesso + persistência"},
-  {id:"movimento", par:["passos","relogio"], t:"Alguém atravessou a casa no escuro",
-   d:"Três passos, pausa, mais dois, entre 21h04 e 21h10. Quem andou não tropeçou em nada: conhecia o corredor de olhos fechados.", e:"horário + comportamento"},
-  {id:"guardiao", par:["celular","chave"], t:"As provas do crime antigo têm dona",
-   d:"O celular de Davi e a chave do escritório estavam com a mesma pessoa. Guardar não é o mesmo que matar, mas explica quem controla a versão dos fatos.", e:"posse + controle"},
-  {id:"isolamento", par:["telefone","fundos"], t:"O isolamento foi uma decisão",
-   d:"O fio foi cortado com lâmina e a porta trancada pelo lado de dentro. Não foi a neve que prendeu vocês aqui.", e:"método + intenção"},
-  {id:"queima", par:["cinzas","transferencias"], t:"Papel do projeto virou cinza antes da sobremesa",
-   d:"Alguém já estava destruindo documento quando Mateus ainda estava vivo — e o que sobrou do timbre bate com os extratos.", e:"comportamento + motivo"},
-  {id:"habito", par:["embalagem","relogio"], t:"A hora da morte foi escolhida",
-   d:"Mateus conferiu o relógio nove vezes e pegou o doce marcado às nove em ponto. Quem preparou a dobra sabia a que horas ele comeria.", e:"hábito + horário"}
-];
-const acha = (a,b) => CRUZAMENTOS.find(c => c.par.includes(a) && c.par.includes(b) && a!==b);
-
-/* ============ EVENTOS DA NOITE ============ */
-const INICIO=1270, FIM=1680;
-const relogio = m => { const h=Math.floor(m/60)%24, i=m%60; return String(h).padStart(2,"0")+"h"+String(i).padStart(2,"0"); };
-
-const EVENTOS = [
-  {id:"agua", em:1380, marca:"23h00",
-   fn(){ jogo.medo=lim(jogo.medo+14);
-     if(!jogo.provas.includes("copo") && !jogo.destruidas.includes("copo")) receber("copo","A copa");
-     return "Angélica encheu um copo na copa e cuspiu no primeiro gole. O gosto metálico é o mesmo que ficou na boca de Mateus. A segunda tentativa não veio pelo doce — veio pela água."; }},
-  {id:"apagao", em:1440, marca:"00h00",
-   fn(){ const protegido = jogo.vigia==="subsolo";
-     jogo.medo=lim(jogo.medo+(protegido?4:11)); if(!protegido) jogo.rel+=10;
-     return protegido
-       ? "O gerador tentou cair de novo. Você estava no subsolo e viu o cabo se soltar sozinho, sem mão nenhuma perto. A luz piscou e ficou."
-       : "A casa apagou por dez minutos inteiros. Quando a luz voltou, três pessoas estavam em cômodos diferentes de onde tinham dito que estariam."; }},
-  {id:"lareira", em:1500, marca:"01h00",
-   fn(){ const salvo = jogo.provas.includes("transferencias") || jogo.vigia==="escritorio";
-     if(salvo) return "Carla desceu até o escritório com uma pasta debaixo do braço e voltou sem ela. Os extratos continuam onde estavam — dessa vez porque alguém estava olhando.";
-     perder("transferencias");
-     jogo.medo=lim(jogo.medo+8);
-     return "Cheiro de papel queimado vindo da sala de estar. Quando você chega, Carla está de pé na frente da lareira e os extratos já são um bloco preto que se desfaz ao toque."; }},
-  {id:"mariane", em:1560, marca:"02h00",
-   fn(){ if(jogo.confianca.mariane>=45){
-       if(!jogo.provas.includes("chave") && !jogo.destruidas.includes("chave")) receber("chave","Mariane");
-       jogo.medo=lim(jogo.medo-5);
-       return "Mariane te procura no corredor, sem falar com mais ninguém, e põe a chave na sua mão. — Não é do carro. Eu contei os passos. Eram três, pausa, dois. Igualzinho àquela noite.";
-     }
-     jogo.fechados.push("mariane");
-     if(!jogo.provas.includes("chave")) perder("chave");
-     jogo.medo=lim(jogo.medo+10);
-     return "Mariane se trancou no quarto e empurrou a cômoda contra a porta. Do outro lado, só repete que as paredes repetem. O que ela estava segurando não sai mais de lá."; }},
-  {id:"telefone", em:1640, marca:"03h20",
-   fn(){ jogo.telefone=true;
-     return "O telefone da cozinha voltou a dar linha. Vai durar pouco. É o tempo de dizer uma frase para a delegacia da serra — e a frase que você disser é a versão que eles vão subir para investigar."; }}
-];
-
-/* ============ RESPOSTAS DE RESERVA ============ */
-const BANCO = {
-  angelica:[
-    {k:["riu","riso","rir","piada"], f:"— Mecanismo de defesa. Eu rio de caixão, de demissão, de tudo. Você queria uma reverência?"},
-    {k:["davi","programa","palco","material"], f:"— Usei a história no palco, sim. Mudei os nomes. Achei que era só uma história horrível que alguém tinha me contado."},
-    {k:["horário","hora","saiu","festa","táxi"], f:"— Eu disse que saí às onze. Não saí. E fiz piada sobre isso em rede nacional por três anos, então já me castiguei bastante."},
-    {k:["mateus","relógio","jantar"], f:"— Ele conferiu o relógio a noite toda. Quem faz isso está esperando alguém chegar, não anunciando nada."},
-    {k:["carla","laís","mariane"], f:"— Carla grita, a Laís organiza e a Mariane escuta. Eu sou a que fala alto para ninguém reparar em qual das três está mentindo."}
-  ],
-  mariane:[
-    {k:["chave"], f:"— Achei no corredor. Achei. Não peguei de ninguém. Está limpa demais para ter caído no chão desta casa."},
-    {k:["cozinha","mão","cacau","pote"], f:"— Uma mão. Só a mão e a manga escura. Eu não vi rosto, e todo mundo aqui tem um casaco de manga escura."},
-    {k:["som","gerador","barulho","ouviu","parede"], f:"— As paredes repetem. Repetem. Esse barulho do subsolo eu já ouvi antes, e não foi aqui."},
-    {k:["davi","festa","garçonete","trabalho"], f:"— Eu servia bebida. Vi a discussão de longe e fiquei quieta porque eu precisava do emprego. É isso que você queria ouvir?"},
-    {k:["medo","polícia","prender"], f:"— Se a polícia subir a serra, a culpa vai cair em quem não tem advogado. Eu sei exatamente quem é essa pessoa nesta sala."}
-  ],
-  carla:[
-    {k:["cozinha","sozinha","minutos"], f:"— Fiquei quatro minutos na cozinha, no telefone. Conta os minutos, se quiser. Isso não põe a minha mão no doce."},
-    {k:["chantagem","dinheiro","desvio","extrato","projeto"], f:"— Ele cobrava há onze meses. Eu paguei. Pagar não é matar, é ser trouxa por mais tempo do que devia."},
-    {k:["cópia","documento","arquivo"], f:"— Ele mandou cópia para alguém de fora antes do jantar. Então me explique o que eu ganharia matando ele hoje."},
-    {k:["davi","varanda","queda"], f:"— O Davi descobriu o desvio. Eu ofereci dinheiro. Ele recusou. A queda eu não vi, e é a única coisa que eu ainda juro."},
-    {k:["laís","mariane","angélica"], f:"— A Laís é a única aqui que não perdeu a linha nenhuma vez esta noite. Você não acha isso estranho? Eu acho."}
-  ],
-  lais:[
-    {k:["doce","café","brigadeiro","dobra","embalagem"], f:"— Café, sempre café, e sempre o que estivesse mais à direita. Todos sabiam, se prestassem atenção. Prestar atenção não é crime."},
-    {k:["composto","recibo","comprou","veneno"], f:"— Existe uma compra no meu nome, sim. O mesmo composto está em três receitas de confeitaria que eu testei este ano."},
-    {k:["gerador","luz","apagão"], f:"— O apagão foi útil. Coisas úteis raramente são acidentes, e você já entendeu isso sozinho."},
-    {k:["celular","davi","polícia"], f:"— Recolhi o aparelho porque ia sumir de qualquer jeito. Fui a única que guardou. Isso me faz cúmplice ou arquivo?"},
-    {k:["plano","experimento","marcador","confissão"], f:"— Eu queria uma confissão, não um corpo. Alguém ouviu o meu plano e mudou o final dele."}
-  ]
-};
-function reserva(id, pergunta){
-  const q=(pergunta||"").toLowerCase();
-  const achou=(BANCO[id]||[]).find(r=>r.k.some(k=>q.includes(k)));
-  const base={confianca:2, medo:1, pista:null, destruir:null};
-  if(achou) return Object.assign(base,{fala:achou.f, confianca:4});
-  const genericas={
-    angelica:"— Eu podia responder isso com uma piada, mas você não ri de nada, então vou só dizer que não sei.",
-    mariane:"— Não. Não. Pergunta outra coisa, essa eu não sei responder sem começar de novo do começo.",
-    carla:"— Próxima pergunta. Essa não me interessa e o meu tempo aqui é o mesmo que o seu.",
-    lais:"— Interessante você perguntar isso agora, e não há duas horas. Reformula que eu respondo."
-  };
-  return Object.assign(base,{fala:genericas[id], confianca:0});
-}
 
 /* ============ ESTADO ============ */
 const novoJogo = () => ({
-  provas:[], destruidas:[], conclusoes:[], examinados:[], medo:18,
-  confianca:{angelica:40,mariane:28,carla:20,lais:50},
-  conversas:{angelica:[],mariane:[],carla:[],lais:[]},
+  provas:[], examinados:[], conversas:{angelica:[],mariane:[],carla:[],lais:[]},
+  perguntasFeitas:{angelica:[],mariane:[],carla:[],lais:[]},
   registro:[], cenaAtual:0, suspeitoAtivo:null, comodoAberto:null,
-  rel:INICIO, eventos:[], vigia:null, fechados:[], telefone:false, forcou:false,
-  selec:[], acusado:null, anexos:[],
-  ultimaTela:"prologo", ultimaEscolha:"nenhuma ainda"
+  acusado:null, ultimaTela:"prologo", ultimaEscolha:"nenhuma ainda"
 });
-let usuario=null, jogo=novoJogo(), ocupado=false, telaAtual="site", askClaude=null, iaResolvida=false;
+let usuario=null, jogo=novoJogo(), telaAtual="site";
 const $ = s => document.querySelector(s);
-const lim = n => Math.max(0,Math.min(100,n));
-const confMedia = () => Math.round(Object.values(jogo.confianca).reduce((a,b)=>a+b,0)/4);
-const aliados = () => Object.values(jogo.confianca).filter(v=>v>=60).length;
 const chaves = () => jogo.provas.filter(p=>PISTAS[p].k).length;
-const resta = () => Math.max(0, FIM - jogo.rel);
-const anotar = t => { jogo.registro.unshift(`<i>${relogio(jogo.rel)}</i> ${t}`); if(jogo.registro.length>40) jogo.registro.pop(); };
+const anotar = t => { jogo.registro.unshift(t); if(jogo.registro.length>40) jogo.registro.pop(); };
 function salvar(){ if(!usuario) return; jogo.ultimaTela = telaAtual; Guardar.gravar(K_PR+usuario.email, jogo); }
 
-function receber(id, origem){
-  if(jogo.provas.includes(id)||jogo.destruidas.includes(id)) return false;
-  jogo.provas.push(id);
-  anotar(`${origem}: <strong>${PISTAS[id].t.toLowerCase()}</strong> foi para o mural.`);
-  return true;
-}
-function perder(id){
-  if(jogo.provas.includes(id)||jogo.destruidas.includes(id)) return false;
-  jogo.destruidas.push(id);
-  anotar(`Perdida para sempre: <strong>${PISTAS[id].t.toLowerCase()}</strong>.`);
-  return true;
-}
-
-/* ============ TEMPO ============ */
-function gastar(min){
-  jogo.rel += min;
-  const disparou=[];
-  EVENTOS.forEach(ev=>{
-    if(jogo.rel>=ev.em && !jogo.eventos.includes(ev.id)){
-      jogo.eventos.push(ev.id);
-      const txt=ev.fn();
-      anotar(`<strong>${ev.marca}</strong> — ${txt.split(".")[0]}.`);
-      disparou.push({marca:ev.marca, txt});
-    }
-  });
-  if(disparou.length) jogo.ultimoEvento=disparou[disparou.length-1];
-  if(jogo.rel>=FIM && !jogo.fimForcado){ jogo.fimForcado=true; }
-  salvar();
-  return disparou;
-}
-function pintarRelogio(){
-  const r=$("#relogio"); if(!r) return;
-  const m=resta();
-  r.className="relogio"+(m<=90?" apertado":"");
-  r.innerHTML=`<span class="hora">${relogio(jogo.rel)}</span>
-    <span class="resto">${m?`${Math.floor(m/60)}h${String(m%60).padStart(2,"0")} até o amanhecer`:"amanheceu"}</span>`;
-}
-
 /* ============ NAVEGAÇÃO ============ */
-const TELAS=["login","cadastro","menu","prologo","mansao","comodo","mural","suspeitos","acusacao","final"];
+const TELAS=["login","cadastro","menu","perfil","prologo","mansao","comodo","mural","suspeitos","acusacao","final"];
 const COM_BARRA=["mansao","comodo","mural","suspeitos","acusacao"];
 function ir(t){
-  if(jogo.fimForcado && COM_BARRA.includes(t) && t!=="acusacao" && !jogo.fim){ encerrar("f4"); return; }
   telaAtual=t;
   $("#site").classList.toggle("oculto", t!=="site");
   TELAS.forEach(x=>$("#tela-"+x).classList.toggle("oculto", x!==t));
@@ -454,12 +327,14 @@ function ir(t){
   if(t==="mural") pintarMural();
   if(t==="suspeitos") pintarSuspeitos();
   if(t==="acusacao") pintarAcusacao();
-  if(COM_BARRA.includes(t)){ $("#pino").textContent = jogo.provas.length||""; pintarRelogio(); salvar(); }
+  if(COM_BARRA.includes(t)){ $("#pino").textContent = jogo.provas.length||""; salvar(); }
   window.scrollTo(0,0);
 }
 document.querySelectorAll(".menu button").forEach(b=>b.onclick=()=>ir(b.dataset.ir));
 
 /* ============ SITE ============ */
+$("#foto-icaro").innerHTML = `<div class="polaroid" style="transform:rotate(1.5deg)">${retrato(ELENCO.icaro)}
+  <div class="legenda"><strong>Ícaro</strong><em>convidado distante · seus olhos nesta noite</em></div></div>`;
 $("#foto-mateus").innerHTML = `<div class="polaroid" style="transform:rotate(-2deg)">${retrato(ELENCO.mateus)}
   <div class="legenda"><strong>Mateus</strong><em>anfitrião · morto às 21h00</em></div></div>`;
 $("#galeria-site").innerHTML = ["angelica","mariane","carla","lais"].map(id=>{
@@ -467,6 +342,7 @@ $("#galeria-site").innerHTML = ["angelica","mariane","carla","lais"].map(id=>{
   return `<div class="polaroid">${retrato(p)}<div class="legenda"><strong>${p.nome}</strong><em>${p.papel}</em></div></div>`;
 }).join("");
 $("#ir-entrar").onclick = () => { const e=Guardar.ler(K_SE), u=e&&usuarios()[e]; u?entrarComo(u):ir("login"); };
+$("#btn-voltar-site1").onclick = () => ir("site");
 
 /* ============ CONTA ============ */
 const usuarios = () => Guardar.ler(K_US) || {};
@@ -483,25 +359,22 @@ $("#btn-cadastrar").onclick=()=>{
   if(s1!==s2) return e.textContent="As duas senhas não batem.";
   const us=usuarios();
   if(us[email]) return e.textContent="Já existe um cadastro com esse e-mail.";
-  us[email]={nome,email,senha:cifrar(s1+"::"+email)}; Guardar.gravar(K_US,us); e.textContent="";
+  us[email]={nome,email,senha:s1}; Guardar.gravar(K_US,us); e.textContent="";
   entrarComo(us[email]);
 };
 $("#btn-entrar").onclick=()=>{
   const email=$("#l-email").value.trim().toLowerCase(), u=usuarios()[email];
-  const s=$("#l-senha").value;
-  if(!u || (u.senha!==cifrar(s+"::"+email) && u.senha!==s))
-    return $("#l-erro").textContent="E-mail ou senha não conferem.";
-  if(u.senha===s){ u.senha=cifrar(s+"::"+email); const us=usuarios(); us[email]=u; Guardar.gravar(K_US,us); }
+  if(!u||u.senha!==$("#l-senha").value) return $("#l-erro").textContent="E-mail ou senha não conferem.";
   $("#l-erro").textContent=""; entrarComo(u);
 };
 function entrarComo(u){
   usuario=u; Guardar.gravar(K_SE,u.email); $("#quem").textContent=u.nome;
-  const s=Guardar.ler(K_PR+u.email);
+  const salvo=Guardar.ler(K_PR+u.email);
   $("#saudacao").textContent = "Caso 4471, "+u.nome;
-  $("#status-save").textContent = s
-    ? `${relogio(s.rel||INICIO)} · ${s.provas.length} provas · última ação: ${s.ultimaEscolha}`
+  $("#status-save").textContent = salvo
+    ? `última ação: ${salvo.ultimaEscolha} · ${salvo.provas.length} provas no mural`
     : "investigação ainda não iniciada";
-  $("#btn-continuar").disabled=!s;
+  $("#btn-continuar").disabled=!salvo;
   ir("menu");
 }
 $("#btn-continuar").onclick=()=>{
@@ -512,6 +385,45 @@ $("#btn-continuar").onclick=()=>{
 $("#btn-nova").onclick=()=>{ jogo=novoJogo(); Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
 $("#btn-sair").onclick=()=>{ Guardar.apagar(K_SE); usuario=null; ir("site"); };
 $("#btn-menu").onclick=()=>entrarComo(usuario);
+
+/* ============ PERFIL (dados da conta) ============ */
+$("#btn-perfil").onclick = () => {
+  $("#p-nome").value = usuario.nome;
+  $("#p-email").value = usuario.email;
+  $("#p-senha-atual").value = "";
+  $("#p-senha-nova").value = "";
+  $("#p-erro").textContent = ""; $("#p-sucesso").textContent = "";
+  ir("perfil");
+};
+$("#btn-voltar-menu").onclick = () => entrarComo(usuario);
+$("#btn-salvar-perfil").onclick = () => {
+  const novoNome = $("#p-nome").value.trim();
+  const novoEmail = $("#p-email").value.trim().toLowerCase();
+  const senhaAtual = $("#p-senha-atual").value;
+  const senhaNova = $("#p-senha-nova").value;
+  const erro=$("#p-erro"), ok=$("#p-sucesso");
+  erro.textContent=""; ok.textContent="";
+
+  if(!novoNome) return erro.textContent="O nome não pode ficar em branco.";
+  if(!/^\S+@\S+\.\S+$/.test(novoEmail)) return erro.textContent="Esse e-mail não parece válido.";
+  if(senhaAtual !== usuario.senha) return erro.textContent="Senha atual incorreta.";
+
+  const us = usuarios();
+  if(novoEmail !== usuario.email && us[novoEmail]) return erro.textContent="Já existe uma conta com esse e-mail.";
+
+  // move o progresso salvo se o e-mail (chave de conta) mudar
+  const progresso = Guardar.ler(K_PR+usuario.email);
+  delete us[usuario.email];
+  const atualizado = { nome:novoNome, email:novoEmail, senha: senhaNova || usuario.senha };
+  us[novoEmail] = atualizado;
+  Guardar.gravar(K_US, us);
+  if(progresso){ Guardar.apagar(K_PR+usuario.email); Guardar.gravar(K_PR+novoEmail, progresso); }
+  Guardar.gravar(K_SE, novoEmail);
+
+  usuario = atualizado;
+  ok.textContent = "Dados atualizados com sucesso.";
+  $("#quem").textContent = usuario.nome;
+};
 
 /* ============ PRÓLOGO ============ */
 function pintarCena(){
@@ -526,7 +438,6 @@ function pintarCena(){
       <div class="escolhas">${c.escolha.opcoes.map((o,i)=>`<button data-i="${i}">${o.txt}</button>`).join("")}</div>`;
     area.querySelectorAll("button").forEach(b=>b.onclick=()=>{
       const o=c.escolha.opcoes[+b.dataset.i];
-      Object.entries(o.efeito||{}).forEach(([k,v])=>jogo.confianca[k]=lim(jogo.confianca[k]+v));
       jogo.ultimaEscolha=o.txt.replace(/<[^>]+>/g,"").slice(0,48);
       anotar(o.nota);
       area.innerHTML=`<div class="achado"><span class="m">consequência</span>${o.nota}</div>
@@ -544,100 +455,9 @@ function avancarCena(){
 }
 
 /* ============ MANSÃO ============ */
-function pintarMedidores(){
-  const c=confMedia(), n=jogo.provas.length, tot=Object.keys(PISTAS).length;
-  $("#medidores").innerHTML=`
-    <div class="medidor"><div class="rot"><span>Confiança do grupo</span><span>${c}%</span></div>
-      <div class="mbar a"><span style="width:${c}%"></span></div></div>
-    <div class="medidor"><div class="rot"><span>Medo coletivo</span><span>${jogo.medo}%</span></div>
-      <div class="mbar b"><span style="width:${jogo.medo}%"></span></div></div>
-    <div class="medidor"><div class="rot"><span>Provas no mural</span><span>${n} de ${tot}</span></div>
-      <div class="mbar a"><span style="width:${n/tot*100}%"></span></div></div>
-    <div class="medidor"><div class="rot"><span>Conclusões fechadas</span><span>${jogo.conclusoes.length} de ${CRUZAMENTOS.length}</span></div>
-      <div class="mbar a"><span style="width:${jogo.conclusoes.length/CRUZAMENTOS.length*100}%"></span></div></div>`;
-}
-
-const VIGIAS=[
-  {id:"escritorio", nome:"o escritório", nota:"protege o arquivo de quem quiser queimá-lo"},
-  {id:"subsolo", nome:"o subsolo", nota:"protege o gerador de um segundo apagão"},
-  {id:"corredor", nome:"o corredor", nota:"acalma quem passa a noite andando pela casa"}
-];
-
-function pintarPainelNoite(){
-  const p=$("#painel-noite"); p.innerHTML="";
-  const acoes=[
-    {id:"ouvir", t:"Ouvir a casa", d:"Ícaro tira os fones e mapeia quem está onde pelo som.", c:6},
-    {id:"acalmar", t:"Acalmar o grupo", d:"Junta todo mundo na sala, serve chá, abaixa a voz. Custa caro em tempo.", c:20},
-    {id:"esperar", t:"Deixar a noite correr", d:"Sentar no corredor, de fones, e esperar a casa se mexer sozinha.", c:30},
-    {id:"forcar", t:"Forçar a porta do escritório", d:"Sem a chave, com um pé de cabra e barulho suficiente para acordar a serra.", c:20,
-     ver:()=>!jogo.provas.includes("chave") && !jogo.forcou && jogo.rel>=1500}
-  ];
-  acoes.forEach(a=>{
-    if(a.ver && !a.ver()) return;
-    const b=document.createElement("button");
-    b.className="acao-noite";
-    b.innerHTML=`<strong>${a.t}</strong><span>${a.d}</span><em>custa ${a.c} min</em>`;
-    b.disabled = resta()<a.c;
-    b.onclick=()=>executarAcao(a);
-    p.appendChild(b);
-  });
-  VIGIAS.forEach(v=>{
-    const b=document.createElement("button");
-    b.className="acao-noite";
-    b.setAttribute("aria-pressed", jogo.vigia===v.id);
-    b.innerHTML=`<strong>Vigiar ${v.nome}</strong><span>${v.nota}</span><em>${jogo.vigia===v.id?"vigiando agora":"não custa tempo, mas só dá para vigiar um lugar"}</em>`;
-    b.onclick=()=>{ jogo.vigia = jogo.vigia===v.id ? null : v.id;
-      anotar(jogo.vigia?`Você passou a ficar de olho ${v.nome}.`:"Você parou de vigiar.");
-      jogo.ultimaEscolha=jogo.vigia?`vigiando ${v.nome}`:"parou de vigiar";
-      salvar(); pintarMansao(); };
-    p.appendChild(b);
-  });
-}
-
-function executarAcao(a){
-  let texto="";
-  if(a.id==="ouvir") texto=escutar();
-  if(a.id==="acalmar"){
-    jogo.medo=lim(jogo.medo-14);
-    Object.keys(jogo.confianca).forEach(k=>jogo.confianca[k]=lim(jogo.confianca[k]+4));
-    texto="Você junta todo mundo na sala de estar e não diz quase nada. Vinte minutos depois, as vozes voltaram ao volume normal. Vinte minutos que a noite não devolve.";
-  }
-  if(a.id==="esperar"){
-    jogo.medo=lim(jogo.medo+3);
-    texto="Meia hora sentado no corredor, com os fones no pescoço. Portas, passos, uma torneira, alguém que chega perto e desiste. A casa continua andando sem você, o que é exatamente o problema.";
-  }
-  if(a.id==="forcar"){
-    jogo.forcou=true; jogo.medo=lim(jogo.medo+12);
-    receber("chave","A fechadura arrombada");
-    texto="A madeira racha perto da fechadura e o barulho percorre a casa inteira. Quatro pessoas aparecem no corredor ao mesmo tempo, o que pelo menos responde onde cada uma estava.";
-  }
-  anotar(texto.split(".")[0]+".");
-  jogo.ultimaEscolha=a.t.toLowerCase();
-  const eventos=gastar(a.c);
-  pintarMansao();
-  $("#area-evento").innerHTML = `<div class="achado"><span class="m">${a.t.toLowerCase()} · ${relogio(jogo.rel)}</span>${texto}</div>`
-    + eventos.map(e=>`<div class="evento"><b>${e.marca}</b><p>${e.txt}</p></div>`).join("");
-  $("#area-evento").scrollIntoView({block:"nearest"});
-  if(jogo.fimForcado) encerrar("f4");
-}
-
-function escutar(){
-  const linhas=[];
-  const hora=jogo.rel;
-  linhas.push(hora<1440
-    ? "Alguém anda de um lado para o outro no andar de cima, sempre no mesmo trecho de tábua."
-    : "A casa está quieta demais para ter quatro pessoas acordadas dentro dela.");
-  if(jogo.provas.includes("gerador") && jogo.provas.includes("gravacao") && !jogo.conclusoes.includes("casa"))
-    linhas.push("O zumbido do subsolo tem um soluço a cada quatro segundos. Você já ouviu esse soluço hoje — e não foi no subsolo. Foi no fundo da fita. <b>Vale cruzar as duas provas no mural.</b>");
-  if(jogo.confianca.mariane>=50) linhas.push("Do quarto de Mariane vem uma contagem baixinha, repetida: três, pausa, dois.");
-  if(jogo.medo>=60) linhas.push("Duas vozes discutem no corredor e param no instante em que uma tábua range sob o seu pé.");
-  if(jogo.vigia==="corredor"){ jogo.medo=lim(jogo.medo-4); linhas.push("Como você passou a noite no corredor, ninguém tentou trancar nada."); }
-  linhas.push("Nenhuma porta dos fundos abriu. Continua sendo alguém de dentro.");
-  return linhas.join(" ");
-}
-
 function pintarMansao(){
-  pintarMedidores(); pintarPainelNoite(); pintarRelogio();
+  const tot=Object.keys(PISTAS).length;
+  $("#contador-provas").innerHTML = `Provas no mural: <b>${jogo.provas.length}</b> de ${tot}`;
   const grupos=Object.entries(COMODOS).map(([id,c])=>{
     const travado=c.exige && !jogo.provas.includes(c.exige);
     const rest=c.objetos.filter(o=>!jogo.examinados.includes(id+":"+o.id)).length;
@@ -647,7 +467,6 @@ function pintarMansao(){
       <rect x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}"/>
       <text class="nome" x="${cx}" y="${cy}">${c.nome}</text>
       <text class="conta" x="${cx}" y="${cy+20}">${travado?"trancado":rest?rest+" a revistar":"revistado"}</text>
-      ${jogo.vigia===id?`<text class="conta" x="${cx}" y="${cy+38}">você está de olho aqui</text>`:""}
     </g>`;
   }).join("");
   $("#area-planta").innerHTML=`
@@ -656,13 +475,13 @@ function pintarMansao(){
       ${grupos}
       <text x="24" y="452" fill="#5C8283" font-family="'Special Elite',monospace" font-size="11">escada ↓</text>
     </svg></div>
-    <p class="legenda-planta"><span>cada objeto revistado custa 4 minutos</span>
-      <span>o escritório exige a chave</span><span>a noite acaba às 04h00</span></p>`;
+    <p class="legenda-planta"><span>clique num cômodo para revistar</span>
+      <span>o escritório exige a chave</span></p>`;
   document.querySelectorAll(".comodo-g").forEach(g=>{
     const abrir=()=>{
       const id=g.dataset.comodo, c=COMODOS[id];
       if(c.exige && !jogo.provas.includes(c.exige)){
-        anotar("O escritório continua trancado. A chave está com alguém desta casa.");
+        anotar("O escritório está trancado. Alguém na casa está com a chave certa.");
         pintarMansao(); return;
       }
       jogo.comodoAberto=id; ir("comodo");
@@ -677,7 +496,7 @@ function pintarComodo(){
   const id=jogo.comodoAberto, c=COMODOS[id];
   $("#area-comodo").innerHTML=`
     <button class="btn sec" id="voltar-planta" style="margin-bottom:24px">← Voltar à planta</button>
-    <div class="cabeca-comodo"><span class="carimbo">${relogio(jogo.rel)} · ${id==="subsolo"?"subsolo":"térreo"}</span>
+    <div class="cabeca-comodo"><span class="carimbo">${id==="subsolo"?"subsolo":"térreo"}</span>
       <h2>${c.nome}</h2><p>${c.atmosfera}</p></div>
     <div class="objetos" id="objetos"></div>
     <div id="resultado"></div>`;
@@ -687,8 +506,7 @@ function pintarComodo(){
     const visto=jogo.examinados.includes(id+":"+o.id);
     const b=document.createElement("button");
     b.className="objeto"+(visto?" visto":"");
-    b.innerHTML=`<h4>${o.nome}</h4><span class="st">${visto?"já examinado":"examinar · 4 min"}</span>`;
-    b.disabled = !visto && resta()<4;
+    b.innerHTML=`<h4>${o.nome}</h4><span class="st">${visto?"já examinado":"examinar"}</span>`;
     b.onclick=()=>examinar(id,o);
     alvo.appendChild(b);
   });
@@ -696,91 +514,39 @@ function pintarComodo(){
 
 function examinar(comodoId,o){
   const marca=comodoId+":"+o.id, novo=!jogo.examinados.includes(marca);
-  let extra="", eventos=[];
-  if(novo){
-    jogo.examinados.push(marca);
-    if(o.pista && receber(o.pista, COMODOS[comodoId].nome)){
-      jogo.medo=lim(jogo.medo+(o.medo||0));
-      if(o.pista==="chave") anotar("O escritório agora pode ser aberto.");
-      extra=`<p style="margin:12px 0 0;color:var(--lampada);font-family:'Special Elite',monospace;font-size:12px">
-        nova prova no mural: ${PISTAS[o.pista].t.toLowerCase()}</p>`;
-    } else if(o.pista && jogo.destruidas.includes(o.pista)){
-      extra=`<p style="margin:12px 0 0;color:#C2655F;font-family:'Special Elite',monospace;font-size:12px">
-        o que estava aqui já foi destruído</p>`;
-    }
-    jogo.ultimaEscolha=`examinou ${o.nome.toLowerCase()}`;
-    eventos=gastar(4);
+  if(novo) jogo.examinados.push(marca);
+  let extra="";
+  if(novo && o.pista && !jogo.provas.includes(o.pista)){
+    jogo.provas.push(o.pista);
+    anotar(`${COMODOS[comodoId].nome}: <strong>${PISTAS[o.pista].t.toLowerCase()}</strong> foi para o mural.`);
+    if(o.pista==="chave") anotar("O escritório agora pode ser aberto.");
+    extra=`<p style="margin:12px 0 0;color:var(--lampada);font-family:'Special Elite',monospace;font-size:12px">
+      nova prova no mural: ${PISTAS[o.pista].t.toLowerCase()}</p>`;
   }
+  jogo.ultimaEscolha=`examinou ${o.nome.toLowerCase()}`;
   pintarComodo();
-  $("#resultado").innerHTML=`<div class="achado"><span class="m">${o.nome}</span>${o.txt}${extra}</div>`
-    + eventos.map(e=>`<div class="evento"><b>${e.marca}</b><p>${e.txt}</p></div>`).join("");
+  $("#resultado").innerHTML=`<div class="achado"><span class="m">${o.nome}</span>${o.txt}${extra}</div>`;
   $("#resultado").scrollIntoView({block:"nearest"});
-  $("#pino").textContent=jogo.provas.length||""; pintarRelogio(); salvar();
-  if(jogo.fimForcado) encerrar("f4");
+  $("#pino").textContent=jogo.provas.length||""; salvar();
 }
 
-/* ============ MURAL E CRUZAMENTOS ============ */
+/* ============ MURAL ============ */
 function pintarMural(){
-  const a=$("#mural-conteudo"), c=$("#area-conclusoes"), b=$("#barra-cruz");
-  c.innerHTML = jogo.conclusoes.length
-    ? `<p class="subt">conclusões fechadas</p><div class="conclusoes">`+jogo.conclusoes.map(id=>{
-        const k=CRUZAMENTOS.find(x=>x.id===id);
-        return `<article class="conclusao"><h4>${k.t}</h4><p>${k.d}</p><span>${k.e}</span></article>`;
-      }).join("")+`</div>`
-    : "";
-  if(!jogo.provas.length){
-    a.innerHTML=`<div class="vazio">O mural está vazio. Comece pela sala de jantar.</div>`; b.innerHTML=""; return;
-  }
+  const a=$("#mural-conteudo");
+  if(!jogo.provas.length){ a.innerHTML=`<div class="vazio">O mural está vazio. Comece pela sala de jantar.</div>`; return; }
   a.innerHTML=`<div class="mural">`+jogo.provas.map(id=>{const p=PISTAS[id];
-    const sel=jogo.selec.includes(id);
-    return `<article class="ficha${sel?" marcada":""}"><span class="origem">${p.o}</span><h4>${p.t}</h4>
-      <p class="leitura">${p.l}</p><p class="alt">${p.a}</p>
-      <button class="sel" data-p="${id}">${sel?"remover do cruzamento":"usar no cruzamento"}</button></article>`;}).join("")+`</div>`;
-  a.querySelectorAll("[data-p]").forEach(btn=>btn.onclick=()=>{
-    const id=btn.dataset.p;
-    if(jogo.selec.includes(id)) jogo.selec=jogo.selec.filter(x=>x!==id);
-    else { jogo.selec.push(id); if(jogo.selec.length>2) jogo.selec.shift(); }
-    salvar(); pintarMural();
-  });
-  const dois=jogo.selec.length===2;
-  b.innerHTML=`<p>${dois?`cruzando: ${jogo.selec.map(x=>PISTAS[x].t.toLowerCase()).join("  ×  ")}`:"marque duas fichas para cruzar · 8 minutos por tentativa"}</p>
-    <button class="btn" id="btn-cruzar" ${dois&&resta()>=8?"":"disabled"}>Cruzar as duas provas</button>
-    <div id="saida-cruz" style="flex-basis:100%"></div>`;
-  const bt=$("#btn-cruzar"); if(bt) bt.onclick=cruzar;
+    return `<article class="ficha"><span class="origem">${p.o}</span><h4>${p.t}</h4>
+      <p class="leitura">${p.l}</p><p class="alt">${p.a}</p></article>`;}).join("")+`</div>`;
 }
 
-function cruzar(){
-  const [x,y]=jogo.selec;
-  const k=acha(x,y);
-  let saida="";
-  if(k && !jogo.conclusoes.includes(k.id)){
-    jogo.conclusoes.push(k.id);
-    anotar(`Conclusão fechada: <strong>${k.t.toLowerCase()}</strong>.`);
-    jogo.ultimaEscolha=`fechou "${k.t}"`;
-    saida=`<div class="achado"><span class="m">fecha · ${k.e}</span><strong>${k.t}.</strong> ${k.d}</div>`;
-  } else if(k){
-    saida=`<div class="achado"><span class="m">já fechado</span>Você já tinha juntado essas duas.</div>`;
-  } else {
-    jogo.medo=lim(jogo.medo+3);
-    saida=`<div class="achado"><span class="m">não fecha</span>As duas coisas são verdadeiras e não se encontram em lugar nenhum. Você perdeu oito minutos olhando para elas, e quem estava te observando reparou.</div>`;
-    jogo.ultimaEscolha="cruzou provas que não fechavam";
-  }
-  jogo.selec=[];
-  const eventos=gastar(8);
-  pintarMural(); pintarRelogio();
-  $("#saida-cruz").innerHTML=saida + eventos.map(e=>`<div class="evento"><b>${e.marca}</b><p>${e.txt}</p></div>`).join("");
-  if(jogo.fimForcado) encerrar("f4");
-}
-
-/* ============ INTERROGATÓRIO ============ */
+/* ============ INTERROGATÓRIO (perguntas fixas) ============ */
 function pintarSuspeitos(){
   const g=$("#galeria-jogo"); g.innerHTML="";
   ["angelica","mariane","carla","lais"].forEach(id=>{
-    const p=ELENCO[id], v=jogo.confianca[id], fechado=jogo.fechados.includes(id);
+    const p=ELENCO[id];
     const b=document.createElement("button");
-    b.className="polaroid"+(fechado?" morto":""); b.setAttribute("aria-pressed", jogo.suspeitoAtivo===id);
-    b.innerHTML=retrato(p)+`<div class="legenda"><strong>${p.nome}</strong><em>${fechado?"trancada no quarto":p.papel}</em>
-      <div class="mini"><span style="width:${v}%"></span></div></div>`;
+    b.className="polaroid"; b.setAttribute("aria-pressed", jogo.suspeitoAtivo===id);
+    b.innerHTML=retrato(p)+`<div class="legenda"><strong>${p.nome}</strong><em>${p.papel}</em></div>`;
     b.onclick=()=>{ jogo.suspeitoAtivo=id; pintarSuspeitos(); salvar(); };
     g.appendChild(b);
   });
@@ -789,200 +555,97 @@ function pintarSuspeitos(){
 function pintarSala(){
   const a=$("#sala"), id=jogo.suspeitoAtivo;
   if(!id){ a.innerHTML=`<p style="color:var(--fraco);font-family:'Special Elite',monospace;font-size:13px;margin:0">
-    Escolha um retrato para começar a conversa.</p>`; return; }
-  if(jogo.fechados.includes(id)){
-    a.innerHTML=`<p style="color:var(--fraco);margin:0">${ELENCO[id].nome} não abre a porta. Do outro lado só dá para ouvir a mesma frase, repetida em voz baixa.</p>`;
-    return;
-  }
+    Escolha um retrato para ver as perguntas disponíveis.</p>`; return; }
   const h=jogo.conversas[id]||[];
-  const modo = iaResolvida
-    ? (askClaude ? `<p class="modo-ia">${ELENCO[id].nome} responde no personagem, ao vivo. Cada pergunta custa 3 minutos da noite.</p>`
-                 : `<p class="modo-ia off">Sem conexão com o Claude nesta visualização: os depoimentos vêm do roteiro fixo. Cada pergunta custa 3 minutos.</p>`)
-    : `<p class="modo-ia off">conectando os depoimentos…</p>`;
+  const feitas = jogo.perguntasFeitas[id]||[];
   a.innerHTML=`
     <div class="conversa" id="conversa">${h.length?h.map(m=>`<div class="msg ${m.q}"><span>${m.t}</span></div>`).join("")
-      :`<div class="msg sistema">${ELENCO[id].nome} espera você começar.</div>`}</div>
-    ${modo}
-    <p class="dica-tom">Escreva com suas palavras. Paciência abre depoimentos; agressividade fecha pessoas e pode destruir pistas para sempre.</p>
-    <div class="sugestoes">${PERSONAS[id].exemplos.map(s=>`<button data-sug="${s.replace(/"/g,'&quot;')}">${s}</button>`).join("")}</div>
-    <div class="linha-envio">
-      <textarea id="campo" placeholder="Pergunte o que quiser sobre a noite, a caixa, o gerador, o Davi…"></textarea>
-      <button class="btn" id="btn-enviar">Perguntar</button></div>`;
-  a.querySelectorAll("[data-sug]").forEach(b=>b.onclick=()=>{ $("#campo").value=b.dataset.sug; $("#campo").focus(); });
-  $("#btn-enviar").onclick=enviar;
-  $("#campo").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); enviar(); }});
-  const c=$("#conversa"); c.scrollTop=c.scrollHeight;
+      :`<div class="msg sistema">${ELENCO[id].nome} espera a sua primeira pergunta.</div>`}</div>
+    <div class="perguntas">${PERGUNTAS[id].map(p=>{
+      const usada = feitas.includes(p.id);
+      return `<button class="pergunta-btn" data-p="${p.id}" ${usada?"disabled":""}>${p.pergunta}
+        ${usada?'<span class="marcado">já perguntado</span>':""}</button>`;
+    }).join("")}</div>`;
+  a.querySelectorAll(".pergunta-btn:not(:disabled)").forEach(b=>b.onclick=()=>perguntar(id,b.dataset.p));
+  const conv=$("#conversa"); conv.scrollTop=conv.scrollHeight;
 }
-
-async function enviar(){
-  if(ocupado) return;
-  if(resta()<3){ encerrar("f4"); return; }
-  const campo=$("#campo"), txt=campo.value.trim(); if(!txt) return;
-  const id=jogo.suspeitoAtivo;
-  jogo.conversas[id].push({q:"eu",t:txt});
-  jogo.ultimaEscolha=`perguntou a ${ELENCO[id].nome}`;
-  campo.value=""; ocupado=true; pintarSala();
-  const conv=$("#conversa");
-  conv.insertAdjacentHTML("beforeend",`<div class="msg sistema pensando"><span>${ELENCO[id].nome} pensa antes de responder…</span></div>`);
-  conv.scrollTop=conv.scrollHeight;
-
-  const r=await responder(id,txt);
-  jogo.conversas[id].push({q:"ele",t:r.fala});
-  if(jogo.conversas[id].length>24) jogo.conversas[id]=jogo.conversas[id].slice(-24);
-  jogo.confianca[id]=lim(jogo.confianca[id]+r.confianca);
-  jogo.medo=lim(jogo.medo+r.medo);
-  if(r.pista && PISTAS[r.pista] && receber(r.pista, ELENCO[id].nome))
-    jogo.conversas[id].push({q:"sistema",t:`nova prova no mural: ${PISTAS[r.pista].t.toLowerCase()}`});
-  if(r.destruir && PISTAS[r.destruir] && perder(r.destruir))
-    jogo.conversas[id].push({q:"sistema",t:`prova perdida para sempre: ${PISTAS[r.destruir].t.toLowerCase()}`});
-  const eventos=gastar(3);
-  eventos.forEach(e=>jogo.conversas[id].push({q:"sistema",t:`${e.marca} — ${e.txt}`}));
-  ocupado=false; pintarSuspeitos(); pintarRelogio();
-  $("#pino").textContent=jogo.provas.length||""; salvar();
-  if(jogo.fimForcado) encerrar("f4");
-}
-
-function montarPrompt(id,pergunta){
-  const p=PERSONAS[id];
-  const hist=(jogo.conversas[id]||[]).filter(m=>m.q!=="sistema").slice(-8)
-    .map(m=>(m.q==="eu"?"ÍCARO: ":"VOCÊ: ")+m.t).join("\n");
-  return `${CONTEXTO}
-
-PERSONAGEM QUE VOCÊ INTERPRETA — siga esta descrição à risca e não a modifique:
-${p.persona}
-
-CONFIANÇA ATUAL EM ÍCARO: ${jogo.confianca[id]}/100 (abaixo de 30 você é hostil e evasivo; acima de 65 entrega detalhes que antes esconderia).
-MEDO COLETIVO NA CASA: ${jogo.medo}/100. HORA: ${relogio(jogo.rel)}.
-PROVAS QUE ÍCARO JÁ TEM: ${jogo.provas.length?jogo.provas.map(x=>PISTAS[x].t).join("; "):"nenhuma"}.
-CONCLUSÕES QUE ELE JÁ FECHOU: ${jogo.conclusoes.length?jogo.conclusoes.map(x=>CRUZAMENTOS.find(k=>k.id===x).t).join("; "):"nenhuma"}.
-${hist?`CONVERSA ATÉ AGORA:\n${hist}\n`:""}
-PERGUNTA DE ÍCARO: "${pergunta}"
-
-Avalie sozinho se a pergunta foi respeitosa, neutra ou agressiva, e reaja de acordo com o seu temperamento. Se ele apresentar uma prova ou conclusão que você não consegue contornar, ceda um pouco — nunca tudo.
-Responda APENAS com JSON, sem markdown e sem texto fora do objeto:
-{"fala":"resposta em português do Brasil, 1 a 3 frases, começando com travessão",
- "confianca":inteiro entre -20 e 15,
- "medo":inteiro entre -5 e 15,
- "pista":"${p.pista}" ou null (só se o personagem realmente entregou essa informação agora),
- "destruir":null ou "${p.pista}" (só se a pergunta foi agressiva e o personagem se fechou de vez)}`;
-}
-
-async function responder(id,pergunta){
-  if(!askClaude) return reserva(id,pergunta);
-  try{
-    const r=await askClaude.json(montarPrompt(id,pergunta),{modelTier:"quick",cache:false});
-    return {fala:(r&&r.fala)||reserva(id,pergunta).fala,
-      confianca:Number(r&&r.confianca)||0, medo:Number(r&&r.medo)||0,
-      pista:(r&&r.pista)||null, destruir:(r&&r.destruir)||null};
-  }catch(e){
-    if(["not_granted","sampling_disabled","not_declared","session_expired"].includes(e&&e.code)){
-      askClaude=null; pintarSala();
-    }
-    const base=reserva(id,pergunta);
-    if(e&&e.code==="rate_limited") base.fala="— Espera. Espera um pouco. Eu respondo, mas não agora.";
-    return base;
+function perguntar(id,perguntaId){
+  const p = PERGUNTAS[id].find(x=>x.id===perguntaId);
+  jogo.perguntasFeitas[id].push(perguntaId);
+  jogo.conversas[id].push({q:"eu",t:p.pergunta});
+  jogo.conversas[id].push({q:"ele",t:p.resposta});
+  jogo.ultimaEscolha=`perguntou a ${ELENCO[id].nome}: "${p.pergunta}"`;
+  if(p.pista && !jogo.provas.includes(p.pista)){
+    jogo.provas.push(p.pista);
+    jogo.conversas[id].push({q:"sistema",t:`nova prova no mural: ${PISTAS[p.pista].t.toLowerCase()}`});
+    anotar(`${ELENCO[id].nome} entregou: <strong>${PISTAS[p.pista].t.toLowerCase()}</strong>.`);
   }
+  pintarSala();
+  $("#pino").textContent=jogo.provas.length||""; salvar();
 }
 
 /* ============ ACUSAÇÃO ============ */
-const SUPORTE={
-  carla:["cacau","transferencias","embalagem","cinzas","copo"],
-  lais:["recibo","gerador","celular","embalagem","chave"],
-  mariane:["chave","passos"],
-  angelica:["relogio","tacas"],
-  dupla:["embalagem","cacau","recibo","gerador","transferencias","copo"]
-};
-function forca(){
-  if(!jogo.acusado) return 0;
-  return jogo.anexos.filter(p=>SUPORTE[jogo.acusado].includes(p)).length;
-}
 function pintarAcusacao(){
-  $("#carimbo-acusacao").textContent = jogo.telefone ? "o telefone voltou · a linha cai a qualquer momento" : "o telefone ainda está mudo";
-  const d=[];
-  if(chaves()<3) d.push("poucas provas materiais");
-  if(jogo.conclusoes.length<2) d.push("nenhuma conclusão fechada");
-  if(aliados()<2) d.push("quase ninguém confia em você");
-  if(jogo.medo>=70) d.push("o grupo está à beira de explodir");
-  if(!jogo.telefone) d.push("nenhuma linha telefônica até as 03h20");
-  $("#aviso").textContent = d.length
-    ? `Se acusar agora, faz isso com ${d.join(", ")}.`
-    : `Você tem provas materiais, conclusões fechadas, gente disposta a confirmar a sua versão e uma linha aberta. É agora.`;
-
+  $("#aviso").textContent = `O telefone voltou por alguns minutos. Você reuniu ${jogo.provas.length} de ${Object.keys(PISTAS).length} provas. Escolha com cuidado: acusar a pessoa errada não fecha o caso — leva um inocente e deixa o verdadeiro responsável livre.`;
   const a=$("#lista-acusados"); a.innerHTML="";
   ACUSADOS.forEach(x=>{
     const b=document.createElement("button");
     b.className="acusado"; b.setAttribute("aria-pressed", jogo.acusado===x.id);
     b.innerHTML=`<h3>${x.nome}</h3><p>${x.nota}</p>`;
-    b.onclick=()=>{ jogo.acusado=x.id; jogo.ultimaEscolha=`apontou ${x.nome}`; pintarAcusacao(); salvar(); };
+    b.onclick=()=>{ jogo.acusado=x.id; jogo.ultimaEscolha=`selecionou ${x.nome} para acusação`; pintarAcusacao(); salvar(); };
     a.appendChild(b);
   });
-
-  const an=$("#lista-anexos"); an.innerHTML="";
-  if(!jogo.provas.length) an.innerHTML=`<p style="color:var(--fraco);margin:0;font-size:13.5px">Você não tem nenhuma prova para anexar. Uma acusação assim é só uma opinião em voz alta.</p>`;
-  jogo.provas.forEach(p=>{
-    const b=document.createElement("button"), sel=jogo.anexos.includes(p);
-    b.className="anexo"; b.setAttribute("aria-pressed", sel);
-    b.textContent=PISTAS[p].t;
-    b.disabled = !sel && jogo.anexos.length>=3;
-    b.onclick=()=>{
-      jogo.anexos = sel ? jogo.anexos.filter(x=>x!==p) : jogo.anexos.concat(p);
-      pintarAcusacao(); salvar();
-    };
-    an.appendChild(b);
-  });
-
-  const f=forca();
-  $("#forca").textContent = jogo.acusado
-    ? `Das provas anexadas, ${f} sustenta${f===1?"":"m"} essa acusação. Conclusões fechadas: ${jogo.conclusoes.length}. Aliados: ${aliados()} de 4.`
-    : "Escolha quem você vai apontar para ver se as provas anexadas sustentam a versão.";
   $("#btn-acusar").disabled=!jogo.acusado;
 }
-
-function calcularFinal(){
-  if(jogo.medo>=78 || jogo.provas.length<5) return "f4";
-  const f=forca();
-  if(jogo.acusado==="dupla")
-    return (f>=3 && jogo.conclusoes.length>=3 && aliados()>=2 && jogo.telefone) ? "f1" : "f2";
-  if(jogo.acusado==="lais"){
-    const trio=["gerador","gravacao","embalagem"].every(p=>jogo.provas.includes(p));
-    return (trio && jogo.conclusoes.includes("casa") && f>=3) ? "f5" : "f2";
+$("#btn-acusar").onclick=()=>{
+  if(jogo.acusado==="dupla" && chaves()<MIN_PARA_DUPLA){
+    encerrarInsuficiente();
+    return;
   }
-  if(jogo.acusado==="carla") return (f>=3 && chaves()>=4 && aliados()>=2) ? "f1" : "f2";
-  return "f2";
+  encerrar(jogo.acusado);
+};
+
+function encerrarInsuficiente(){
+  jogo.ultimaEscolha = "tentou acusar as duas sem provas suficientes";
+  salvar();
+  $("#f-marca").textContent = "provas insuficientes";
+  $("#f-titulo").textContent = "Você não consegue sustentar as duas acusações ao mesmo tempo.";
+  $("#f-texto").innerHTML = `<p>Apontar Laís e Carla juntas exige provas que fechem a participação de cada uma separadamente. Com o que você tem agora, a acusação cai por contradição antes mesmo de chegar à delegacia da cidade.</p>
+    <p>Volte à mansão e reúna mais evidências antes de tentar de novo.</p>`;
+  $("#f-resumo").classList.add("oculto");
+  $("#f-acoes").innerHTML = `<button class="btn" id="btn-tentar-de-novo">Voltar à acusação</button>
+    <button class="btn sec" id="btn-para-mansao">Voltar à mansão</button>`;
+  $("#btn-tentar-de-novo").onclick = () => ir("acusacao");
+  $("#btn-para-mansao").onclick = () => ir("mansao");
+  ir("final");
 }
-function encerrar(k){
-  if(jogo.fim) return;
-  jogo.fim=k;
-  const f=FINAIS[k];
-  jogo.ultimaEscolha=`terminou em "${f.t}"`; salvar();
-  $("#f-marca").textContent=f.m; $("#f-titulo").textContent=f.t;
+
+function encerrar(idAcusado){
+  const f = FINAIS[idAcusado];
+  jogo.ultimaEscolha=`acusou ${idAcusado} · resultado: ${f.t}`;
+  salvar();
+  $("#f-marca").textContent=f.m;
+  $("#f-titulo").textContent=f.t;
   $("#f-texto").innerHTML=f.p.map(x=>`<p>${x}</p>`).join("");
-  $("#f-resumo").innerHTML=`<ul>
-    <li>Hora em que a noite fechou: ${relogio(Math.min(jogo.rel,FIM))}</li>
-    <li>Provas preservadas: ${jogo.provas.length} de ${Object.keys(PISTAS).length}</li>
-    <li>Provas materiais decisivas: ${chaves()} de ${Object.values(PISTAS).filter(p=>p.k).length}</li>
-    <li>Conclusões fechadas: ${jogo.conclusoes.length} de ${CRUZAMENTOS.length}</li>
-    <li>Provas perdidas: ${jogo.destruidas.length?jogo.destruidas.map(p=>PISTAS[p].t).join(", "):"nenhuma"}</li>
-    <li>Personagens do seu lado: ${aliados()} de 4</li>
-    <li>Medo coletivo ao final: ${jogo.medo}%</li></ul>`;
-  telaAtual="final";
-  $("#site").classList.add("oculto");
-  TELAS.forEach(x=>$("#tela-"+x).classList.toggle("oculto", x!=="final"));
-  $("#barra").classList.add("oculto");
-  window.scrollTo(0,0);
+
+  if(f.correto){
+    $("#f-resumo").classList.remove("oculto");
+    $("#f-resumo").innerHTML=`<ul>
+      <li>Provas preservadas: ${jogo.provas.length} de ${Object.keys(PISTAS).length}</li>
+      <li>Provas materiais decisivas: ${chaves()} de 8</li></ul>`;
+    $("#f-acoes").innerHTML = `<button class="btn" id="btn-rejogar">Reabrir o caso</button>
+      <button class="btn sec" id="btn-menu2">Menu</button>`;
+    $("#btn-rejogar").onclick = () => { jogo=novoJogo(); Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
+    $("#btn-menu2").onclick = () => entrarComo(usuario);
+  } else {
+    $("#f-resumo").classList.add("oculto");
+    $("#f-acoes").innerHTML = `<button class="btn" id="btn-tentar-de-novo2">Tentar novamente</button>
+      <button class="btn sec" id="btn-para-mansao2">Voltar à mansão</button>`;
+    $("#btn-tentar-de-novo2").onclick = () => ir("acusacao");
+    $("#btn-para-mansao2").onclick = () => ir("mansao");
+  }
+  ir("final");
 }
-$("#btn-acusar").onclick=()=>encerrar(calcularFinal());
-$("#btn-queimar").onclick=()=>encerrar("f3");
-$("#btn-rejogar").onclick=()=>{ jogo=novoJogo(); if(usuario) Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
 
 /* ============ INÍCIO ============ */
-(async()=>{
-  try{
-    if(typeof claude!=="undefined" && claude && typeof claude.use==="function")
-      askClaude = await claude.use("sample");
-  }catch(e){ askClaude=null; }
-  iaResolvida=true;
-  if(telaAtual==="suspeitos") pintarSala();
-})();
 (function(){ const e=Guardar.ler(K_SE), u=e&&usuarios()[e]; if(u){ usuario=u; $("#quem").textContent=u.nome; } ir("site"); })();
-
