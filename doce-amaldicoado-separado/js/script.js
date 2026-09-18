@@ -317,30 +317,42 @@ $("#galeria-site").innerHTML = ["angelica","mariane","carla","lais"].map(id=>{
   const p=ELENCO[id];
   return `<div class="polaroid">${retrato(p)}<div class="legenda"><strong>${p.nome}</strong><em>${p.papel}</em></div></div>`;
 }).join("");
-$("#ir-entrar").onclick = () => { const e=Guardar.ler(K_SE), u=e&&usuarios()[e]; u?entrarComo(u):ir("login"); };
+$("#ir-entrar").onclick = async() => {
+  try{ const r=await api("/api/sessao"); r.usuario?entrarComo(r.usuario):ir("login"); }
+  catch(e){ ir("login"); }
+};
 
 /* ============ CONTA ============ */
-const usuarios = () => Guardar.ler(K_US) || {};
+async function api(url, opcoes={}){
+  const res=await fetch(url,{headers:{"Content-Type":"application/json",...(opcoes.headers||{})},...opcoes});
+  const dados=await res.json().catch(()=>({}));
+  if(!res.ok) throw new Error(dados.erro||"Não foi possível concluir a operação.");
+  return dados;
+}
+function mostrarErro(id, erro){ $(id).textContent=erro.message||"Ocorreu um erro. Tente novamente."; }
+function usuarios(){ return {}; }
+async function sairDaConta(){
+  try{ await api("/api/logout",{method:"POST",body:"{}"}); }catch(e){}
+  Guardar.apagar(K_SE); usuario=null; ir("site");
+}
 $("#ir-cadastro").onclick=()=>ir("cadastro");
 $("#ir-login").onclick=()=>ir("login");
 $("#btn-site").onclick=()=>ir("site");
 
-$("#btn-cadastrar").onclick=()=>{
+$("#btn-cadastrar").onclick=async()=>{
   const nome=$("#c-nome").value.trim(), email=$("#c-email").value.trim().toLowerCase();
   const s1=$("#c-senha").value, s2=$("#c-senha2").value, e=$("#c-erro");
   if(!nome) return e.textContent="Escreva um nome.";
   if(!/^\S+@\S+\.\S+$/.test(email)) return e.textContent="Esse e-mail não parece válido.";
   if(s1.length<6) return e.textContent="A senha precisa de pelo menos 6 caracteres.";
   if(s1!==s2) return e.textContent="As duas senhas não batem.";
-  const us=usuarios();
-  if(us[email]) return e.textContent="Já existe um cadastro com esse e-mail.";
-  us[email]={nome,email,senha:s1}; Guardar.gravar(K_US,us); e.textContent="";
-  entrarComo(us[email]);
+  try{ e.textContent=""; const r=await api("/api/cadastro",{method:"POST",body:JSON.stringify({nome,email,senha:s1})}); entrarComo(r.usuario); }
+  catch(err){ mostrarErro("#c-erro",err); }
 };
-$("#btn-entrar").onclick=()=>{
-  const email=$("#l-email").value.trim().toLowerCase(), u=usuarios()[email];
-  if(!u||u.senha!==$("#l-senha").value) return $("#l-erro").textContent="E-mail ou senha não conferem.";
-  $("#l-erro").textContent=""; entrarComo(u);
+$("#btn-entrar").onclick=async()=>{
+  const email=$("#l-email").value.trim().toLowerCase(), senha=$("#l-senha").value;
+  try{ $("#l-erro").textContent=""; const r=await api("/api/login",{method:"POST",body:JSON.stringify({email,senha})}); entrarComo(r.usuario); }
+  catch(err){ mostrarErro("#l-erro",err); }
 };
 function entrarComo(u){
   usuario=u; Guardar.gravar(K_SE,u.email); $("#quem").textContent=u.nome;
@@ -358,7 +370,7 @@ $("#btn-continuar").onclick=()=>{
   ir(["prologo","mansao","comodo","mural","suspeitos","acusacao"].includes(s.ultimaTela)?s.ultimaTela:"mansao");
 };
 $("#btn-nova").onclick=()=>{ jogo=novoJogo(); Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
-$("#btn-sair").onclick=()=>{ Guardar.apagar(K_SE); usuario=null; ir("site"); };
+$("#btn-sair").onclick=sairDaConta;
 $("#btn-menu").onclick=()=>entrarComo(usuario);
 
 /* ============ PRÓLOGO ============ */
@@ -631,4 +643,10 @@ $("#btn-queimar").onclick=()=>encerrar("f3");
 $("#btn-rejogar").onclick=()=>{ jogo=novoJogo(); Guardar.apagar(K_PR+usuario.email); ir("prologo"); };
 
 /* ============ INÍCIO ============ */
-(function(){ const e=Guardar.ler(K_SE), u=e&&usuarios()[e]; if(u){ usuario=u; $("#quem").textContent=u.nome; } ir("site"); })();
+(async function(){
+  try{
+    const r=await api("/api/sessao");
+    if(r.usuario){ usuario=r.usuario; $("#quem").textContent=r.usuario.nome; }
+  }catch(e){}
+  ir("site");
+})();
