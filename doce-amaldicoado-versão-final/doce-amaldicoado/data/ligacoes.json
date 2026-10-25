@@ -1,0 +1,173 @@
+[
+  {
+    "id": "l01",
+    "pistas": [
+      "foto_festa",
+      "audio_leonardo"
+    ],
+    "texto": "O copo quebrado junto à porta da varanda e a discussão no áudio apontam para a mesma coisa: Leonardo não estava sozinho quando caiu."
+  },
+  {
+    "id": "l02",
+    "pistas": [
+      "extrato_chamadas",
+      "audio_leonardo"
+    ],
+    "texto": "A ligação de 23h41, interrompida, e o áudio de 41 segundos vêm da mesma noite e do mesmo celular."
+  },
+  {
+    "id": "l03",
+    "pistas": [
+      "fita_cassete",
+      "lembranca_mariane"
+    ],
+    "texto": "A música da fita foi o que fez Mariane se lembrar do que tinha esquecido."
+  },
+  {
+    "id": "l04",
+    "pistas": [
+      "agenda_antiga",
+      "versao_angelica"
+    ],
+    "texto": "A agenda diz que Angélica saiu às 00h15, mas ela sempre disse 23h30. Uma das duas versões é falsa."
+  },
+  {
+    "id": "l05",
+    "pistas": [
+      "versao_angelica",
+      "horario_angelica"
+    ],
+    "texto": "Angélica acabou admitindo o horário real e disse que mentiu a pedido de uma amiga. Pense em quem ganhava com isso."
+  },
+  {
+    "id": "l06",
+    "pistas": [
+      "audio_leonardo",
+      "estalo_igual"
+    ],
+    "texto": "O estalo que se ouve ao fundo do áudio tem o mesmo compasso do gerador desta mansão."
+  },
+  {
+    "id": "l07",
+    "pistas": [
+      "gerador_alterado",
+      "estalo_igual"
+    ],
+    "texto": "Alguém controla o gerador com um temporizador, e o compasso lembra o de três anos atrás. A casa foi preparada."
+  },
+  {
+    "id": "l08",
+    "pistas": [
+      "camera_escondida",
+      "caderno_lais"
+    ],
+    "texto": "A câmera no teto e o caderno de Laís mostram a mesma coisa: alguém montou esta noite com antecedência."
+  },
+  {
+    "id": "l09",
+    "pistas": [
+      "forminha_triangular",
+      "dobras_de_lais"
+    ],
+    "texto": "A dobra triangular é de Laís, mas isso só mostra quem sabia dobrar, não quem mexeu no doce."
+  },
+  {
+    "id": "l10",
+    "pistas": [
+      "encomenda_doces",
+      "forminha_triangular"
+    ],
+    "texto": "A caixa foi encomendada por “L.” e a forminha foi marcada. Preparar o doce não é o mesmo que adulterá-lo."
+  },
+  {
+    "id": "l11",
+    "pistas": [
+      "caixa_fechada",
+      "mancha_manga"
+    ],
+    "texto": "A caixa só foi aberta à mesa, por Mateus. Mas a mancha na manga de Carla já existia antes. O chocolate dela veio de outro lugar."
+  },
+  {
+    "id": "l12",
+    "pistas": [
+      "mancha_manga",
+      "guardanapo_escondido"
+    ],
+    "texto": "A mancha marrom na manga e o guardanapo manchado escondido na despensa podem ter a mesma origem."
+  },
+  {
+    "id": "l13",
+    "pistas": [
+      "livro_guardanapos",
+      "guardanapo_escondido"
+    ],
+    "texto": "Os guardanapos de pano ficam dentro da despensa, e o livro de entregas registra a inicial “C.” retirando-os às 21h38."
+  },
+  {
+    "id": "l14",
+    "pistas": [
+      "carla_nega_cozinha",
+      "livro_guardanapos"
+    ],
+    "texto": "Carla disse que nunca entrou na cozinha, mas o livro de entregas traz a inicial dela às 21h38."
+  },
+  {
+    "id": "l15",
+    "pistas": [
+      "carla_nega_cozinha",
+      "gravacao_camera"
+    ],
+    "texto": "Carla negou ter ido à cozinha, mas a câmera a mostra lá, sozinha, às 21h42."
+  },
+  {
+    "id": "l16",
+    "pistas": [
+      "livro_guardanapos",
+      "depoimento_icaro",
+      "gravacao_camera"
+    ],
+    "texto": "Três registros da mesma meia hora na cozinha: o livro (21h38), os passos que Ícaro ouviu (21h46) e a câmera (21h42 e 21h50). Eles contam a ordem em que cada pessoa passou por lá."
+  },
+  {
+    "id": "l17",
+    "pistas": [
+      "transferencia_bancaria",
+      "carta_delegacia"
+    ],
+    "texto": "O dinheiro dá o motivo de Carla. A carta mostra que Mateus ia entregar tudo, o que a deixava sem saída."
+  },
+  {
+    "id": "l18",
+    "pistas": [
+      "gravacao_mateus",
+      "lembranca_mariane"
+    ],
+    "texto": "Mateus diz que chegou antes de a música parar. Mariane viu alguém sair correndo da varanda. Quem saiu pode ter cruzado com ele."
+  },
+  {
+    "id": "l19",
+    "pistas": [
+      "queda_de_luz",
+      "gerador_alterado"
+    ],
+    "texto": "A luz caiu no instante em que Mateus caiu, e o gerador tinha um temporizador. O apagão pode ter sido combinado."
+  },
+  {
+    "id": "l20",
+    "pistas": [
+      "audio_leonardo",
+      "horario_angelica",
+      "lembranca_mariane"
+    ],
+    "texto": "Juntas, as três mostram o que houve na varanda: a frase “me dá isso”, a mentira sobre o horário e a manga vermelha. É o que se mostra a Carla sobre Leonardo."
+  },
+  {
+    "id": "l21",
+    "pistas": [
+      "carla_nega_cozinha",
+      "gravacao_camera",
+      "carta_delegacia"
+    ],
+    "texto": "A mentira, a oportunidade e o motivo. É o que se mostra a Carla sobre Mateus."
+  }
+]

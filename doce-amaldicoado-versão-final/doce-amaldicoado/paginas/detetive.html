@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha do detetive · O doce amaldiçoado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/componentes.css">
+  <link rel="stylesheet" href="/static/css/detetive.css">
+</head>
+<body>
+  <main class="mesa">
+    <form class="folha ficha" id="ficha">
+      <h1>Ficha do detetive</h1>
+      <p class="lema">Os convidados vão conhecer você pelo que estiver escrito aqui.</p>
+
+      <div class="dois">
+        <label class="campo"><span>Nome</span>
+          <input type="text" name="nome" maxlength="40" autocomplete="off" required>
+        </label>
+        <label class="campo"><span>Codinome (opcional)</span>
+          <input type="text" name="codinome" maxlength="30" autocomplete="off">
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>Retrato</legend>
+        <div class="retratos" id="retratos"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Especialidade</legend>
+        <div class="opcoes" id="especialidades"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Passado</legend>
+        <div class="opcoes" id="passados"></div>
+      </fieldset>
+
+      <p class="aviso" role="alert"></p>
+      <div class="rodape">
+        <button class="botao" type="submit">Salvar ficha</button>
+        <a class="voltar" id="voltar" href="/menu" hidden>Voltar ao menu</a>
+      </div>
+    </form>
+  </main>
+
+  <script type="module" src="/static/js/paginas/detetive.js"></script>
+</body>
+</html>

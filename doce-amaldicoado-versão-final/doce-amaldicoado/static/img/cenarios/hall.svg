@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" preserveAspectRatio="xMidYMid slice">
+  <defs><radialGradient id="g" cx="50%" cy="80%" r="60%"><stop offset="0" stop-color="#e88a3a" stop-opacity=".55"/><stop offset="1" stop-color="#e88a3a" stop-opacity="0"/></radialGradient></defs>
+  <rect width="800" height="240" fill="#1b130d"/>
+  <rect y="190" width="800" height="50" fill="#0f0a06"/>
+  <rect x="300" y="70" width="200" height="120" fill="#2a1f15"/><rect x="330" y="105" width="140" height="85" fill="#0b0705"/>
+  <ellipse cx="400" cy="170" rx="150" ry="95" fill="url(#g)"/>
+  <path d="M345 190 Q400 120 455 190 Z" fill="#e88a3a"/><path d="M370 190 Q400 145 430 190 Z" fill="#f2c36b"/>
+  <line x1="400" y1="0" x2="400" y2="30" stroke="#3b2b1c" stroke-width="3"/>
+  <path d="M350 30 H450 L430 52 H370 Z" fill="#a98340"/>
+  <path d="M590 190 L790 120 L790 135 L610 190 Z M620 190 L790 100 L790 110 L640 190 Z" fill="#2e2115"/>
+  <path d="M580 190 L580 150 L790 70 L790 190 Z" fill="#241a11"/>
+  <g fill="#3b2b1c"><rect x="60" y="45" width="42" height="56"/><rect x="125" y="55" width="36" height="46"/><rect x="185" y="40" width="40" height="60"/></g>
+  <g fill="#a98340" opacity=".5"><rect x="66" y="51" width="30" height="44"/><rect x="131" y="61" width="24" height="34"/><rect x="191" y="46" width="28" height="48"/></g>
+</svg>

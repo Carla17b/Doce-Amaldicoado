@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caderno · O doce amaldiçoado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/caderno.css">
+</head>
+<body>
+  <main class="caderno">
+    <header class="topo">
+      <h1>Caderno</h1>
+      <p class="contagem" id="contagem" aria-live="polite"></p>
+      <a href="/menu" id="voltar">Voltar</a>
+    </header>
+
+    <section class="dicas" aria-labelledby="t-dicas">
+      <div class="dicas-topo">
+        <h2 id="t-dicas">Ligações entre as pistas</h2>
+        <button class="botao" type="button" id="pedir-dica">Pedir uma dica</button>
+      </div>
+      <p class="estado-dica" id="estado-dica" role="status"></p>
+      <div class="ligacoes" id="ligacoes"></div>
+    </section>
+
+    <section class="caso-pistas" aria-labelledby="titulo-leonardo">
+      <h2 id="titulo-leonardo">A morte de Leonardo <span class="contagem-caso" id="conta-leonardo"></span></h2>
+      <div class="notas" id="notas-leonardo"></div>
+    </section>
+
+    <section class="caso-pistas" aria-labelledby="titulo-mateus">
+      <h2 id="titulo-mateus">A morte de Mateus <span class="contagem-caso" id="conta-mateus"></span></h2>
+      <div class="notas" id="notas-mateus"></div>
+    </section>
+  </main>
+
+  <script type="module" src="/static/js/paginas/caderno.js"></script>
+</body>
+</html>

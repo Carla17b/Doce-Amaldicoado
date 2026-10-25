@@ -1,0 +1,83 @@
+/* Menu: o crachá do detetive à esquerda, os dois casos à direita. */
+.mesa-menu { place-items: start center; }
+.painel { width: min(100%, 56rem); }
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+}
+.topo h1 { font-size: 2rem; }
+.conta { display: flex; gap: 1.2rem; color: var(--papel); }
+.conta a, .conta .botao-simples { color: var(--papel); font-size: 0.95rem; }
+
+.corpo { display: grid; grid-template-columns: 16rem 1fr; gap: 1.6rem; align-items: start; }
+
+/* Crachá */
+.cracha {
+  background: var(--papel);
+  color: var(--tinta);
+  padding: 1.2rem;
+  border-radius: 2px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+.cracha .foto { background: var(--papel-claro); aspect-ratio: 5 / 6; padding: 0.5rem 0.5rem 0; }
+.cracha .foto img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cracha h2 { margin-top: 1rem; font-size: 1.4rem; overflow-wrap: anywhere; }
+.cracha .codinome { margin: 0.1rem 0 0; font-style: italic; color: var(--tinta-suave); }
+.cracha dl { margin: 1rem 0 0; }
+.cracha dt { font-family: var(--fonte-maquina); font-size: 0.9rem; color: var(--tinta-suave); }
+.cracha dd { margin: 0 0 0.8rem; font-size: 0.95rem; line-height: 1.45; }
+
+/* Casos */
+.casos { display: grid; gap: 1.2rem; }
+.caso {
+  position: relative;
+  background: var(--papel);
+  color: var(--tinta);
+  padding: 1.5rem 1.6rem 1.6rem;
+  border-radius: 2px 6px 2px 2px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+.caso h2 { font-size: 1.5rem; }
+.caso p { margin: 0.6rem 0 1.2rem; max-width: 34rem; }
+.caso .botao { width: auto; }
+.caso .nota { margin: 0.7rem 0 0; font-size: 0.9rem; color: var(--tinta-suave); font-style: italic; }
+
+.caso .revisar { margin: 0.8rem 0 0; font-size: 0.92rem; color: var(--tinta-suave); }
+.caso .revisar a { color: var(--carimbo); text-underline-offset: 3px; }
+
+/* Caso lacrado: a pasta aparece apagada, com carimbo */
+.caso.lacrado { background: #8f8060; color: #2a2014; box-shadow: none; }
+.caso.lacrado .nota { color: #2a2014; }
+.carimbo {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  padding: 0.15rem 0.7rem;
+  font-family: var(--fonte-maquina);
+  font-size: 1.15rem;
+  color: var(--carimbo);
+  border: 2px solid var(--carimbo);
+  border-radius: 3px;
+  transform: rotate(6deg);
+  opacity: 0.9;
+}
+
+@media (max-width: 760px) {
+  .corpo { grid-template-columns: 1fr; }
+  .cracha { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; align-items: start; }
+  .cracha h2 { margin-top: 0; }
+  .carimbo { position: static; display: inline-block; margin-bottom: 0.6rem; transform: rotate(-3deg); }
+}
+
+/* Finais alcançados, no crachá */
+.cracha .finais { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px dotted var(--tinta-suave); }
+.cracha .finais h3 { font-size: 1rem; }
+.cracha .finais ul { margin: 0.5rem 0 0; padding: 0; list-style: none; font-size: 0.9rem; line-height: 1.5; }
+.cracha .finais li { color: var(--tinta-suave); font-style: italic; }
+.cracha .finais li.feito { color: var(--tinta); font-style: normal; }
+@media (max-width: 760px) { .cracha .finais { grid-column: 1 / -1; } }

@@ -1,0 +1,66 @@
+/* Caderno: as pistas anotadas, como bilhetes sobre a mesa. */
+.caderno { width: min(100%, 56rem); margin: 0 auto; padding: 1.2rem 1rem 3rem; }
+
+.topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.4rem; margin-bottom: 1.8rem; }
+.topo h1 { font-size: 2rem; margin-right: auto; }
+.topo .contagem { margin: 0; font-family: var(--fonte-maquina); color: var(--latao); }
+.topo a { color: var(--papel); font-size: 0.95rem; text-underline-offset: 3px; }
+
+.caso-pistas { margin-bottom: 2.2rem; }
+.caso-pistas h2 { margin-bottom: 1rem; font-size: 1.35rem; color: var(--papel-claro); }
+
+.notas { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: 1.1rem; }
+
+.nota {
+  padding: 1rem 1.1rem 1.1rem;
+  background: var(--papel);
+  color: var(--tinta);
+  border-radius: 2px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+}
+.nota:nth-child(odd) { transform: rotate(-0.5deg); }
+.nota:nth-child(even) { transform: rotate(0.5deg); }
+.nota h3 { font-size: 1.1rem; }
+.nota .onde { margin: 0.15rem 0 0.6rem; font-size: 0.88rem; font-style: italic; color: var(--tinta-suave); }
+.nota p:last-child { margin: 0; font-size: 0.95rem; line-height: 1.5; }
+
+.vazio { margin: 0; font-style: italic; color: #b9a67d; }
+
+/* Contagem por caso e espaços das pistas que faltam */
+.caso-pistas h2 { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
+.contagem-caso { font-size: 0.95rem; color: var(--latao); }
+.nota.vazia {
+  display: grid;
+  place-items: center;
+  min-height: 5.5rem;
+  background: transparent;
+  color: rgba(217, 199, 159, 0.4);
+  font-family: var(--fonte-maquina);
+  font-size: 1.5rem;
+  border: 1.5px dashed rgba(217, 199, 159, 0.3);
+  box-shadow: none;
+  transform: none;
+}
+
+/* Dica: ligações entre as pistas */
+.dicas { margin-bottom: 2.2rem; padding: 1.1rem 1.2rem; border: 1px dotted rgba(169, 131, 64, 0.6); border-radius: 2px; }
+.dicas-topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
+.dicas-topo h2 { margin: 0; font-size: 1.2rem; color: var(--papel-claro); }
+.dicas .botao { background: var(--papel); color: var(--tinta); padding: 0.55rem 1.1rem; font-size: 0.98rem; }
+.dicas .botao:hover:not(:disabled) { background: var(--papel-claro); }
+.estado-dica { margin: 0.7rem 0 0; font-style: italic; color: #b9a67d; }
+.ligacoes { display: grid; gap: 0.7rem; margin-top: 0.9rem; }
+.ligacoes:empty { display: none; }
+.ligacao {
+  padding: 0.8rem 1rem;
+  background: rgba(217, 199, 159, 0.1);
+  border-left: 3px solid var(--latao);
+  cursor: pointer;
+}
+.ligacao:hover, .ligacao[aria-pressed="true"] { background: rgba(217, 199, 159, 0.2); }
+.ligacao p { margin: 0 0 0.5rem; }
+.ligacao ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.ligacao li { padding: 0.15rem 0.6rem; font-family: var(--fonte-maquina); font-size: 0.85rem; color: var(--tinta); background: var(--papel); border-radius: 2px; }
+
+/* A pista destacada quando se toca numa ligação */
+.nota.ligada { outline: 3px solid var(--carimbo); outline-offset: 3px; }

@@ -1,0 +1,57 @@
+/* Tela de créditos: um cartão simples, centralizado, que aparece aos poucos. */
+.creditos {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 2rem;
+}
+
+.creditos-topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem 1.2rem;
+  font-family: var(--fonte-maquina);
+}
+.creditos-topo .sair { font-size: 0.9rem; color: var(--papel); opacity: 0.75; text-underline-offset: 3px; }
+
+.cartao {
+  width: min(100%, 34rem);
+  margin: auto;
+  padding: 2.4rem 1.6rem;
+  text-align: center;
+}
+.cartao > * { margin: 0; }
+
+.selo {
+  display: inline-block;
+  padding: 0.15rem 0.9rem;
+  font-family: var(--fonte-maquina);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--carimbo);
+  border: 2px solid var(--carimbo);
+  border-radius: 2px;
+  transform: rotate(-3deg);
+}
+
+.cartao h1 { margin-top: 1.4rem; font-size: clamp(1.8rem, 6vw, 2.6rem); color: var(--papel-claro); }
+.linha { margin-top: 2.2rem; font-style: italic; color: #b9a67d; }
+.grupo { margin-top: 0.4rem; font-family: var(--fonte-maquina); font-size: 1.6rem; color: var(--latao); }
+.integrantes { margin-top: 2.2rem; }
+.integrantes p { margin: 0; }
+.rotulo { margin-bottom: 0.6rem !important; font-style: italic; color: #b9a67d; }
+.pessoa { margin-top: 0.3rem; }
+.agradecimento { margin-top: 2.6rem; margin-bottom: 2rem; font-size: 1.15rem; }
+
+/* Cada parte aparece depois da anterior; sem animação para quem prefere menos movimento. */
+@media (prefers-reduced-motion: no-preference) {
+  .cartao > * { opacity: 0; animation: surgir 1.2s ease forwards; }
+  .cartao > :nth-child(1) { animation-delay: 0.2s; }
+  .cartao > :nth-child(2) { animation-delay: 0.9s; }
+  .cartao > :nth-child(3) { animation-delay: 1.8s; }
+  .cartao > :nth-child(4) { animation-delay: 2.5s; }
+  .cartao > :nth-child(5) { animation-delay: 3.1s; }
+  .cartao > :nth-child(n+6) { animation-delay: 4s; }
+  @keyframes surgir { to { opacity: 1; } }
+}

@@ -1,0 +1,35 @@
+/* Página de login: uma pasta de arquivo sobre a mesa. */
+.pasta { width: min(100%, 27rem); }
+
+/* Abas da pasta */
+.abas { display: flex; gap: 0.25rem; padding-left: 0.75rem; }
+
+.aba {
+  font-family: var(--fonte-maquina);
+  font-size: 0.98rem;
+  padding: 0.55rem 1.1rem 0.5rem;
+  background: #7b6540;
+  color: #1f160d;
+  border: 0;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transform: translateY(2px);
+}
+.aba[aria-selected="true"] {
+  background: var(--papel);
+  color: var(--tinta);
+  transform: none;
+  position: relative;
+  z-index: 1;
+}
+
+.troca {
+  margin: 1.1rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--tinta-suave);
+}
+.troca .botao-simples { color: var(--carimbo); font-weight: 600; }
+
+.voltar-inicio { margin: 1.1rem 0 0; text-align: center; font-size: 0.95rem; }
+.voltar-inicio a { color: var(--papel); opacity: 0.8; text-underline-offset: 3px; }

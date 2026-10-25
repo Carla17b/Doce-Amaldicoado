@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "rotulo": "O caso",
+    "titulo": "O doce amaldiçoado",
+    "resumo": "Três anos atrás, Leonardo morreu ao cair de uma varanda. Agora Mateus morre à mesa de um jantar numa mansão isolada pela neve. Duas mortes, cinco convidados e uma mentira que todos aceitaram repetir.",
+    "requer": null,
+    "pronto": true,
+    "completo": true,
+    "etapas": [
+      {
+        "id": "prologo",
+        "titulo": "Prólogo",
+        "rota": "/prologo"
+      },
+      {
+        "id": "convite",
+        "titulo": "O convite",
+        "rota": "/convite"
+      },
+      {
+        "id": "mansao",
+        "titulo": "A mansão",
+        "rota": "/mansao"
+      },
+      {
+        "id": "jantar",
+        "titulo": "O jantar",
+        "rota": "/jantar"
+      },
+      {
+        "id": "noite",
+        "titulo": "A noite presa",
+        "rota": "/noite"
+      },
+      {
+        "id": "interrogatorios",
+        "titulo": "Os interrogatórios",
+        "rota": "/interrogatorios"
+      },
+      {
+        "id": "acusacao",
+        "titulo": "A acusação",
+        "rota": "/acusacao"
+      }
+    ]
+  }
+]

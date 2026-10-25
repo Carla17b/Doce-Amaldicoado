@@ -1,0 +1,64 @@
+/* Peças compartilhadas entre as páginas: mesa, folha de papel, campos. */
+.mesa {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+/* Folha de papel */
+.folha {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.08)),
+    var(--papel);
+  color: var(--tinta);
+  padding: 2rem 1.9rem 2.2rem;
+  border-radius: 2px 4px 4px 4px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.folha h1 { font-size: 2rem; color: var(--tinta); }
+
+.lema {
+  margin: 0.5rem 0 1.8rem;
+  font-style: italic;
+  color: var(--tinta-suave);
+}
+
+.campo { display: block; margin-bottom: 1.2rem; }
+
+.campo span {
+  display: block;
+  font-family: var(--fonte-maquina);
+  font-size: 0.95rem;
+  color: var(--tinta-suave);
+}
+
+.campo input {
+  width: 100%;
+  padding: 0.35rem 0.1rem;
+  background: transparent;
+  color: var(--tinta);
+  font-family: var(--fonte-maquina);
+  font-size: 1.1rem;
+  border: 0;
+  border-bottom: 1.5px dotted var(--tinta);
+  border-radius: 0;
+}
+.campo input:focus { outline: none; border-bottom: 1.5px solid var(--carimbo); }
+
+.aviso {
+  min-height: 1.5rem;
+  margin: 0 0 0.8rem;
+  color: var(--carimbo);
+  font-family: var(--fonte-maquina);
+  font-size: 0.95rem;
+}
+
+.folha .botao { width: 100%; }
+
+
+@media (max-width: 380px) {
+  .folha { padding: 1.5rem 1.2rem 1.8rem; }
+  .folha h1 { font-size: 1.65rem; }
+}

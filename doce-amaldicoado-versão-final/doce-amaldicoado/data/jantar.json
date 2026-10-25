@@ -1,0 +1,419 @@
+{
+  "titulo": "O jantar",
+  "inicio": "mesa",
+  "herdaDe": "mansao",
+  "horaInicial": "22:00",
+  "limite": {
+    "hora": "22:27",
+    "vai": "brinde"
+  },
+  "cenas": {
+    "mesa": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "hora": "22:02",
+      "texto": [
+        "Às dez, todos estão sentados. A mesa para dez acomoda sete: Mateus na cabeceira, Carla à direita, Angélica à esquerda, Laís e Mariane de um lado, Ícaro e você do outro.",
+        "A comida chegou e foi quase toda deixada no prato: uma sopa de abóbora e um assado que ninguém terminou. A conversa é a de gente que combinou não falar do que importa.",
+        "No centro da mesa, a caixa de brigadeiros espera, fechada com uma fita dourada.",
+        "Mateus mal tocou no prato. De tempos em tempos, olha o relógio de pulso e depois olha para você.",
+        {
+          "dica": "O cartão de Mateus, na cabeceira, está escrito com a mesma caligrafia da carta que você recebeu.",
+          "se": [
+            "esp_documentos"
+          ]
+        },
+        {
+          "dica": "A sala tem três entradas: o hall, a cozinha e a porta de serviço. Do seu lugar, você vê as duas primeiras.",
+          "se": [
+            "esp_lugares"
+          ]
+        },
+        "Falta pouco para ele se levantar. Até lá, você tem tempo de olhar."
+      ],
+      "escolhas": [
+        {
+          "texto": "Observar Carla, à direita de Mateus",
+          "vai": "mesa_volta",
+          "sem": [
+            "viu_carla"
+          ],
+          "marcar": [
+            "viu_carla"
+          ],
+          "minutos": 4,
+          "pista": "mancha_manga",
+          "resposta": [
+            "Carla corta a carne em pedaços pequenos demais e leva pouco à boca. A taça dela continua cheia desde que o assado chegou.",
+            "Quando percebe que alguém olha, ela pousa o guardanapo sobre o punho esquerdo. Antes disso, você vê uma mancha marrom-escura na manga da blusa, perto do pulso.",
+            {
+              "dica": "Ela cobre a mancha rápido demais para quem não sabe que ela está ali.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Observar Laís",
+          "vai": "mesa_volta",
+          "sem": [
+            "viu_lais"
+          ],
+          "marcar": [
+            "viu_lais"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "Laís gira o garfo entre os dedos sem usá-lo. Olha para Mateus, depois para a caixa no centro da mesa, depois para o canto do teto, como quem confere uma lista.",
+            "Tem o sorriso de quem espera uma cena começar.",
+            {
+              "dica": "Quando percebe que você a observa, o sorriso aumenta. Os olhos não acompanham.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Observar Mariane",
+          "vai": "mesa_volta",
+          "sem": [
+            "viu_mariane"
+          ],
+          "marcar": [
+            "viu_mariane"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "Mariane não comeu quase nada. Tem as mãos no colo e os olhos fixos na chama da vela mais próxima.",
+            "Os lábios se mexem de vez em quando, como quem repete uma frase para não esquecer.",
+            {
+              "dica": "Ela encolhe os ombros cada vez que alguém diz “três anos”.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Observar Angélica",
+          "vai": "mesa_volta",
+          "sem": [
+            "viu_angelica"
+          ],
+          "marcar": [
+            "viu_angelica"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "Angélica conta uma história sobre um show de humor em que a plateia só tinha cinco pessoas, e nenhuma ria direito. Ela mesma ri alto demais.",
+            "A agenda de capa dura está ao lado do prato. Ela escreve alguma coisa no canto da página sem olhar.",
+            {
+              "dica": "Quando o riso acaba, o rosto dela vira outro: atento, de quem dorme mal.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Observar Ícaro",
+          "vai": "mesa_volta",
+          "sem": [
+            "viu_icaro"
+          ],
+          "marcar": [
+            "viu_icaro",
+            "ouviu_ritmo"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "Ícaro quase não fala. Os olhos acompanham o lustre, e os lábios se mexem num ritmo lento, de quem conta em silêncio.",
+            "De tempos em tempos, o lustre treme, mínimo. O gerador, lá embaixo, continua no seu compasso.",
+            {
+              "dica": "Ele para de contar quando percebe que você o vê, e parece constrangido.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Olhar a caixa no centro da mesa",
+          "vai": "mesa_volta",
+          "sem": [
+            "pista_caixa_fechada"
+          ],
+          "minutos": 4,
+          "pista": "caixa_fechada",
+          "resposta": [
+            "A caixa é de papelão rígido, preta, fechada com uma fita dourada em laço perfeito. Não há marcas de dedos no papelão, nem fita rasgada.",
+            "Ninguém a abriu desde que foi colocada ali."
+          ]
+        },
+        {
+          "texto": "Esperar que Mateus se levante",
+          "vai": "brinde"
+        }
+      ]
+    },
+    "mesa_volta": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "texto": [
+        "A conversa continua em volta da mesa, em voz baixa. Mateus ainda não se levantou."
+      ],
+      "escolhasDe": "mesa"
+    },
+    "brinde": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "hora": "22:27",
+      "texto": [
+        "Às 22h27, Mateus bate com a faca na taça. A sala inteira se vira.",
+        {
+          "fala": "Mateus",
+          "texto": "Obrigado por terem vindo. Sei que nenhum de vocês queria estar aqui. Viemos por um aniversário, e é verdade, Angélica: parabéns. Mas viemos, principalmente, por Leonardo."
+        },
+        "O nome cai na mesa como um prato que se quebra. Ninguém se mexe.",
+        {
+          "fala": "Mateus",
+          "texto": "À meia-noite, vou mostrar a todos os documentos que provam o que aconteceu há três anos, e uma gravação da noite em que ele morreu. Os documentos são sobre dinheiro, Carla. Você sabe de qual dinheiro estou falando."
+        },
+        "Carla não responde. A mão que segura a taça fica completamente parada.",
+        {
+          "fala": "Mateus",
+          "texto": "E esta é {nome}, que veio de fora para ver tudo com os próprios olhos."
+        },
+        "Os olhares se viram para você, todos ao mesmo tempo."
+      ],
+      "escolhas": [
+        {
+          "texto": "Olhar para Carla",
+          "vai": "brinde_volta",
+          "sem": [
+            "reagiu_carla"
+          ],
+          "marcar": [
+            "reagiu_carla"
+          ],
+          "minutos": 1,
+          "resposta": [
+            "Carla pousa a taça sobre a toalha com uma precisão exagerada, como quem apoia algo que pode quebrar. Depois sorri, e o sorriso é o de quem estuda uma saída.",
+            {
+              "dica": "Ela olha primeiro para a caixa, depois para Mateus. Não para você.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Olhar para Laís",
+          "vai": "brinde_volta",
+          "sem": [
+            "reagiu_lais"
+          ],
+          "marcar": [
+            "reagiu_lais"
+          ],
+          "minutos": 1,
+          "resposta": [
+            "Laís não se espanta. Inclina a cabeça um pouco para o lado, satisfeita, como quem vê um plano funcionando.",
+            "Então percebe que você a observa e troca a expressão por uma surpresa que chega tarde."
+          ]
+        },
+        {
+          "texto": "Olhar para Mariane",
+          "vai": "brinde_volta",
+          "sem": [
+            "reagiu_mariane"
+          ],
+          "marcar": [
+            "reagiu_mariane"
+          ],
+          "minutos": 1,
+          "resposta": [
+            "Mariane fecha os olhos. Os lábios formam o nome de Leonardo, sem som.",
+            "Quando os abre, está chorando e parece não ter notado."
+          ]
+        },
+        {
+          "texto": "Olhar para Angélica",
+          "vai": "brinde_volta",
+          "sem": [
+            "reagiu_angelica"
+          ],
+          "marcar": [
+            "reagiu_angelica"
+          ],
+          "minutos": 1,
+          "resposta": [
+            "Angélica abre a boca para uma piada. Nada sai. A coroa de papel escorrega para o lado da cabeça e ela não a ajeita."
+          ]
+        },
+        {
+          "texto": "Olhar para Ícaro",
+          "vai": "brinde_volta",
+          "sem": [
+            "reagiu_icaro"
+          ],
+          "marcar": [
+            "reagiu_icaro"
+          ],
+          "minutos": 1,
+          "resposta": [
+            "Ícaro olha para o teto. Não para o lustre: para o canto onde o forro encontra a parede, como se houvesse algo ali.",
+            "Depois olha para você, e por um instante parece que vai dizer alguma coisa."
+          ]
+        },
+        {
+          "texto": "Voltar o olhar para Mateus",
+          "vai": "caixa"
+        }
+      ]
+    },
+    "brinde_volta": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "texto": [
+        "Mateus espera. O silêncio dura o suficiente para ser desconfortável."
+      ],
+      "escolhasDe": "brinde"
+    },
+    "caixa": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "hora": "22:34",
+      "pista": "forminha_triangular",
+      "texto": [
+        "Mateus puxa a fita dourada. O laço se desfaz com facilidade. Ele levanta a tampa.",
+        "Dentro, doze brigadeiros em forminhas de papel branco, enfileirados como soldados. Uma das forminhas está dobrada num pequeno triângulo.",
+        "Mateus se detém ao ver a dobra. Sorri de leve, como quem reconhece um sinal.",
+        {
+          "fala": "Mateus",
+          "texto": "Vou adoçar a boca antes de explicar por que guardei isso por tanto tempo. Seria injusto começar amargo."
+        },
+        "Ele pega justamente o brigadeiro da forminha triangular.",
+        {
+          "dica": "O vinco da dobra é preciso demais para ter sido feito por acaso: foi feito com cuidado, por mãos que sabem dobrar papel.",
+          "se": [
+            "esp_documentos"
+          ]
+        }
+      ],
+      "proximo": "morte",
+      "rotulo": "Continuar"
+    },
+    "morte": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "hora": "22:37",
+      "pista": "queda_de_luz",
+      "texto": [
+        "Mateus leva o brigadeiro à boca. Mastiga devagar, olhando cada um de vocês, como se contasse.",
+        {
+          "fala": "Mateus",
+          "texto": "Há três anos, eu fiz uma escolha. Antes de explicar por que guardei isso por tanto tempo…"
+        },
+        "Ele para no meio da frase.",
+        "A mão sobe até o colarinho. A respiração muda: curta, depois ofegante, como a de quem correu. O rosto perde a cor de uma vez, como se alguém tivesse tirado a luz de dentro dele.",
+        {
+          "fala": "Mateus",
+          "texto": "Eu…"
+        },
+        "A cadeira arrasta. Ele se levanta, apoia as mãos na mesa e derruba a taça. Alguém grita o nome dele. Carla não se mexe. Laís diz “Mateus?” baixinho, duas vezes, como se ele pudesse responder a pedido.",
+        "Ele dá um passo em direção à porta. O joelho cede. O corpo vai ao chão com um som seco, e a mesa balança.",
+        "No mesmo instante, o lustre pisca, estala e se apaga. O gerador falhou."
+      ],
+      "proximo": "apagao",
+      "rotulo": "Continuar"
+    },
+    "apagao": {
+      "local": "Sala de jantar",
+      "cenario": "escuro",
+      "hora": "22:38",
+      "texto": [
+        "Escuridão. Só as velas da mesa, balançando, e o chiado do gerador morrendo no porão.",
+        "Há gritos, uma cadeira que cai, alguém pedindo luz. Ícaro grita “Ninguém se mexa!”, e a sala obedece.",
+        "Você se ajoelha ao lado de Mateus. A luz de uma vela chega até o rosto dele. Os olhos estão abertos, sem ver."
+      ],
+      "escolhas": [
+        {
+          "texto": "Procurar o pulso",
+          "vai": "apagao_volta",
+          "sem": [
+            "fez_pulso"
+          ],
+          "marcar": [
+            "fez_pulso"
+          ],
+          "resposta": [
+            "Você apoia dois dedos no pescoço dele e espera. Nada. Espera mais. Nada.",
+            "Mateus está morto."
+          ]
+        },
+        {
+          "texto": "Pedir que ninguém toque na mesa",
+          "vai": "apagao_volta",
+          "sem": [
+            "pediu_mesa"
+          ],
+          "marcar": [
+            "pediu_mesa"
+          ],
+          "resposta": [
+            {
+              "fala": "{nome}",
+              "texto": "Ninguém toca em nada. Nem na comida, nem na caixa, nem em nenhum copo."
+            },
+            "Cadeiras se arrastam para trás. Ninguém discute. Pela primeira vez na noite, todos obedecem a alguém."
+          ]
+        },
+        {
+          "texto": "Olhar os rostos à luz das velas",
+          "vai": "apagao_volta",
+          "sem": [
+            "viu_rostos"
+          ],
+          "marcar": [
+            "viu_rostos"
+          ],
+          "resposta": [
+            "À luz das velas, os rostos viram máscaras. Mariane, com as mãos na boca. Angélica, de joelhos no chão. Ícaro, de pé, olhando para o teto. Laís, imóvel. Carla ainda sentada, com a taça diante dos olhos.",
+            "Ninguém parece surpreso do jeito que a cena pede."
+          ]
+        },
+        {
+          "texto": "Dizer a todos o que aconteceu",
+          "vai": "fim_jantar",
+          "se": [
+            "fez_pulso"
+          ]
+        }
+      ]
+    },
+    "apagao_volta": {
+      "local": "Sala de jantar",
+      "cenario": "escuro",
+      "texto": [
+        "As velas pingam. Em algum lugar da casa, uma porta bate com o vento."
+      ],
+      "escolhasDe": "apagao"
+    },
+    "fim_jantar": {
+      "local": "Sala de jantar",
+      "cenario": "escuro",
+      "fim": true,
+      "texto": [
+        "A notícia se espalha pela sala antes de você terminar de falar.",
+        "Alguém tenta o telefone: sem sinal. Alguém abre a porta da frente: um muro de neve e um vento que apaga duas velas de uma vez. A estrada está fechada desde as oito. Ninguém sai, e ninguém chega.",
+        "São 22h40. A meia-noite que Mateus marcou para mudar tudo ainda vai chegar. Só que agora não há mais ninguém para trazê-la.",
+        "Seis pessoas sob o mesmo teto e dois mortos para entender: Leonardo, há três anos, e Mateus, agora."
+      ],
+      "rotulo": "Continuar",
+      "href": "/noite"
+    }
+  }
+}

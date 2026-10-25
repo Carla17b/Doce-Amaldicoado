@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" preserveAspectRatio="xMidYMid slice">
+  <defs><radialGradient id="m" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#cfd9e8" stop-opacity=".5"/><stop offset="1" stop-color="#cfd9e8" stop-opacity="0"/></radialGradient></defs>
+  <rect width="800" height="240" fill="#0c1018"/>
+  <circle cx="600" cy="55" r="70" fill="url(#m)"/><circle cx="600" cy="55" r="20" fill="#dfe6f0"/>
+  <path d="M0 175 H800 V240 H0 Z" fill="#06080c"/>
+  <g fill="#e3b765" opacity=".8"><circle cx="90" cy="168" r="2"/><circle cx="150" cy="171" r="2"/><circle cx="230" cy="166" r="2"/><circle cx="300" cy="170" r="2"/><circle cx="380" cy="167" r="2"/><circle cx="470" cy="171" r="2"/><circle cx="520" cy="168" r="2"/><circle cx="700" cy="170" r="2"/><circle cx="760" cy="167" r="2"/></g>
+  <rect x="0" y="140" width="800" height="7" fill="#1d150e"/>
+  <g fill="#1d150e"><rect x="40" y="147" width="6" height="60"/><rect x="160" y="147" width="6" height="60"/><rect x="280" y="147" width="6" height="60"/><rect x="400" y="147" width="6" height="60"/><rect x="520" y="147" width="6" height="60"/><rect x="640" y="147" width="6" height="60"/><rect x="760" y="147" width="6" height="60"/></g>
+  <rect x="0" y="200" width="800" height="40" fill="#120d08"/>
+  <rect x="0" y="0" width="70" height="240" fill="#191109"/>
+  <rect x="14" y="20" width="42" height="200" fill="#2a3a4e" opacity=".5"/>
+</svg>

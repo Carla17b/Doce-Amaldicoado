@@ -1,0 +1,26 @@
+{
+  "retratos": [
+    { "id": "chapeu", "nome": "Chapéu de feltro" },
+    { "id": "curto",  "nome": "Cabelo curto" },
+    { "id": "longo",  "nome": "Cabelo longo" },
+    { "id": "boina",  "nome": "Boina" }
+  ],
+  "especialidades": [
+    { "id": "documentos", "nome": "Olhar para documentos",
+      "descricao": "Papéis, registros e fotografias guardam mais do que mostram. Você recebe uma dica extra ao examinar documentos." },
+    { "id": "pessoas", "nome": "Ler pessoas",
+      "descricao": "Hesitações e mudanças de tom denunciam mentiras. Você recebe uma dica extra nos interrogatórios." },
+    { "id": "lugares", "nome": "Examinar lugares",
+      "descricao": "Um cômodo conta o que aconteceu nele. Você recebe uma dica extra ao explorar cenários." }
+  ],
+  "passados": [
+    { "id": "policial",   "nome": "Ex-policial",
+      "frase": "Deixou a corporação depois de um caso que a polícia preferiu arquivar." },
+    { "id": "jornalista", "nome": "Jornalista investigativo",
+      "frase": "Passou anos atrás de histórias que ninguém queria publicar." },
+    { "id": "contador",   "nome": "Perito contábil",
+      "frase": "Rastreia dinheiro desaparecido para tribunais e seguradoras." },
+    { "id": "psicologo",  "nome": "Psicólogo forense",
+      "frase": "Foi chamado várias vezes para avaliar testemunhas em casos difíceis." }
+  ]
+}

@@ -1,0 +1,1019 @@
+{
+  "titulo": "Os interrogatórios",
+  "inicio": "hall",
+  "herdaDe": "noite",
+  "horaInicial": "01:00",
+  "limite": {
+    "hora": "05:30",
+    "vai": "amanhecer"
+  },
+  "confrontos": {
+    "carla": {
+      "fecha": "carla_fecha",
+      "regras": [
+        {
+          "id": "carla_leonardo",
+          "exige": [
+            "audio_leonardo",
+            "horario_angelica",
+            "lembranca_mariane"
+          ],
+          "vai": "carla_admite_leonardo",
+          "minutos": 15
+        },
+        {
+          "id": "carla_mateus_camera",
+          "grupo": "carla_mateus",
+          "exige": [
+            "carla_nega_cozinha",
+            "gravacao_camera",
+            "carta_delegacia"
+          ],
+          "vai": "carla_admite_mateus",
+          "minutos": 15
+        },
+        {
+          "id": "carla_mateus_livro",
+          "grupo": "carla_mateus",
+          "exige": [
+            "carla_nega_cozinha",
+            "livro_guardanapos",
+            "carta_delegacia"
+          ],
+          "vai": "carla_admite_mateus",
+          "minutos": 15
+        },
+        {
+          "id": "carla_mateus_guardanapo",
+          "grupo": "carla_mateus",
+          "exige": [
+            "carla_nega_cozinha",
+            "guardanapo_escondido",
+            "mancha_manga"
+          ],
+          "vai": "carla_admite_mateus",
+          "minutos": 15
+        },
+        {
+          "id": "carla_dinheiro",
+          "exige": [
+            "transferencia_bancaria"
+          ],
+          "vai": "carla_nega_dinheiro",
+          "fraca": true
+        }
+      ]
+    },
+    "lais": {
+      "fecha": "lais_fecha",
+      "regras": [
+        {
+          "id": "lais_admite",
+          "exige": [
+            "caderno_lais",
+            "camera_escondida"
+          ],
+          "vai": "lais_admite_experimento",
+          "minutos": 12
+        },
+        {
+          "id": "lais_celular",
+          "exige": [
+            "extrato_chamadas"
+          ],
+          "vai": "lais_celular",
+          "minutos": 15
+        },
+        {
+          "id": "lais_dobra",
+          "exige": [
+            "forminha_triangular"
+          ],
+          "vai": "lais_dobra",
+          "fraca": true
+        }
+      ]
+    },
+    "mariane": {
+      "fecha": "mariane_fecha",
+      "regras": [
+        {
+          "id": "mariane_memoria",
+          "exige": [
+            "fita_cassete"
+          ],
+          "vai": "mariane_lembra",
+          "minutos": 12
+        }
+      ]
+    },
+    "angelica": {
+      "fecha": "angelica_fecha",
+      "regras": [
+        {
+          "id": "angelica_horario",
+          "exige": [
+            "agenda_antiga",
+            "versao_angelica"
+          ],
+          "vai": "angelica_admite",
+          "minutos": 12
+        }
+      ]
+    },
+    "icaro": {
+      "fecha": "icaro_fecha",
+      "regras": [
+        {
+          "id": "icaro_estalo",
+          "exige": [
+            "audio_leonardo"
+          ],
+          "vai": "icaro_estalo",
+          "minutos": 10
+        },
+        {
+          "id": "icaro_pausa",
+          "exige": [
+            "gerador_alterado"
+          ],
+          "vai": "icaro_pausa",
+          "minutos": 10
+        }
+      ]
+    }
+  },
+  "cenas": {
+    "hall": {
+      "local": "Hall",
+      "cenario": "hall",
+      "hora": "01:00",
+      "texto": [
+        "Já passa de uma da manhã. O fogo está baixo e ninguém dormiu: cinco pessoas em volta da lareira, cada uma com o que sabe e o que prefere não saber.",
+        "Você tem o caderno aberto sobre os joelhos. É hora de ouvir cada uma e de mostrar o que a casa mostrou.",
+        {
+          "dica": "Quem fala menos costuma saber mais.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Falar com Carla",
+          "vai": "carla",
+          "minutos": 2
+        },
+        {
+          "texto": "Falar com Laís",
+          "vai": "lais",
+          "minutos": 2
+        },
+        {
+          "texto": "Falar com Mariane",
+          "vai": "mariane",
+          "minutos": 2
+        },
+        {
+          "texto": "Falar com Angélica",
+          "vai": "angelica",
+          "minutos": 2
+        },
+        {
+          "texto": "Falar com Ícaro",
+          "vai": "icaro",
+          "minutos": 2
+        },
+        {
+          "texto": "Encerrar os interrogatórios",
+          "vai": "fim_interrogatorios"
+        }
+      ]
+    },
+    "hall_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "O hall está igual: fogo baixo, cinco pessoas imóveis, o relógio de pé contando uma hora que já não importa."
+      ],
+      "escolhasDe": "hall"
+    },
+    "amanhecer": {
+      "local": "Hall",
+      "cenario": "hall",
+      "hora": "05:30",
+      "texto": [
+        "A janela do hall escurece menos. Lá fora, o vento mudou de som: a tempestade está perdendo força.",
+        "Em poucas horas a estrada vai abrir e a polícia vai subir. Você tem pouco tempo para decidir o que sabe e o que consegue provar."
+      ],
+      "proximo": "hall_volta",
+      "rotulo": "Continuar"
+    },
+    "fim_interrogatorios": {
+      "local": "Hall",
+      "cenario": "hall",
+      "fim": true,
+      "texto": [
+        "Você fecha o caderno. Cada pessoa disse o que quis dizer, e o resto você precisou descobrir por conta própria.",
+        "Falta o mais difícil: decidir o que fazer com a verdade."
+      ],
+      "rotulo": "Fazer a acusação",
+      "href": "/acusacao"
+    },
+    "carla": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Carla não se levanta quando você se aproxima. Gira a taça vazia entre os dedos.",
+        {
+          "fala": "Carla",
+          "texto": "Pode perguntar o que quiser. Eu não tenho nada a esconder."
+        },
+        {
+          "dica": "Foi a primeira coisa que ela disse, e rápida demais.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Perguntar como ela conhecia Leonardo",
+          "vai": "carla_volta",
+          "sem": [
+            "fechou_carla",
+            "perguntou_carla_leo"
+          ],
+          "marcar": [
+            "perguntou_carla_leo"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Carla",
+              "texto": "Fazíamos parte do mesmo grupo. A gente se via em festa, em reunião do projeto. Só isso."
+            },
+            "Ela diz “só isso” duas vezes, e a segunda soa menos convicta que a primeira."
+          ]
+        },
+        {
+          "texto": "Perguntar onde ela estava na hora da queda, há três anos",
+          "vai": "carla_volta",
+          "sem": [
+            "fechou_carla",
+            "perguntou_carla_queda"
+          ],
+          "marcar": [
+            "perguntou_carla_queda"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Carla",
+              "texto": "No pátio dos fundos, fumando. Voltei quando ouvi os gritos. Já contei isso à polícia."
+            },
+            "A versão é limpa. Limpa demais para três anos."
+          ]
+        },
+        {
+          "texto": "Perguntar se ela entrou na cozinha ou na despensa esta noite",
+          "vai": "carla_volta",
+          "sem": [
+            "pista_carla_nega_cozinha"
+          ],
+          "minutos": 6,
+          "pista": "carla_nega_cozinha",
+          "resposta": [
+            {
+              "fala": "Carla",
+              "texto": "Não. Nem na cozinha, nem na despensa. Fiquei no hall o tempo todo antes do jantar. Pergunte a quem quiser."
+            },
+            "Você anota a frase palavra por palavra."
+          ]
+        },
+        {
+          "texto": "Apresentar pistas do caderno",
+          "apresentar": "carla"
+        },
+        {
+          "texto": "Voltar ao grupo",
+          "vai": "hall_volta",
+          "minutos": 2
+        }
+      ]
+    },
+    "carla_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Carla espera, de braços cruzados, com a taça vazia na mão.",
+        {
+          "narra": "Ela já não olha para você.",
+          "se": [
+            "fechou_carla"
+          ]
+        }
+      ],
+      "escolhasDe": "carla"
+    },
+    "carla_fecha": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Carla pousa a taça sobre a mesa devagar, sem barulho.",
+        {
+          "fala": "Carla",
+          "texto": "Isso não prova nada, e você sabe. Se vai me acusar, faça com alguma coisa de verdade."
+        },
+        "Ela vira o rosto para a lareira. Daqui em diante, só vai responder ao que for concreto."
+      ],
+      "escolhasDe": "carla"
+    },
+    "carla_nega_dinheiro": {
+      "local": "Hall",
+      "cenario": "hall",
+      "marcar": [
+        "carla_negou_dinheiro"
+      ],
+      "texto": [
+        "Você mostra as transferências. Carla as olha por tempo suficiente para parecerem reais.",
+        {
+          "fala": "Carla",
+          "texto": "Dinheiro de projeto passa por muitas mãos. Se há erro, é de contabilidade, não meu. E, mesmo que fosse, o que isso tem a ver com o Leonardo?"
+        },
+        "Ela tem razão em uma coisa: o dinheiro mostra um motivo, não um ato."
+      ],
+      "escolhasDe": "carla"
+    },
+    "carla_admite_leonardo": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "confissao_carla_leonardo",
+      "marcar": [
+        "carla_admitiu_leonardo"
+      ],
+      "texto": [
+        "Você põe sobre a mesa o que reuniu: o áudio do celular de Leonardo, a hora real de Angélica, a lembrança de Mariane. Carla ouve a frase “me dá isso” em silêncio.",
+        {
+          "fala": "Carla",
+          "texto": "Tá bom. Tá bom."
+        },
+        "Ela fecha os olhos por um instante. Quando os abre, a postura de sempre desabou.",
+        {
+          "fala": "Carla",
+          "texto": "Ele ia entregar os papéis de manhã. Fui atrás dele na varanda para pegar o envelope. A gente discutiu. Eu puxei, ele recuou… e o parapeito era baixo demais."
+        },
+        {
+          "fala": "Carla",
+          "texto": "Eu não quis matar o Leo. Juro. Eu só saí correndo. Escolhi sair correndo."
+        },
+        "O rosto dela é o de quem carregou isso por três anos sem deixar ninguém ver."
+      ],
+      "escolhasDe": "carla"
+    },
+    "carla_admite_mateus": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "confissao_carla_mateus",
+      "marcar": [
+        "carla_admitiu_mateus"
+      ],
+      "texto": [
+        "Você alinha sobre a mesa a mentira (“nunca entrei na cozinha”), a oportunidade e o motivo. Carla olha para as peças uma a uma.",
+        {
+          "fala": "Carla",
+          "texto": "Ele ia entregar tudo. Não era chantagem. Ele ia entregar tudo de verdade."
+        },
+        "A voz dela sai quase sem som.",
+        {
+          "fala": "Carla",
+          "texto": "Eu fui buscar os guardanapos, sim. A caixa estava na despensa. Eu vi a Laís dobrar aquela forminha para ele. E eu mexi no doce."
+        },
+        {
+          "fala": "Carla",
+          "texto": "Eu só queria que ele passasse mal e não conseguisse falar. Eu não queria que ele morresse tão depressa."
+        },
+        "Entre as duas frases, ela não respira. E você entende que a segunda não desfaz a primeira."
+      ],
+      "escolhasDe": "carla"
+    },
+    "lais": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Laís está de pé, perto da escada, com os braços cruzados sobre a câmera pendurada no pescoço. Quando você se aproxima, sorri.",
+        {
+          "fala": "Laís",
+          "texto": "Chegou a minha vez. Pode perguntar."
+        },
+        {
+          "dica": "O sorriso vem pronto, mas os polegares dela apertam a correia da câmera até ficarem brancos.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Perguntar por que ela chegou um dia antes",
+          "vai": "lais_volta",
+          "sem": [
+            "fechou_lais",
+            "perguntou_lais_dia"
+          ],
+          "marcar": [
+            "perguntou_lais_dia"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Para ajudar o Mateus a arrumar. Ele não confiava em ninguém para esse tipo de coisa."
+            },
+            "Parece natural. Mas Mateus não parecia alguém que pedia ajuda."
+          ]
+        },
+        {
+          "texto": "Perguntar sobre a encomenda dos brigadeiros",
+          "vai": "lais_volta",
+          "se": [
+            "pista_encomenda_doces"
+          ],
+          "sem": [
+            "fechou_lais",
+            "perguntou_lais_doces"
+          ],
+          "marcar": [
+            "perguntou_lais_doces"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Fui eu que pedi. A Angélica adora brigadeiro daquela confeitaria. Era um presente."
+            },
+            "Ela admite com naturalidade. Admitir o óbvio é um jeito de esconder o resto."
+          ]
+        },
+        {
+          "texto": "Perguntar quem passou pela cozinha antes do jantar",
+          "vai": "lais_volta",
+          "sem": [
+            "fechou_lais",
+            "perguntou_lais_cozinha"
+          ],
+          "marcar": [
+            "perguntou_lais_cozinha"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Levei a caixa para a sala por volta das dez para as dez. Antes disso, não sei: eu estava arrumando a mesa."
+            },
+            "A hora bate com o livro de entregas. O resto, não dá para saber."
+          ]
+        },
+        {
+          "texto": "Pedir as gravações das câmeras",
+          "vai": "lais_volta",
+          "se": [
+            "lais_admitiu"
+          ],
+          "sem": [
+            "pista_gravacao_camera"
+          ],
+          "minutos": 15,
+          "pista": "gravacao_camera",
+          "resposta": [
+            "Laís abre o notebook. O arquivo da câmera da cozinha tem um buraco de dois minutos: alguém apagou. Ela passa um programa de recuperação e espera, de braços cruzados, sem olhar para você.",
+            "Aos poucos, o trecho volta. Às 21h42, a cozinha vazia e acesa. Uma pessoa entra sozinha e para ao lado da mesa. O rosto aparece de relance: é Carla.",
+            "Mais adiante, às 21h50, Laís entra, pega a caixa de brigadeiros e sai para a sala.",
+            "A imagem prova oportunidade, não intenção. Carla estava ali. O que fez, a câmera não mostra."
+          ]
+        },
+        {
+          "texto": "Apresentar pistas do caderno",
+          "apresentar": "lais"
+        },
+        {
+          "texto": "Voltar ao grupo",
+          "vai": "hall_volta",
+          "minutos": 2
+        }
+      ]
+    },
+    "lais_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Laís espera, com a câmera na mão, virando-a devagar como quem pesa o que vai dizer.",
+        {
+          "narra": "O sorriso sumiu e não voltou.",
+          "se": [
+            "fechou_lais"
+          ]
+        }
+      ],
+      "escolhasDe": "lais"
+    },
+    "lais_fecha": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Laís mantém o sorriso, mas ele agora é uma máscara.",
+        {
+          "fala": "Laís",
+          "texto": "Se quer me incriminar, traga alguma coisa que prove. Isso aí não prova nada."
+        },
+        "Ela afasta a câmera do corpo, como se fosse uma coisa que você pudesse tirar dela."
+      ],
+      "escolhasDe": "lais"
+    },
+    "lais_dobra": {
+      "local": "Hall",
+      "cenario": "hall",
+      "marcar": [
+        "lais_admite_dobra"
+      ],
+      "texto": [
+        "Você mostra a forminha dobrada em triângulo. Laís nem tenta negar.",
+        {
+          "fala": "Laís",
+          "texto": "É a minha dobra. Eu faço isso com tudo, desde criança."
+        },
+        {
+          "fala": "Laís",
+          "texto": "E daí? Se uma dobra provasse alguma coisa, metade das festas do mundo estaria presa."
+        },
+        "Ela tem razão no argumento. A marca diz quem sabia dobrar, não quem mexeu no doce."
+      ],
+      "escolhasDe": "lais"
+    },
+    "lais_admite_experimento": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "confissao_lais",
+      "marcar": [
+        "lais_admitiu"
+      ],
+      "texto": [
+        "Você abre o caderno dela e põe a câmera ao lado. Laís olha para os dois por muito tempo.",
+        {
+          "fala": "Laís",
+          "texto": "Eu devia ter jogado fora."
+        },
+        {
+          "fala": "Laís",
+          "texto": "Está bem. Foi um experimento. Eu montei a casa: o gerador com o temporizador, as câmeras, as fotos no corredor, a fita. Queria que todo mundo se visse, que alguém falasse. Que uma confissão saísse sozinha."
+        },
+        {
+          "fala": "Laís",
+          "texto": "Eu não pus nada no doce. A dobra era para eu entregar a ele no meio do jantar, como parte do teatro. Eu nunca quis ninguém morto."
+        },
+        "A voz dela falha na última frase. Dessa vez não parece ensaio.",
+        {
+          "fala": "Laís",
+          "texto": "Se quer ver o que as câmeras pegaram, eu mostro."
+        }
+      ],
+      "escolhasDe": "lais"
+    },
+    "lais_celular": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "audio_leonardo",
+      "marcar": [
+        "lais_deu_celular"
+      ],
+      "texto": [
+        "Você põe o extrato sobre a mesa: 23h41, uma ligação interrompida. Laís olha para a linha marcada e fica pálida.",
+        {
+          "fala": "Laís",
+          "texto": "Ele ligou… e ninguém atendeu. Eu sabia."
+        },
+        "Ela se afasta, abre a maleta da câmera e tira, de um compartimento forrado, um celular de capa rachada.",
+        {
+          "fala": "Laís",
+          "texto": "Eu peguei da varanda antes de a polícia chegar. Disse a mim mesma que ia entregar depois. Depois virou três anos."
+        },
+        "Ela o liga num carregador portátil. Na galeria de áudios, só um arquivo, de 41 segundos.",
+        "Você ouve. Vozes que se sobrepõem, uma discussão que não se distingue direito. A porta de vidro rangendo. Uma voz de mulher, firme e baixa: “Me dá isso.” Um impacto seco. Depois, só o ar da noite e, ao fundo, um estalo mecânico repetido: clique, pausa, clique.",
+        {
+          "dica": "Você conhece a cadência dessa voz: é a mesma de quem pousou a taça com precisão exagerada à mesa.",
+          "se": [
+            "esp_pessoas"
+          ]
+        },
+        "A gravação termina aí."
+      ],
+      "escolhasDe": "lais"
+    },
+    "mariane": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Mariane está sentada no chão, de costas para a lareira, com os joelhos junto ao peito.",
+        {
+          "fala": "Mariane",
+          "texto": "Eu não sei se vou ajudar."
+        },
+        {
+          "dica": "Ela não olha para você: olha para o fogo, de um jeito que lembra alguém olhando para outra coisa.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Perguntar do que ela se lembra da noite da festa",
+          "vai": "mariane_volta",
+          "sem": [
+            "fechou_mariane",
+            "perguntou_mariane_noite"
+          ],
+          "marcar": [
+            "perguntou_mariane_noite"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Pouco. Eu bebi muito. A música, a luz da varanda, e depois eu já estava em casa."
+            },
+            "Ela fala olhando para o chão e repete “eu bebi muito” como uma frase ensinada."
+          ]
+        },
+        {
+          "texto": "Perguntar por que ela evita o corredor das fotografias",
+          "vai": "mariane_volta",
+          "se": [
+            "pista_foto_festa"
+          ],
+          "sem": [
+            "fechou_mariane",
+            "perguntou_mariane_corredor"
+          ],
+          "marcar": [
+            "perguntou_mariane_corredor"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Porque as fotos estão todas lá. A varanda está em uma delas."
+            },
+            "Ela não termina a frase."
+          ]
+        },
+        {
+          "texto": "Perguntar sobre a manga vermelha",
+          "vai": "mariane_volta",
+          "se": [
+            "mariane_lembrou"
+          ],
+          "sem": [
+            "fechou_mariane",
+            "perguntou_mariane_manga"
+          ],
+          "marcar": [
+            "perguntou_mariane_manga"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Era uma blusa de festa, vermelha, de manga larga. Passou correndo pelo corredor. Eu só vi a manga. Nunca soube de quem."
+            },
+            "Ela hesita. “Nunca soube”, repete. Você percebe que ela já suspeita, mas não quer dizer o nome."
+          ]
+        },
+        {
+          "texto": "Apresentar pistas do caderno",
+          "apresentar": "mariane"
+        },
+        {
+          "texto": "Voltar ao grupo",
+          "vai": "hall_volta",
+          "minutos": 2
+        }
+      ]
+    },
+    "mariane_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Mariane espera, abraçada aos próprios joelhos.",
+        {
+          "narra": "Ela se encolheu um pouco mais.",
+          "se": [
+            "fechou_mariane"
+          ]
+        }
+      ],
+      "escolhasDe": "mariane"
+    },
+    "mariane_fecha": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Mariane levanta os olhos e parece magoada, como se você tivesse apontado um dedo para ela.",
+        {
+          "fala": "Mariane",
+          "texto": "Eu não sei do que isso fala. Por favor, não me pergunte de novo assim."
+        },
+        "Ela se vira de costas para você e para o fogo."
+      ],
+      "escolhasDe": "mariane"
+    },
+    "mariane_lembra": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "lembranca_mariane",
+      "marcar": [
+        "mariane_lembrou"
+      ],
+      "texto": [
+        "Você vai até o toca-fitas da prateleira, perto da lareira, e aperta o play. A música lenta enche o espaço entre vocês.",
+        "Mariane fecha os olhos, depois os abre muito. As mãos sobem à boca.",
+        {
+          "fala": "Mariane",
+          "texto": "Eu me lembro… A porta de vidro. Eram duas vozes. Duas. Uma era o Leo."
+        },
+        {
+          "fala": "Mariane",
+          "texto": "Eu vi alguém sair da varanda correndo. Passou por mim no corredor. Uma manga vermelha… só vi a manga."
+        },
+        "Ela chora, mas não para de falar.",
+        {
+          "fala": "Mariane",
+          "texto": "Eu disse a mim mesma que não lembrava. Foi mais fácil assim. Três anos mais fácil."
+        }
+      ],
+      "escolhasDe": "mariane"
+    },
+    "angelica": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Angélica está na poltrona, com a agenda de capa dura fechada sobre o colo e sem a coroa de papel.",
+        {
+          "fala": "Angélica",
+          "texto": "Vai me perguntar o quê? Se eu sou engraçada? Hoje, não."
+        },
+        {
+          "dica": "Ela não faz piada nenhuma. É a primeira vez que você a vê assim.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Perguntar a que horas ela saiu da festa, há três anos",
+          "vai": "angelica_volta",
+          "sem": [
+            "pista_versao_angelica"
+          ],
+          "minutos": 6,
+          "pista": "versao_angelica",
+          "resposta": [
+            {
+              "fala": "Angélica",
+              "texto": "Às 23h30. Já falei isso à polícia na época. Eu tinha trabalho no dia seguinte."
+            },
+            "Ela diz o horário sem hesitar. Rápido demais, como quem repetiu muitas vezes."
+          ]
+        },
+        {
+          "texto": "Perguntar sobre as piadas que ela conta",
+          "vai": "angelica_volta",
+          "sem": [
+            "fechou_angelica",
+            "perguntou_angelica_piada"
+          ],
+          "marcar": [
+            "perguntou_angelica_piada"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Angélica",
+              "texto": "É o meu trabalho. Eu transformo coisa ruim em piada. Funciona melhor do que terapia."
+            },
+            "Ela ri, mas o riso não tem voz."
+          ]
+        },
+        {
+          "texto": "Apresentar pistas do caderno",
+          "apresentar": "angelica"
+        },
+        {
+          "texto": "Voltar ao grupo",
+          "vai": "hall_volta",
+          "minutos": 2
+        }
+      ]
+    },
+    "angelica_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Angélica aperta a agenda contra o peito, como se alguém fosse tentar tirá-la dela.",
+        {
+          "narra": "Ela evita o seu olhar.",
+          "se": [
+            "fechou_angelica"
+          ]
+        }
+      ],
+      "escolhasDe": "angelica"
+    },
+    "angelica_fecha": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Angélica abre a boca para uma piada. Nada sai. O rosto se fecha.",
+        {
+          "fala": "Angélica",
+          "texto": "Eu não sei o que você acha que viu. Mas não é isso."
+        },
+        "Ela segura a agenda com as duas mãos e não responde mais por enquanto."
+      ],
+      "escolhasDe": "angelica"
+    },
+    "angelica_admite": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "horario_angelica",
+      "marcar": [
+        "angelica_admitiu"
+      ],
+      "texto": [
+        "Você abre a agenda de três anos atrás na página da festa e a coloca ao lado do que ela contou.",
+        {
+          "fala": "Angélica",
+          "texto": "Saí às 00h15."
+        },
+        "Ela fala sem erguer os olhos.",
+        {
+          "fala": "Angélica",
+          "texto": "A Carla me pediu. Disse que não queria que me chamassem para depor sobre a noite inteira, que era só um detalhe e ia complicar tudo à toa. Eu disse que saí mais cedo. Achei que estava ajudando uma amiga. Achei que ia evitar um escândalo."
+        },
+        {
+          "fala": "Angélica",
+          "texto": "Eu não sabia que ela… Eu não sabia de nada."
+        },
+        "A mentira dela protege Carla, e não Mateus nem ela mesma. Mas ela jura que nunca soube de quê."
+      ],
+      "escolhasDe": "angelica"
+    },
+    "icaro": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Ícaro está de pé junto à janela, de costas, com a cabeça levemente inclinada. Ele se vira quando você já está perto.",
+        {
+          "fala": "Ícaro",
+          "texto": "Pergunte. Só não me peça para dizer o que eu não ouvi."
+        },
+        {
+          "dica": "Ele fala com você, mas os olhos seguem algo no teto, um som que só ele ouve.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Perguntar o que ele ouve na casa",
+          "vai": "icaro_volta",
+          "sem": [
+            "fechou_icaro",
+            "perguntou_icaro_casa"
+          ],
+          "marcar": [
+            "perguntou_icaro_casa"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Ícaro",
+              "texto": "Vento, o fogo, a casa estalando de frio. E o gerador, antes de parar: estalo, pausa, estalo."
+            },
+            "Ele para, como quem se arrependeu de ter falado demais."
+          ]
+        },
+        {
+          "texto": "Perguntar por que ele olhou para o teto durante o brinde",
+          "vai": "icaro_volta",
+          "se": [
+            "reagiu_icaro"
+          ],
+          "sem": [
+            "fechou_icaro",
+            "perguntou_icaro_teto"
+          ],
+          "marcar": [
+            "perguntou_icaro_teto"
+          ],
+          "minutos": 6,
+          "resposta": [
+            {
+              "fala": "Ícaro",
+              "texto": "Ouvi um zumbido que não era da casa. Pequeno, constante. Pensei em câmera."
+            },
+            "Ele não parece orgulhoso de ter acertado."
+          ]
+        },
+        {
+          "texto": "Apresentar pistas do caderno",
+          "apresentar": "icaro"
+        },
+        {
+          "texto": "Voltar ao grupo",
+          "vai": "hall_volta",
+          "minutos": 2
+        }
+      ]
+    },
+    "icaro_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Ícaro espera, imóvel, com a cabeça inclinada para o teto.",
+        {
+          "narra": "Ele cruzou os braços e já não parece ouvir você.",
+          "se": [
+            "fechou_icaro"
+          ]
+        }
+      ],
+      "escolhasDe": "icaro"
+    },
+    "icaro_fecha": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Ícaro cruza os braços. O olhar para o teto some, e ele finalmente olha para você.",
+        {
+          "fala": "Ícaro",
+          "texto": "Se acha que eu sou suspeito, pergunte direito. Isso aí não tem nada a ver comigo."
+        }
+      ],
+      "escolhasDe": "icaro"
+    },
+    "icaro_pausa": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "depoimento_icaro",
+      "marcar": [
+        "icaro_depoimento"
+      ],
+      "texto": [
+        "Você descreve o temporizador preso ao painel do gerador. Ícaro assente devagar.",
+        {
+          "fala": "Ícaro",
+          "texto": "Então foi isso. O compasso estava errado desde cedo."
+        },
+        {
+          "fala": "Ícaro",
+          "texto": "Ouvi uma pausa por volta das 21h46. Uns seis segundos, sem estalo. Foi quando alguém passou da cozinha para a sala pelo corredor de serviço: dava para ouvir o assoalho. Primeiro passos leves, devagar. Depois outros, mais pesados, de quem carregava alguma coisa."
+        },
+        {
+          "fala": "Ícaro",
+          "texto": "Não vi quem era. Só ouvi a ordem."
+        },
+        "O testemunho dele organiza o relógio da noite. Mas ele não viu quem andou."
+      ],
+      "escolhasDe": "icaro"
+    },
+    "icaro_estalo": {
+      "local": "Hall",
+      "cenario": "hall",
+      "pista": "estalo_igual",
+      "marcar": [
+        "icaro_reconheceu_estalo"
+      ],
+      "texto": [
+        "Você pede que ele ouça o áudio de 41 segundos sem dizer de onde veio.",
+        "Ícaro fecha os olhos. Ao fim, volta a abri-los devagar, como quem sai da água.",
+        {
+          "fala": "Ícaro",
+          "texto": "Esse estalo."
+        },
+        {
+          "fala": "Ícaro",
+          "texto": "Clique, pausa, clique. É o mesmo compasso do gerador desta casa, quase ao milímetro."
+        },
+        {
+          "fala": "Ícaro",
+          "texto": "Isso não acontece por acaso. Alguém reproduziu esse padrão de propósito. Ou o gerador daquele dia e o daqui são do mesmo… tipo."
+        },
+        "Ele não explica mais. Mas a ideia já ficou no ar: a casa de hoje foi pensada para lembrar a casa de três anos atrás."
+      ],
+      "escolhasDe": "icaro"
+    }
+  }
+}

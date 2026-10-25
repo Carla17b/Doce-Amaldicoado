@@ -1,0 +1,56 @@
+/* Ficha do detetive: formulário em papel, com opções para marcar. */
+.ficha { width: min(100%, 40rem); }
+
+.dois { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+
+.ficha fieldset { border: 0; padding: 0; margin: 0 0 1.6rem; min-width: 0; }
+.ficha legend {
+  padding: 0;
+  margin-bottom: 0.6rem;
+  font-family: var(--fonte-maquina);
+  color: var(--tinta-suave);
+}
+
+/* Retratos */
+.retratos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+.retrato { position: relative; display: block; text-align: center; cursor: pointer; }
+.retrato input { position: absolute; opacity: 0; }
+.moldura {
+  display: block;
+  aspect-ratio: 5 / 6;
+  padding: 0.4rem 0.4rem 0;
+  background: var(--papel-claro);
+  border: 2px solid transparent;
+  border-radius: 2px;
+}
+.moldura img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.retrato input:checked + .moldura { border-color: var(--carimbo); }
+.retrato input:focus-visible + .moldura { outline: 2px solid var(--latao); outline-offset: 2px; }
+.legenda { display: block; margin-top: 0.3rem; font-size: 0.85rem; color: var(--tinta-suave); }
+
+/* Especialidade e passado */
+.opcoes { display: grid; gap: 0.6rem; }
+.opcao {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.7rem 0.8rem;
+  border: 1.5px dotted var(--tinta-suave);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.opcao:has(input:checked) { border: 1.5px solid var(--carimbo); background: rgba(255, 255, 255, 0.2); }
+.opcao input { margin-top: 0.4rem; accent-color: var(--carimbo); }
+.opcao strong { display: block; font-family: var(--fonte-maquina); font-weight: 400; font-size: 1.05rem; }
+.opcao small { display: block; font-size: 0.92rem; line-height: 1.45; color: var(--tinta-suave); }
+
+.rodape { display: flex; align-items: center; gap: 1.4rem; }
+.rodape .botao { width: auto; }
+.voltar { color: var(--tinta-suave); text-underline-offset: 3px; }
+
+@media (max-width: 520px) {
+  .dois { grid-template-columns: 1fr; gap: 0; }
+  .retratos { grid-template-columns: repeat(2, 1fr); }
+  .rodape { flex-direction: column; align-items: stretch; text-align: center; }
+  .rodape .botao { width: 100%; }
+}

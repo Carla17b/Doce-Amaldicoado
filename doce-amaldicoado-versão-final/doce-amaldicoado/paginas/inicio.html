@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O doce amaldiçoado · um jogo de investigação</title>
+  <meta name="description" content="Duas mortes, cinco convidados e uma mentira que todos repetiram. Um jogo de investigação em texto, com escolhas, numa mansão isolada pela neve.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/inicio.css">
+</head>
+<body>
+  <header class="barra">
+    <span class="marca">O doce amaldiçoado</span>
+    <a id="link-topo" href="/login">Entrar</a>
+  </header>
+
+  <main>
+    <section class="heroi">
+      <div class="heroi-texto">
+        <h1>O doce amaldiçoado</h1>
+        <p class="lema">Duas mortes. Uma mentira que todos repetiram.</p>
+        <p class="chamada">Um jogo de investigação em texto, com escolhas. Você é o detetive convidado a uma mansão isolada pela neve, onde alguém vai morrer à mesa do jantar.</p>
+        <div class="acoes">
+          <a id="cta-principal" class="botao" href="/login#cadastro">Começar a investigar</a>
+          <a id="cta-secundario" class="botao botao-claro" href="/login">Já tenho conta</a>
+        </div>
+      </div>
+      <figure class="foto">
+        <img src="/static/img/cenarios/mansao.svg" alt="Uma mansão com as janelas acesas, sob a neve, à noite">
+        <figcaption>Serra, 19h42. A estrada fecha às oito.</figcaption>
+      </figure>
+    </section>
+
+    <section class="secao" aria-labelledby="t-caso">
+      <h2 id="t-caso">O caso</h2>
+      <div class="duas-colunas">
+        <p>Três anos atrás, Leonardo morreu ao cair da varanda de uma casa, durante uma festa. A polícia disse que foi acidente. Os amigos sabiam que não era, mas cada um escondeu uma parte diferente da verdade.</p>
+        <p>Agora Mateus reúne o mesmo grupo numa mansão, com a estrada bloqueada pela neve. Diz que é um aniversário. Na verdade, vai mostrar à meia-noite o que guardou por três anos, e pediu uma testemunha de fora. Essa testemunha é você.</p>
+      </div>
+      <p class="destaque">Duas mortes para entender, e a resposta de uma depende da outra.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="t-jogo">
+      <h2 id="t-jogo">Como se joga</h2>
+      <div class="notas">
+        <article class="nota">
+          <h3>Crie seu detetive</h3>
+          <p>Escolha nome, retrato, especialidade e passado. Eles mudam o que você percebe e o que os outros dizem a você.</p>
+        </article>
+        <article class="nota">
+          <h3>Escute e observe</h3>
+          <p>Você anda pela casa e conversa com cada convidado, escolhendo o que perguntar. O relógio corre, e não dá para ver tudo.</p>
+        </article>
+        <article class="nota">
+          <h3>Anote as pistas</h3>
+          <p>O caderno guarda o que você acha. Mostre combinações de pistas a quem mente, mas cuidado: acusar sem prova faz a pessoa se fechar.</p>
+        </article>
+        <article class="nota">
+          <h3>Acuse, ou não</h3>
+          <p>No fim, duas telas, uma para cada morte. O que você decide leva a um entre cinco finais, e nem todos terminam em justiça.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="t-casa">
+      <h2 id="t-casa">Quem está na casa</h2>
+      <ul class="elenco">
+        <li><strong>Mateus</strong> <span>o anfitrião, que reuniu todos com uma promessa para a meia-noite.</span></li>
+        <li><strong>Carla</strong> <span>cuida das finanças de um projeto social e sempre sabe o que dizer.</span></li>
+        <li><strong>Laís</strong> <span>chegou um dia antes, para “ajudar a arrumar”.</span></li>
+        <li><strong>Mariane</strong> <span>não queria ter vindo, e dança como quem foge de uma lembrança.</span></li>
+        <li><strong>Angélica</strong> <span>faz aniversário e transforma tudo em piada.</span></li>
+        <li><strong>Ícaro</strong> <span>ouve a casa melhor do que ouve as pessoas.</span></li>
+      </ul>
+    </section>
+
+    <section class="chamada-final">
+      <h2>À meia-noite, alguém ia contar tudo.</h2>
+      <p>Você chega às 19h42. A estrada fecha às oito.</p>
+      <div class="acoes">
+        <a id="cta-final" class="botao" href="/login#cadastro">Começar a investigar</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Aviso de conteúdo: o jogo trata de morte, culpa e encobrimento, sem imagens gráficas. O progresso fica salvo na sua conta, e você pode parar e continuar quando quiser.</p>
+  </footer>
+
+  <script type="module" src="/static/js/paginas/inicio.js"></script>
+</body>
+</html>

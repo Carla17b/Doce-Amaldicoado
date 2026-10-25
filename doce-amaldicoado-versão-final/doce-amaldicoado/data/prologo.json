@@ -1,0 +1,367 @@
+{
+  "titulo": "Prólogo",
+  "inicio": "inicio",
+  "cenas": {
+    "inicio": {
+      "local": "Casa alugada",
+      "cenario": "sala",
+      "hora": "23:14",
+      "texto": [
+        "Esta é a noite em que tudo começou. Por alguns minutos, você é Leonardo.",
+        "A casa foi alugada para uma festa que não deveria acontecer. Há um envelope dobrado no bolso interno do seu casaco, com comprovantes que você passou a semana inteira conferindo.",
+        "Faz poucos minutos que você disse a Carla que esses papéis vão para a diretoria do projeto na manhã seguinte. Ela não respondeu. Só ficou olhando e depois sumiu no meio das pessoas.",
+        "Agora você precisa fazer uma ligação. A casa é velha, de paredes grossas, e o sinal do celular só pega na varanda, no fim do corredor."
+      ],
+      "proximo": "sala",
+      "rotulo": "Atravessar a festa"
+    },
+    "sala": {
+      "local": "Sala",
+      "cenario": "sala",
+      "texto": [
+        "A sala está cheia. Uma fita de cassete toca numa caixa de som velha, uma música lenta demais para o barulho que as pessoas fazem em cima dela. O ar cheira a cigarro e a copo de plástico.",
+        "Mariane dança sozinha ao lado do aparelho de som. Mateus está encostado no pé da escada. Mais ao fundo fica a porta da cozinha e, atrás do sofá, o corredor que leva à varanda."
+      ],
+      "escolhas": [
+        {
+          "texto": "Falar com Mariane, ao lado do aparelho de som",
+          "vai": "mariane",
+          "sem": [
+            "falou_mariane"
+          ],
+          "minutos": 1
+        },
+        {
+          "texto": "Falar com Mateus, no pé da escada",
+          "vai": "mateus",
+          "sem": [
+            "falou_mateus"
+          ],
+          "minutos": 1
+        },
+        {
+          "texto": "Ir até a cozinha",
+          "vai": "cozinha",
+          "minutos": 1
+        },
+        {
+          "texto": "Seguir para o corredor da varanda",
+          "vai": "corredor"
+        }
+      ]
+    },
+    "sala_volta": {
+      "local": "Sala",
+      "cenario": "sala",
+      "texto": [
+        "De volta à sala. A mesma música, a mesma fumaça, e a impressão de que o tempo anda mais rápido do que você."
+      ],
+      "escolhasDe": "sala"
+    },
+    "mariane": {
+      "local": "Sala",
+      "cenario": "sala",
+      "texto": [
+        "Mariane dança de olhos fechados, com os braços soltos demais. Quando você se aproxima, ela abre os olhos devagar, como quem volta de longe.",
+        {
+          "fala": "Mariane",
+          "texto": "Leo. Você está com cara de quem vai fazer alguma coisa de que vai se arrepender."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Só estou cansado. Dança mais um pouco.”",
+          "vai": "sala_volta",
+          "marcar": [
+            "falou_mariane"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Cansado. Claro."
+            },
+            "Ela volta a fechar os olhos. Você fica com a impressão de que ela entendeu tudo antes de perguntar."
+          ]
+        },
+        {
+          "texto": "“Vou dar um telefonema. Cuida do pessoal por mim.”",
+          "vai": "sala_volta",
+          "marcar": [
+            "falou_mariane",
+            "contou_ligacao"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Telefonema a essa hora? Para quem?"
+            },
+            "Você não responde. Ela espera um instante, depois desiste e volta para a música."
+          ]
+        }
+      ]
+    },
+    "mateus": {
+      "local": "Sala",
+      "cenario": "sala",
+      "texto": [
+        "Mateus está encostado no corrimão, com um copo que você não o viu beber. Ele ajeita o colarinho assim que te vê.",
+        {
+          "fala": "Mateus",
+          "texto": "Vi você conversando com a Carla. Está tudo bem?"
+        },
+        {
+          "fala": "Mateus",
+          "texto": "Seja o que for, Leo, deixa para amanhã. A gente resolve de cabeça fria."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Amanhã é exatamente o que eu combinei.”",
+          "vai": "sala_volta",
+          "marcar": [
+            "falou_mateus"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Mateus",
+              "texto": "Combinou o quê? Com quem?"
+            },
+            "Ele sorri, mas o sorriso chega atrasado. Você nota que a mão dele aperta o copo."
+          ]
+        },
+        {
+          "texto": "“Você sabe de alguma coisa que eu não sei?”",
+          "vai": "sala_volta",
+          "marcar": [
+            "falou_mateus"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Mateus",
+              "texto": "Eu sei que você é meu amigo. Só isso."
+            },
+            "Foi a resposta mais rápida da noite. Rápida demais."
+          ]
+        }
+      ]
+    },
+    "cozinha": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "A cozinha é o único cômodo com a luz acesa por inteiro. Na mesa, garrafas vazias e um prato de salgadinhos que ninguém tocou. A porta dos fundos está entreaberta e deixa entrar o frio e um ruído que você não consegue identificar.",
+        "Angélica está sentada na bancada, escrevendo numa agenda de capa dura. Ícaro, perto da porta dos fundos, parece mais interessado no que há lá fora do que em qualquer pessoa aqui dentro."
+      ],
+      "escolhas": [
+        {
+          "texto": "Falar com Angélica, na bancada",
+          "vai": "angelica",
+          "sem": [
+            "falou_angelica"
+          ],
+          "minutos": 1
+        },
+        {
+          "texto": "Falar com Ícaro, perto da porta dos fundos",
+          "vai": "icaro",
+          "sem": [
+            "falou_icaro"
+          ],
+          "minutos": 1
+        },
+        {
+          "texto": "Voltar para a sala",
+          "vai": "sala_volta",
+          "minutos": 1
+        },
+        {
+          "texto": "Seguir para o corredor da varanda",
+          "vai": "corredor"
+        }
+      ]
+    },
+    "cozinha_volta": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "Na cozinha, o frio da porta dos fundos continua entrando. O ruído lá fora também."
+      ],
+      "escolhasDe": "cozinha"
+    },
+    "angelica": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "Angélica nem levanta os olhos. Anota uma coisa, risca, anota de novo, e mexe os lábios sem som.",
+        {
+          "fala": "Angélica",
+          "texto": "Shhh. Estou testando uma piada. Presta atenção: fui a uma festa clandestina e o único crime foi o salgadinho."
+        },
+        {
+          "fala": "Angélica",
+          "texto": "Rola? Ou é fraca?"
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Rola. Só não conta essa para os vizinhos.”",
+          "vai": "cozinha_volta",
+          "marcar": [
+            "falou_angelica"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Angélica",
+              "texto": "Os vizinhos que se virem."
+            },
+            "Ela anota a hora ao lado da piada. Você nunca viu Angélica escrever qualquer coisa sem escrever a hora junto."
+          ]
+        },
+        {
+          "texto": "“Você anota tudo nessa agenda, né? Até quem entra e quem sai?”",
+          "vai": "cozinha_volta",
+          "marcar": [
+            "falou_angelica",
+            "viu_agenda"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Angélica",
+              "texto": "Tudo. Quem entra, quem sai, que horas. É mais forte do que eu."
+            },
+            "Ela fecha a agenda e a abraça contra o peito, rindo, como se tivesse acabado de contar outra piada."
+          ]
+        }
+      ]
+    },
+    "icaro": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "Ícaro está de pé, imóvel, com a cabeça levemente inclinada. Parece ouvir alguma coisa lá fora.",
+        {
+          "fala": "Ícaro",
+          "texto": "Escuta."
+        },
+        "Você escuta. Por baixo da música que vem da sala, alguma coisa estala no quintal: um clique seco, metálico, uma pausa e outro clique.",
+        {
+          "fala": "Ícaro",
+          "texto": "É o gerador dos fundos. Falha no mesmo ritmo desde que eu cheguei."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Isso é problema de quem alugou a casa, não nosso.”",
+          "vai": "cozinha_volta",
+          "marcar": [
+            "falou_icaro",
+            "ouviu_gerador"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Ícaro",
+              "texto": "Provavelmente."
+            },
+            "Ele continua olhando para a porta dos fundos por mais um instante e só então se vira para você."
+          ]
+        },
+        {
+          "texto": "“Você escuta coisa demais, Ícaro.”",
+          "vai": "cozinha_volta",
+          "marcar": [
+            "falou_icaro",
+            "ouviu_gerador"
+          ],
+          "minutos": 3,
+          "resposta": [
+            {
+              "fala": "Ícaro",
+              "texto": "Alguém precisa."
+            },
+            "Ele diz sem sorrir. Você sente que acabou de ouvir algo importante, mas não sabe dizer o quê."
+          ]
+        }
+      ]
+    },
+    "corredor": {
+      "local": "Corredor",
+      "cenario": "corredor",
+      "hora": "23:38",
+      "texto": [
+        "O corredor é estreito e mais escuro que o resto da casa. A música chega abafada, como se viesse de debaixo d’água. No fundo, a porta de vidro da varanda deixa passar uma luz azulada.",
+        "Laís está encostada na parede, com a câmera no pescoço, conferindo a última foto.",
+        {
+          "fala": "Laís",
+          "texto": "Sorri."
+        },
+        "O flash estoura antes de você responder."
+      ],
+      "escolhas": [
+        {
+          "texto": "“Apaga essa. Não quero aparecer em foto nenhuma hoje.”",
+          "vai": "varanda",
+          "marcar": [
+            "falou_lais"
+          ],
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Já foi para o cartão. Prometo que não mostro para ninguém."
+            },
+            "Ela diz rindo, mas a mão protege a câmera como quem guarda um segredo."
+          ]
+        },
+        {
+          "texto": "“Tira mais uma. Hoje o povo está bonito.”",
+          "vai": "varanda",
+          "marcar": [
+            "falou_lais"
+          ],
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Você nunca deixa. O que deu em você?"
+            },
+            "Ela tira outra foto e confere o resultado, franzindo a testa, como se algo no enquadramento não a agradasse."
+          ]
+        },
+        {
+          "texto": "Passar por ela sem dizer nada",
+          "vai": "varanda"
+        }
+      ]
+    },
+    "varanda": {
+      "local": "Varanda",
+      "cenario": "varanda",
+      "hora": "23:41",
+      "texto": [
+        "A porta de vidro range. A varanda é pequena, com um parapeito baixo de ferro que ninguém nunca consertou. Lá embaixo, o pátio dos fundos está escuro; do outro lado do muro, a cidade é um punhado de luzes.",
+        "O celular mostra uma barra de sinal, depois duas. Você digita um número que sabe de cor.",
+        "Chama uma vez. Chama duas.",
+        "Você não ouve a porta de vidro abrir. Só percebe que a música ficou mais alta e depois mais baixa, como quando alguém fecha uma porta que estava aberta atrás de você.",
+        "Na tela, o número ainda está chamando. São 23h41."
+      ],
+      "proximo": "fim",
+      "rotulo": "Virar-se"
+    },
+    "fim": {
+      "local": "",
+      "fim": true,
+      "texto": [
+        "Aqui a lembrança termina.",
+        "Ninguém que estava naquela casa contou o resto da noite do mesmo jeito duas vezes.",
+        "Três anos depois, um convite chega às suas mãos."
+      ],
+      "rotulo": "Continuar",
+      "href": "/convite"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+/* Base visual do jogo: cores, tipografia e peças reutilizadas em todas as páginas. */
+:root {
+  --mesa: #15110d;
+  --mesa-clara: #231c15;
+  --papel: #d9c79f;
+  --papel-claro: #e6d8b6;
+  --tinta: #2e2115;
+  --tinta-suave: #66513a;
+  --carimbo: #8a2b20;
+  --latao: #a98340;
+
+  --fonte-maquina: "Special Elite", "Courier New", monospace;
+  --fonte-texto: "Lora", Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { height: 100%; background: var(--mesa); }
+body { min-height: 100%; margin: 0; }
+
+body {
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--papel);
+  background:
+    radial-gradient(ellipse at 50% 35%, var(--mesa-clara) 0%, var(--mesa) 70%, #0b0906 100%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-maquina);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+button, input { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--latao);
+  outline-offset: 3px;
+}
+
+/* Botão principal: tinta preta sobre papel */
+.botao {
+  font-family: var(--fonte-maquina);
+  font-size: 1.05rem;
+  padding: 0.7rem 1.4rem;
+  background: var(--tinta);
+  color: var(--papel-claro);
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.botao:hover { background: #3f2e1d; }
+.botao:disabled { opacity: 0.55; cursor: wait; }
+
+.botao-simples {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.somente-leitor { /* texto só para leitores de tela */
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+a.botao { display: inline-block; text-decoration: none; text-align: center; }
+
+/* O atributo hidden sempre esconde, mesmo em elementos com display próprio (botões, links...). */
+[hidden] { display: none !important; }

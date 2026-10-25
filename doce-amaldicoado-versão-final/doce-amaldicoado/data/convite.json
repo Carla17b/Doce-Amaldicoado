@@ -1,0 +1,477 @@
+{
+  "titulo": "O convite",
+  "inicio": "carta",
+  "cenas": {
+    "carta": {
+      "local": "Seu escritório",
+      "cenario": "escritorio",
+      "texto": [
+        "O envelope chegou numa terça-feira, sem remetente, com o seu nome escrito à mão. Dentro, uma única folha de papel grosso, datilografada, e um cartão com um endereço na serra.",
+        {
+          "papel": [
+            "{nome},",
+            "Meu nome é Mateus. Você não me conhece, mas eu sei quem você é.",
+            {
+              "texto": "Soube que você deixou a polícia por causa de um caso que ninguém quis reabrir. É exatamente por isso que escolhi você.",
+              "se": [
+                "passado_policial"
+              ]
+            },
+            {
+              "texto": "Li o que você escreveu sobre histórias que ninguém queria contar. Você só publica o que consegue provar. É disso que preciso.",
+              "se": [
+                "passado_jornalista"
+              ]
+            },
+            {
+              "texto": "Dizem que você segue o dinheiro até o último centavo, mesmo quando ele tenta se esconder. Vai precisar dessa teimosia.",
+              "se": [
+                "passado_contador"
+              ]
+            },
+            {
+              "texto": "Dizem que você percebe quando uma testemunha mente, mesmo quando ela acredita no que diz. É disso que preciso.",
+              "se": [
+                "passado_psicologo"
+              ]
+            },
+            "No próximo sábado, reunirei algumas pessoas numa casa na serra, oficialmente para o aniversário de uma amiga. Esse é o pretexto.",
+            "Há três anos, um amigo meu, Leonardo, caiu da varanda de uma casa durante uma festa e morreu. A versão oficial é de acidente. Tenho em mãos material que a contradiz.",
+            "À meia-noite, vou fazer a entrega desse material diante de todos que estavam lá. Preciso de uma testemunha de fora na sala, alguém que repare no que cada um faz com o rosto.",
+            "Cubro as despesas e pago o dobro do seu valor. Não conte a ninguém por que está indo: para eles, você será alguém que eu conheço.",
+            "Mateus"
+          ]
+        },
+        {
+          "dica": "A folha é de gramatura alta e a tinta, fresca. A assinatura treme no último traço, como se ele tivesse reescrito o final mais de uma vez.",
+          "se": [
+            "esp_documentos"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Aceitar o trabalho",
+          "vai": "estrada"
+        },
+        {
+          "texto": "Ligar para o número do cartão antes de decidir",
+          "vai": "estrada",
+          "resposta": [
+            "O telefone toca duas vezes.",
+            {
+              "fala": "Mateus",
+              "texto": "É você. Obrigado por ligar."
+            },
+            {
+              "fala": "Mateus",
+              "texto": "Só vou repetir uma coisa: olhe para eles, não para mim. À meia-noite, você vai entender por quê."
+            },
+            "Ele desliga antes que você diga que aceita. Você aceita assim mesmo."
+          ]
+        }
+      ]
+    },
+    "estrada": {
+      "local": "Estrada da serra",
+      "cenario": "estrada",
+      "hora": "18:50",
+      "texto": [
+        "No sábado, a neve começou antes de você sair da cidade. Na serra, ela já cobre o acostamento e transforma a estrada numa faixa estreita entre dois muros brancos.",
+        "O rádio avisa, entre chiados, que a pista será fechada às oito da noite. Quem estiver subindo que suba logo; quem estiver lá em cima vai ficar lá em cima.",
+        {
+          "dica": "Na última curva, o cascalho do acostamento mostra marcas de pneu ainda frescas. Pelo menos três carros passaram aqui hoje, todos subindo. Nenhum descendo.",
+          "se": [
+            "esp_lugares"
+          ]
+        },
+        "A mansão aparece de repente, no alto, com todas as janelas acesas."
+      ],
+      "proximo": "chegada",
+      "rotulo": "Estacionar e entrar"
+    },
+    "chegada": {
+      "local": "Mansão",
+      "cenario": "mansao",
+      "hora": "19:42",
+      "texto": [
+        "A porta se abre antes de você bater. Mateus está do outro lado, de casaco escuro, com a mão ainda no trinco, como se esperasse há muito tempo.",
+        {
+          "fala": "Mateus",
+          "texto": "Você veio. Obrigado."
+        },
+        {
+          "fala": "Mateus",
+          "texto": "Eles já chegaram. Para todos aqui, você é alguém que eu conheço, e é só isso que precisam saber."
+        },
+        {
+          "fala": "Mateus",
+          "texto": "Jantar às dez. À meia-noite, a entrega. Até lá, circule. Escute. As pessoas falam mais com quem acham que não importa."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“O que exatamente você vai mostrar?”",
+          "vai": "hall",
+          "resposta": [
+            {
+              "fala": "Mateus",
+              "texto": "Prefiro que você veja com os próprios olhos. Se eu contar antes, vai tentar confirmar, e não há tempo."
+            }
+          ]
+        },
+        {
+          "texto": "“Por que não levou isso à polícia há três anos?”",
+          "vai": "hall",
+          "resposta": [
+            {
+              "fala": "Mateus",
+              "texto": "Porque guardar uma coisa por tanto tempo também exige uma explicação. Você vai ouvi-la à meia-noite."
+            },
+            "Ele diz isso olhando para a escada, não para você."
+          ]
+        },
+        {
+          "texto": "“Entendido, {nome}. Vou circular.”",
+          "vai": "hall"
+        }
+      ]
+    },
+    "hall": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Mateus fecha a porta atrás de você. Pela fresta da cortina, a neve já apagou as suas pegadas no caminho.",
+        "O hall é enorme: lareira acesa, uma escada de madeira escura que sobe até um corredor de fotografias, um lustre que balança quase nada, como se a casa respirasse.",
+        "Carla está ao lado da lareira. Laís, perto da escada. Mariane olha a neve pela janela alta. Angélica ocupa um sofá inteiro, e Ícaro está encostado numa parede, quieto."
+      ],
+      "escolhas": [
+        {
+          "texto": "Falar com Carla, ao lado da lareira",
+          "vai": "carla",
+          "sem": [
+            "falou_carla"
+          ]
+        },
+        {
+          "texto": "Falar com Laís, perto da escada",
+          "vai": "lais",
+          "sem": [
+            "falou_lais"
+          ]
+        },
+        {
+          "texto": "Falar com Mariane, junto à janela",
+          "vai": "mariane",
+          "sem": [
+            "falou_mariane"
+          ]
+        },
+        {
+          "texto": "Falar com Angélica, no sofá",
+          "vai": "angelica",
+          "sem": [
+            "falou_angelica"
+          ]
+        },
+        {
+          "texto": "Falar com Ícaro, encostado na parede",
+          "vai": "icaro",
+          "sem": [
+            "falou_icaro"
+          ]
+        },
+        {
+          "texto": "Explorar a casa antes do jantar",
+          "vai": "saida_hall"
+        }
+      ]
+    },
+    "hall_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "O hall continua como estava: a lareira estalando, a neve contra as janelas e as vozes baixas demais para serem ouvidas do outro lado da sala."
+      ],
+      "escolhasDe": "hall"
+    },
+    "carla": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Carla está de pé ao lado da lareira, com uma taça que parece não ter baixado desde que chegou. Tem a postura de quem ocupa uma sala sem fazer esforço.",
+        {
+          "fala": "Carla",
+          "texto": "Então é você. O Mateus não disse quase nada a seu respeito."
+        },
+        {
+          "fala": "Carla",
+          "texto": "Eu cuido das finanças de um projeto social. Aqui, isso quer dizer que pago a conta de tudo e ninguém lembra de agradecer."
+        },
+        {
+          "dica": "O sorriso dela acompanha a conversa, mas só chega até a boca.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Mateus só falou de um jantar entre amigos.”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_carla"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Carla",
+              "texto": "Entre amigos. Ele tem uma noção própria do que isso significa."
+            },
+            "Ela bebe devagar, olhando por cima da taça para a escada, onde Laís mexe numa prateleira."
+          ]
+        },
+        {
+          "texto": "“Parece que você e Mateus não estão no melhor momento.”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_carla"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Carla",
+              "texto": "Estamos no mesmo momento há três anos. Estranho como o tempo anda devagar quando todo mundo se comporta."
+            },
+            "Ela sorri e vira o rosto para a lareira, encerrando a conversa."
+          ]
+        }
+      ]
+    },
+    "lais": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Laís está perto da escada, ajeitando um vaso numa prateleira que já estava perfeitamente ajeitada. Quando vê você, abre um sorriso largo demais, de anfitriã.",
+        {
+          "fala": "Laís",
+          "texto": "Chegou! Estávamos todos curiosos. O Mateus não contou quase nada sobre quem vinha."
+        },
+        {
+          "fala": "Laís",
+          "texto": "Eu cheguei ontem, para ajudar a arrumar. A casa é enorme e tem manias: o gerador é velho, as portas rangem. Qualquer coisa, me procura."
+        },
+        {
+          "dica": "Duas vezes, enquanto fala, Laís olha para o canto do teto, por cima do seu ombro.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“A casa é linda. Você a conhece bem?”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_lais"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Só por catálogo. Mas aprendo rápido."
+            },
+            "A resposta vem depressa, como se tivesse sido preparada com antecedência."
+          ]
+        },
+        {
+          "texto": "“Por que o gerador importa?”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_lais",
+            "ouviu_gerador"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Laís",
+              "texto": "Ele alimenta a casa toda quando a luz cai. Com essa neve, vai cair. Só isso."
+            },
+            "Ela explica sem pausa e depois ri, um pouco alto."
+          ]
+        }
+      ]
+    },
+    "mariane": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Mariane está parada junto à janela alta, olhando a neve cair sobre o jardim. Os braços cruzados, como quem sente frio por dentro.",
+        {
+          "fala": "Mariane",
+          "texto": "Desculpa, eu estava longe. Você conhece o Mateus de onde? Prazer."
+        },
+        {
+          "fala": "Mariane",
+          "texto": "Eu nem queria ter vindo. O aniversário da Angélica, tudo bem, mas essa casa… esse grupo inteiro junto de novo."
+        },
+        {
+          "dica": "Ela evita o corredor das fotografias: o corpo gira para o outro lado sempre que alguém passa por ali.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Quanto tempo faz que vocês não se reúnem?”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_mariane"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Três anos."
+            },
+            "A resposta sai sem que ela pense, e a palavra fica no ar mais tempo do que deveria."
+          ]
+        },
+        {
+          "texto": "“Quer um café? Parece que está com frio.”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_mariane"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Mariane",
+              "texto": "Obrigada. Frio… é, deve ser isso."
+            },
+            "Ela aperta os próprios braços e agradece com a cabeça, sem olhar para você."
+          ]
+        }
+      ]
+    },
+    "angelica": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Angélica está esparramada no sofá, com uma coroa de papel torta na cabeça e uma agenda de capa dura aberta sobre a almofada.",
+        {
+          "fala": "Angélica",
+          "texto": "É o meu aniversário e ninguém trouxe presente. Só angústia e cortinas pesadas."
+        },
+        {
+          "fala": "Angélica",
+          "texto": "Você é a surpresa da noite? Se for, foi a melhor até agora."
+        },
+        {
+          "dica": "A risada dela chega meio segundo antes da graça, como se estivesse ensaiada.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Feliz aniversário. Quantos anos hoje?”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_angelica"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Angélica",
+              "texto": "Os suficientes para saber que é melhor rir primeiro."
+            },
+            "Ela fecha a agenda com a palma da mão assim que você olha para ela."
+          ]
+        },
+        {
+          "texto": "“Gostei da coroa.”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_angelica"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Angélica",
+              "texto": "Foi presente da Laís. É a única coisa aqui que veio sem condição."
+            },
+            "Ela ri, e por um instante a risada não parece ensaiada."
+          ]
+        }
+      ]
+    },
+    "icaro": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Ícaro está encostado numa parede do hall, quieto, com a cabeça inclinada. Não parece ouvir as pessoas; parece ouvir a casa.",
+        {
+          "fala": "Ícaro",
+          "texto": "Escuta. A casa respira."
+        },
+        {
+          "fala": "Ícaro",
+          "texto": "Gerador, aquecimento, vento no telhado. Tudo num compasso que não é de casa velha."
+        },
+        {
+          "dica": "Ele responde sem olhar para você, os olhos seguindo um ruído que só ele parece ouvir.",
+          "se": [
+            "esp_pessoas"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "“Que compasso?”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_icaro",
+            "ouviu_gerador"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Ícaro",
+              "texto": "Estalo, pausa, estalo. Deve ser coisa minha."
+            },
+            "Ele diz isso com a voz de quem não acredita que seja."
+          ]
+        },
+        {
+          "texto": "“Você sempre ouve as casas assim?”",
+          "vai": "hall_volta",
+          "marcar": [
+            "falou_icaro"
+          ],
+          "minutos": 12,
+          "resposta": [
+            {
+              "fala": "Ícaro",
+              "texto": "Só quando não consigo ouvir as pessoas."
+            },
+            "Ele sorri pela primeira vez, rápido, e volta a olhar para o teto."
+          ]
+        }
+      ]
+    },
+    "saida_hall": {
+      "local": "Hall",
+      "cenario": "hall",
+      "fim": true,
+      "texto": [
+        "Ainda faltam horas para o jantar, e a casa é grande. Mateus pediu que você circulasse; ninguém vai estranhar se olhar ao redor.",
+        "Você se afasta do grupo sem pressa. Ninguém repara. Ou ninguém parece reparar."
+      ],
+      "rotulo": "Explorar a casa",
+      "href": "/mansao"
+    }
+  }
+}

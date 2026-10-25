@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O doce amaldiçoado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/componentes.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+  <main class="mesa">
+    <div class="pasta">
+      <div class="abas" role="tablist" aria-label="Acesso à conta">
+        <button class="aba" role="tab" id="aba-entrar" aria-selected="true" aria-controls="painel-entrar">Entrar</button>
+        <button class="aba" role="tab" id="aba-cadastro" aria-selected="false" aria-controls="painel-cadastro" tabindex="-1">Criar conta</button>
+      </div>
+
+      <div class="folha">
+        <h1>O doce amaldiçoado</h1>
+        <p class="lema">Duas mortes. Uma mentira que todos repetiram.</p>
+
+        <form id="painel-entrar" role="tabpanel" aria-labelledby="aba-entrar">
+          <label class="campo"><span>E-mail</span>
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label class="campo"><span>Senha</span>
+            <input type="password" name="senha" autocomplete="current-password" required>
+          </label>
+          <p class="aviso" role="alert"></p>
+          <button class="botao" type="submit">Entrar no caso</button>
+          <p class="troca">Ainda não tem conta? <button class="botao-simples" type="button" data-ir="cadastro">Criar conta</button></p>
+        </form>
+
+        <form id="painel-cadastro" role="tabpanel" aria-labelledby="aba-cadastro" hidden>
+          <label class="campo"><span>Seu nome</span>
+            <input type="text" name="nome" autocomplete="name" maxlength="100" required>
+          </label>
+          <label class="campo"><span>E-mail</span>
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label class="campo"><span>Senha (mínimo de 6 caracteres)</span>
+            <input type="password" name="senha" autocomplete="new-password" minlength="6" required>
+          </label>
+          <p class="aviso" role="alert"></p>
+          <button class="botao" type="submit">Criar conta e começar</button>
+          <p class="troca">Já tem conta? <button class="botao-simples" type="button" data-ir="entrar">Entrar</button></p>
+        </form>
+      </div>
+      <p class="voltar-inicio"><a href="/">Sobre o jogo</a></p>
+    </div>
+  </main>
+
+  <script type="module" src="/static/js/paginas/login.js"></script>
+</body>
+</html>

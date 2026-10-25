@@ -1,0 +1,733 @@
+{
+  "titulo": "A noite presa",
+  "inicio": "hall",
+  "herdaDe": "jantar",
+  "horaInicial": "23:15",
+  "limite": {
+    "hora": "00:00",
+    "vai": "meia_noite"
+  },
+  "cenas": {
+    "hall": {
+      "local": "Hall",
+      "cenario": "hall",
+      "hora": "23:15",
+      "texto": [
+        "Quarenta minutos depois, o corpo de Mateus está coberto com uma toalha de mesa, e os cinco convidados estão no hall, em cantos opostos, ninguém olhando para ninguém. Ícaro acendeu a lareira e juntou todas as velas da casa. O gerador não voltou.",
+        "Sem sinal, sem estrada, sem energia. Se a morte de Mateus não foi natural, quem a causou ainda está aqui.",
+        "Mateus tinha dito: circule, escute. Agora a ordem soa diferente. A casa inteira ainda está para ser olhada."
+      ],
+      "escolhas": [
+        {
+          "texto": "Observar o grupo no hall",
+          "vai": "hall_volta",
+          "sem": [
+            "viu_grupo"
+          ],
+          "marcar": [
+            "viu_grupo"
+          ],
+          "minutos": 5,
+          "resposta": [
+            "Cinco pessoas, uma lareira, nenhuma conversa. Carla, com a taça vazia e a postura de quem já decidiu o que vai dizer. Laís, com os olhos no teto e depois no chão. Mariane, com as mãos entre os joelhos. Angélica, sem a coroa. Ícaro, de pé perto da porta, ouvindo.",
+            {
+              "dica": "Ninguém olha para a direção da sala de jantar. Só Laís, uma vez, depressa.",
+              "se": [
+                "esp_pessoas"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Voltar à sala de jantar",
+          "vai": "sala_jantar",
+          "minutos": 3
+        },
+        {
+          "texto": "Ir à cozinha",
+          "vai": "cozinha",
+          "minutos": 3
+        },
+        {
+          "texto": "Subir aos quartos",
+          "vai": "quartos",
+          "minutos": 3
+        },
+        {
+          "texto": "Tentar a porta do escritório",
+          "vai": "escritorio_trancado",
+          "sem": [
+            "tem_chave"
+          ],
+          "minutos": 3
+        },
+        {
+          "texto": "Abrir o escritório com a chave de Mateus",
+          "vai": "escritorio",
+          "se": [
+            "tem_chave"
+          ],
+          "minutos": 3
+        },
+        {
+          "texto": "Examinar o toca-fitas",
+          "vai": "hall_volta",
+          "sem": [
+            "pista_fita_cassete"
+          ],
+          "minutos": 6,
+          "pista": "fita_cassete",
+          "resposta": [
+            "O toca-fitas continua na prateleira, ligado na tomada. A fita ainda está dentro, com a etiqueta amarelada: “Festa, sexta. Lado B.”",
+            "Você aperta o botão. A música lenta enche o hall por alguns segundos, e você desliga antes que alguém pergunte quem mandou.",
+            {
+              "dica": "O botão de rebobinar está gasto de um lado só: a fita foi tocada muitas vezes naquele trecho.",
+              "se": [
+                "esp_lugares"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Descer à sala do gerador",
+          "vai": "gerador",
+          "minutos": 3
+        },
+        {
+          "texto": "Reunir todos no hall para conversar",
+          "vai": "fim_noite"
+        }
+      ]
+    },
+    "hall_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "O hall continua à meia-luz. O fogo estala; ninguém fala."
+      ],
+      "escolhasDe": "hall"
+    },
+    "sala_jantar": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "texto": [
+        "A sala de jantar está como foi deixada: velas queimadas até o toco, pratos intactos, a cadeira de Mateus caída. O corpo está coberto por uma toalha.",
+        {
+          "narra": "A mesa está como você pediu: ninguém tocou em nada.",
+          "se": [
+            "pediu_mesa"
+          ]
+        },
+        {
+          "narra": "Alguém mexeu na mesa depois que você saiu: dois pratos foram empilhados e uma taça sumiu.",
+          "sem": [
+            "pediu_mesa"
+          ]
+        },
+        "A caixa de brigadeiros continua aberta no centro, com onze doces alinhados."
+      ],
+      "escolhas": [
+        {
+          "texto": "Revistar os bolsos de Mateus",
+          "vai": "sala_jantar_volta",
+          "sem": [
+            "tem_chave"
+          ],
+          "marcar": [
+            "tem_chave"
+          ],
+          "minutos": 5,
+          "resposta": [
+            "Você levanta a ponta da toalha com respeito. No bolso do casaco, uma chave de ferro, grande e antiga. No outro, um lenço bordado e uma pastilha de hortelã ainda embrulhada.",
+            "A chave tem uma etiqueta de papel presa por barbante, escrita à mão: “Escritório.”"
+          ]
+        },
+        {
+          "texto": "Procurar o que Laís e Ícaro olharam no teto",
+          "vai": "sala_jantar_volta",
+          "sem": [
+            "pista_camera_escondida"
+          ],
+          "minutos": 6,
+          "pista": "camera_escondida",
+          "resposta": [
+            "No canto onde o forro encontra a parede, atrás de uma moldura de gesso, há um pontinho de vidro escuro. É uma câmera pequena, do tamanho de uma moeda, apontada para a mesa.",
+            "Não há luz acesa nela. Mas o fio que sai dali desce pela parede até uma tomada nova.",
+            {
+              "dica": "Perto da porta da cozinha, mais um furo recente no forro, do mesmo tamanho. Uma segunda câmera esteve ali, ou ainda está.",
+              "se": [
+                "esp_lugares"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Olhar a caixa de brigadeiros",
+          "vai": "sala_jantar_volta",
+          "sem": [
+            "viu_caixa"
+          ],
+          "marcar": [
+            "viu_caixa"
+          ],
+          "minutos": 3,
+          "resposta": [
+            "Onze brigadeiros, cada um na sua forminha branca. Ninguém vai querer comer nenhum.",
+            "A forminha triangular, vazia e amassada, ficou no prato de Mateus. Parece um pedaço de papel qualquer."
+          ]
+        },
+        {
+          "texto": "Ler os cartões de lugar",
+          "vai": "sala_jantar_volta",
+          "sem": [
+            "pista_mapa_de_lugares"
+          ],
+          "minutos": 6,
+          "pista": "mapa_de_lugares",
+          "resposta": [
+            "Os cartões ainda estão nos lugares, manchados de vela e de vinho. Mateus na cabeceira, Carla à direita, Angélica à esquerda; Laís e Mariane de um lado, Ícaro e um lugar sem nome do outro, que era o seu.",
+            "Todos têm a mesma caligrafia redonda. O de Mateus é o único escrito por outra mão.",
+            {
+              "dica": "A tinta do cartão de Carla está um pouco mais fresca que as outras, como se tivesse sido refeito.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "sala_jantar_volta": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "texto": [
+        "As poucas velas que sobraram pingam sobre a toalha. A toalha sobre o corpo se move sozinha, de leve, com a corrente de ar."
+      ],
+      "escolhasDe": "sala_jantar"
+    },
+    "cozinha": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "A cozinha está fria e escura. O fogão a gás ainda funciona: alguém acendeu uma boca para ninguém, e a chama azul é a única luz.",
+        "No fundo, a despensa está com o trinco aberto."
+      ],
+      "escolhas": [
+        {
+          "texto": "Reler o livro de entregas",
+          "vai": "cozinha_volta",
+          "sem": [
+            "pista_livro_guardanapos"
+          ],
+          "minutos": 6,
+          "pista": "livro_guardanapos",
+          "resposta": [
+            "Você vira a página. Abaixo da encomenda das 17h10, duas linhas novas, em caneta diferente.",
+            "“21h38 — guardanapos de pano, retirados por C.”",
+            "“21h50 — doces levados à sala.”",
+            {
+              "dica": "A letra do “C.” é rápida e inclinada, bem diferente da do “L.” do início da página.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Ler a encomenda das 17h10 no livro de entregas",
+          "vai": "cozinha_volta",
+          "sem": [
+            "pista_encomenda_doces"
+          ],
+          "minutos": 5,
+          "pista": "encomenda_doces",
+          "resposta": [
+            "No topo da página, uma linha antiga, de caneta azul: “17h10 — caixa de brigadeiros artesanais, 12 unidades. Encomenda e retirada: L.”",
+            "Doze unidades. Onze ainda estão na caixa, na sala de jantar."
+          ]
+        },
+        {
+          "texto": "Entrar na despensa",
+          "vai": "despensa",
+          "minutos": 3
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "cozinha_volta": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "A chama azul do fogão treme. Lá fora, a neve bate na porta de serviço."
+      ],
+      "escolhasDe": "cozinha"
+    },
+    "despensa": {
+      "local": "Despensa",
+      "cenario": "cozinha",
+      "texto": [
+        "A despensa é pequena, de prateleiras até o teto: sacos de farinha, jarros de açúcar, latas de cacau. O cheiro de chocolate é mais forte aqui do que em qualquer outro lugar da casa. A porta fecha por fora com um trinco simples.",
+        {
+          "dica": "No pó do chão, duas pegadas de sola diferentes, uma menor e outra maior, indo e voltando da prateleira do meio.",
+          "se": [
+            "esp_lugares"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Examinar a prateleira dos guardanapos",
+          "vai": "despensa_volta",
+          "sem": [
+            "pista_guardanapo_escondido"
+          ],
+          "minutos": 6,
+          "pista": "guardanapo_escondido",
+          "resposta": [
+            "Os guardanapos de pano ficam aqui, numa pilha dobrada, numa prateleira alta. Alguém mexeu na pilha: um deles está torto.",
+            "Atrás dos sacos de farinha, quase escondido, um guardanapo de pano amassado. Tem uma mancha marrom, ainda macia nas bordas."
+          ]
+        },
+        {
+          "texto": "Procurar onde a caixa de doces ficou",
+          "vai": "despensa_volta",
+          "sem": [
+            "viu_lugar_caixa"
+          ],
+          "marcar": [
+            "viu_lugar_caixa"
+          ],
+          "minutos": 3,
+          "resposta": [
+            "Num dos vãos da prateleira do meio, um retângulo limpo no pó mostra onde a caixa ficou até hoje à noite. Em volta, só poeira intacta."
+          ]
+        },
+        {
+          "texto": "Voltar à cozinha",
+          "vai": "cozinha_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "despensa_volta": {
+      "local": "Despensa",
+      "cenario": "cozinha",
+      "texto": [
+        "O cheiro de cacau parece mais forte a cada vez que você volta."
+      ],
+      "escolhasDe": "despensa"
+    },
+    "quartos": {
+      "local": "Andar dos quartos",
+      "cenario": "corredor",
+      "texto": [
+        "No andar de cima, cinco portas, cada uma com um nome escrito a lápis num pedaço de papel. Ninguém trancou nada: numa casa onde todos se conhecem, ninguém pensaria em trancar.",
+        "Os quartos de Carla, de Mariane e de Ícaro estão fechados, mas não trancados. Roupas, malas e nada que valha uma busca agora."
+      ],
+      "escolhas": [
+        {
+          "texto": "Entrar no quarto de Laís",
+          "vai": "quarto_lais",
+          "minutos": 3
+        },
+        {
+          "texto": "Entrar no quarto de Angélica",
+          "vai": "quarto_angelica",
+          "minutos": 3
+        },
+        {
+          "texto": "Ir ao corredor das fotografias",
+          "vai": "fotos",
+          "minutos": 3
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "quartos_volta": {
+      "local": "Andar dos quartos",
+      "cenario": "corredor",
+      "texto": [
+        "O corredor dos quartos range sob os seus passos. Lá embaixo, ninguém fala."
+      ],
+      "escolhasDe": "quartos"
+    },
+    "quarto_lais": {
+      "local": "Quarto de Laís",
+      "cenario": "corredor",
+      "texto": [
+        "O quarto de Laís é o mais arrumado da casa: cama feita com cantos retos, uma maleta de câmera aberta sobre a escrivaninha, cadernos empilhados em ordem de tamanho."
+      ],
+      "escolhas": [
+        {
+          "texto": "Ler o caderno de Laís",
+          "vai": "quarto_lais_volta",
+          "sem": [
+            "pista_caderno_lais"
+          ],
+          "minutos": 8,
+          "pista": "caderno_lais",
+          "resposta": [
+            {
+              "narra": "A caligrafia redonda é a mesma dos cartões de lugar da sala de jantar.",
+              "se": [
+                "pista_mapa_de_lugares"
+              ]
+            },
+            {
+              "narra": "A caligrafia é redonda, cuidadosa, de quem escreve devagar.",
+              "sem": [
+                "pista_mapa_de_lugares"
+              ]
+            },
+            "O caderno descreve uma “noite de pressão”: quem senta onde, em que ordem as frases entram, a hora em que o gerador deve falhar, quanto tempo cada pessoa aguenta o silêncio.",
+            "A discussão que ela previu está inteira ali, com falas escritas. A morte de alguém, não.",
+            "Na última página, uma anotação diferente, escrita às pressas: “Ele caiu. Isso não era para acontecer. O que eu fiz?”",
+            {
+              "dica": "A tinta dessa última anotação ainda está úmida em um canto: foi escrita hoje, depois do jantar.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Examinar os papéis dobrados sobre a escrivaninha",
+          "vai": "quarto_lais_volta",
+          "sem": [
+            "pista_dobras_de_lais"
+          ],
+          "minutos": 6,
+          "pista": "dobras_de_lais",
+          "resposta": [
+            "Sobre a escrivaninha, uma pilha de forminhas de papel e de guardanapos dobrados em pequenos triângulos, prontos, às dezenas.",
+            "É a mesma dobra da forminha de Mateus. Parece uma mania, quase uma assinatura."
+          ]
+        },
+        {
+          "texto": "Abrir a maleta da câmera",
+          "vai": "quarto_lais_volta",
+          "sem": [
+            "viu_maleta"
+          ],
+          "marcar": [
+            "viu_maleta"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "A maleta tem lentes, baterias e espaço marcado para três câmeras pequenas. Só duas estão guardadas. A terceira você já viu no teto da sala de jantar.",
+            "Você pensa em quantas ficaram espalhadas pela casa."
+          ]
+        },
+        {
+          "texto": "Voltar ao corredor dos quartos",
+          "vai": "quartos_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "quarto_lais_volta": {
+      "local": "Quarto de Laís",
+      "cenario": "corredor",
+      "texto": [
+        "Tudo no quarto continua no lugar. Parece que ninguém nunca mexeu em nada, e é exatamente isso que incomoda."
+      ],
+      "escolhasDe": "quarto_lais"
+    },
+    "quarto_angelica": {
+      "local": "Quarto de Angélica",
+      "cenario": "corredor",
+      "texto": [
+        "O quarto de Angélica parece uma sala de ensaio: um espelho sem moldura encostado na parede, um tripé sem câmera, folhas soltas com piadas riscadas.",
+        "Na mala aberta, uma pilha de agendas de capa dura, uma por ano, com o ano escrito a caneta na lombada."
+      ],
+      "escolhas": [
+        {
+          "texto": "Procurar a agenda de três anos atrás",
+          "vai": "quarto_angelica_volta",
+          "sem": [
+            "pista_agenda_antiga"
+          ],
+          "minutos": 6,
+          "pista": "agenda_antiga",
+          "resposta": [
+            "Você puxa a agenda do ano certo. A letra é a mesma, mas mais firme, mais redonda.",
+            "Na página da sexta-feira da festa, uma linha: “Festa do Léo. Cheguei 21h40. Saí 00h15.”",
+            {
+              "dica": "A tinta é a mesma do resto da página: foi escrita no próprio dia, não depois.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Ler as folhas soltas",
+          "vai": "quarto_angelica_volta",
+          "sem": [
+            "viu_folhas"
+          ],
+          "marcar": [
+            "viu_folhas"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "Piadas sobre festas, sobre aniversários, sobre envelhecer. Uma delas, sobre alguém que cai de uma varanda, foi riscada com tanta força que rasgou o papel.",
+            "No pé da folha, a mão dela escreveu: “Não. Nunca mais.”"
+          ]
+        },
+        {
+          "texto": "Voltar ao corredor dos quartos",
+          "vai": "quartos_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "quarto_angelica_volta": {
+      "local": "Quarto de Angélica",
+      "cenario": "corredor",
+      "texto": [
+        "O espelho devolve uma versão sua que parece mais cansada do que você se sente."
+      ],
+      "escolhasDe": "quarto_angelica"
+    },
+    "escritorio_trancado": {
+      "local": "Porta do escritório",
+      "cenario": "hall",
+      "texto": [
+        "A porta do escritório continua trancada. Por baixo dela, já não passa luz nenhuma.",
+        "Mateus devia ter a chave com ele."
+      ],
+      "escolhas": [
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "escritorio": {
+      "local": "Escritório de Mateus",
+      "cenario": "escritorio",
+      "texto": [
+        "A chave gira com um estalo seco. O escritório é pequeno, abafado, com cheiro de papel e de tabaco antigo. Uma escrivaninha, uma estante, um cofre embutido na parede, aberto e vazio.",
+        "Tudo que importava foi trazido para cima da mesa: uma pasta azul no centro, um extrato impresso e um gravador de bolso."
+      ],
+      "escolhas": [
+        {
+          "texto": "Folhear as transferências na pasta azul",
+          "vai": "escritorio_volta",
+          "sem": [
+            "pista_transferencia_bancaria"
+          ],
+          "minutos": 6,
+          "pista": "transferencia_bancaria",
+          "resposta": [
+            "Dentro da pasta, cópias de transferências do projeto beneficente para uma conta pessoal, repetidas ao longo de um ano. Os valores sobem a cada mês.",
+            "O nome do titular da conta de destino é Carla."
+          ]
+        },
+        {
+          "texto": "Ler a carta endereçada à delegacia",
+          "vai": "escritorio_volta",
+          "sem": [
+            "pista_carta_delegacia"
+          ],
+          "minutos": 6,
+          "pista": "carta_delegacia",
+          "resposta": [
+            "Uma carta sem data, assinada por Mateus, endereçada a uma delegacia. Ele pede para ser ouvido sobre a morte de Leonardo e lista os anexos que levaria: documentos, uma gravação, um depoimento.",
+            "Não há uma palavra sobre dinheiro para ele mesmo."
+          ]
+        },
+        {
+          "texto": "Ler o extrato impresso",
+          "vai": "escritorio_volta",
+          "sem": [
+            "pista_extrato_chamadas"
+          ],
+          "minutos": 5,
+          "pista": "extrato_chamadas",
+          "resposta": [
+            "Um extrato de chamadas do celular de Leonardo, em nome dele. Entre dezenas de linhas, uma só está marcada a caneta: 23h41, uma chamada saindo, duração zero.",
+            "O número de destino está no extrato, mas não está associado a nenhum nome.",
+            {
+              "dica": "O cabeçalho do extrato tem data recente: foi impresso há menos de uma semana.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Ouvir o gravador de bolso",
+          "vai": "escritorio_volta",
+          "sem": [
+            "pista_gravacao_mateus"
+          ],
+          "minutos": 5,
+          "pista": "gravacao_mateus",
+          "resposta": [
+            "Você aperta o botão. Um clique, um chiado, e a voz de Mateus, mais jovem e mais cansada, falando baixo para si mesmo.",
+            {
+              "fala": "Mateus",
+              "texto": "Gravação particular. Eu cheguei à varanda antes de a música parar. Na versão que dei, disse que cheguei depois. Menti."
+            },
+            {
+              "fala": "Mateus",
+              "texto": "Se alguém ouvir isto, é porque eu não tive coragem de dizer em voz alta."
+            },
+            "O gravador chia mais um pouco e para."
+          ]
+        },
+        {
+          "texto": "Olhar o cofre embutido",
+          "vai": "escritorio_volta",
+          "sem": [
+            "viu_cofre"
+          ],
+          "marcar": [
+            "viu_cofre"
+          ],
+          "minutos": 3,
+          "resposta": [
+            "Um cofre pequeno, com a porta forrada de feltro verde. Está aberto e vazio, sem poeira dentro: Mateus o esvaziou para esta noite."
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "escritorio_volta": {
+      "local": "Escritório de Mateus",
+      "cenario": "escritorio",
+      "texto": [
+        "Na mesa, os papéis de Mateus esperam. Eles foram feitos para serem lidos à meia-noite, diante de todos."
+      ],
+      "escolhasDe": "escritorio"
+    },
+    "meia_noite": {
+      "local": "Hall",
+      "cenario": "hall",
+      "hora": "00:00",
+      "texto": [
+        "O relógio de pé do hall bate doze vezes. É a hora que Mateus tinha marcado para mudar tudo.",
+        "Ninguém diz nada. Carla olha para o relógio, depois para a direção da sala de jantar, depois para a parede. Mariane começa a chorar baixo. Angélica não faz piada nenhuma.",
+        "A neve continua batendo nas janelas. Ela não vai parar antes do amanhecer."
+      ],
+      "proximo": "hall_volta",
+      "rotulo": "Continuar"
+    },
+    "fim_noite": {
+      "local": "Hall",
+      "cenario": "hall",
+      "fim": true,
+      "texto": [
+        "Você junta os cinco no hall. Eles chegam um a um, com os olhos no chão, e se sentam onde puderam.",
+        "Você já viu a casa duas vezes: uma antes do jantar e outra depois da morte. Os objetos disseram o que sabiam.",
+        "Agora é hora de ouvir as pessoas."
+      ],
+      "rotulo": "Interrogar os convidados",
+      "href": "/interrogatorios"
+    },
+    "fotos": {
+      "local": "Corredor das fotografias",
+      "cenario": "corredor",
+      "texto": [
+        "Lá em cima, as molduras seguem penduradas na mesma altura. Com o apagão, só a sua vela alcança o fim do corredor: rostos antigos aparecem e somem na luz.",
+        "Uma das molduras, perto do fim, continua levemente torta."
+      ],
+      "escolhas": [
+        {
+          "texto": "Examinar a fotografia torta",
+          "vai": "fotos_volta",
+          "sem": [
+            "pista_foto_festa"
+          ],
+          "minutos": 8,
+          "pista": "foto_festa",
+          "resposta": [
+            "Você solta a moldura. Atrás do vidro, a festa em pleno movimento: pessoas de costas, um sofá, a porta de vidro da varanda ao fundo, aberta.",
+            "No chão, junto à soleira, um copo quebrado. Os cacos brilham sob o flash. Ninguém na foto parece ter reparado.",
+            {
+              "dica": "O carimbo de revelação no verso é de ontem. A foto é antiga, mas a cópia é nova.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Voltar ao corredor dos quartos",
+          "vai": "quartos_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "fotos_volta": {
+      "local": "Corredor das fotografias",
+      "cenario": "corredor",
+      "texto": [
+        "A chama da vela balança. Nas molduras, a mesma festa, vista de todos os lados, menos do lado de quem a organizou."
+      ],
+      "escolhasDe": "fotos"
+    },
+    "gerador": {
+      "local": "Sala do gerador",
+      "cenario": "gerador",
+      "texto": [
+        "O porão está frio e cheira a óleo. O gerador está parado: sem clique, sem pausa, só o silêncio.",
+        "No painel, o temporizador de cozinha continua preso com fita adesiva. O mostrador parou em 0:00."
+      ],
+      "escolhas": [
+        {
+          "texto": "Examinar o painel do gerador",
+          "vai": "gerador_volta",
+          "sem": [
+            "pista_gerador_alterado"
+          ],
+          "minutos": 8,
+          "pista": "gerador_alterado",
+          "resposta": [
+            "Na lateral do painel, um pequeno aparelho foi preso com fita adesiva ainda limpa: um temporizador de cozinha, com fios novos ligados ao circuito.",
+            "Ele não faz parte do gerador. Alguém quis controlar quando ele falha.",
+            {
+              "dica": "A poeira ao redor tem o desenho de duas mãos. Alguém trabalhou aqui há menos de um dia.",
+              "se": [
+                "esp_lugares"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 3
+        }
+      ]
+    },
+    "gerador_volta": {
+      "local": "Sala do gerador",
+      "cenario": "gerador",
+      "texto": [
+        "Sem o compasso do gerador, o porão parece maior. Você percebe que sentia falta do clique."
+      ],
+      "escolhasDe": "gerador"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+/* Página inicial: apresenta o jogo e leva ao cadastro ou ao login. */
+body { overflow-x: hidden; }
+
+.barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  width: min(100%, 64rem);
+  margin: 0 auto;
+  padding: 1.1rem 1.2rem 0;
+  font-family: var(--fonte-maquina);
+}
+.barra .marca { color: var(--papel-claro); }
+.barra a { color: var(--papel); text-underline-offset: 3px; font-size: 0.95rem; }
+
+/* ---- abertura ---- */
+.heroi {
+  width: min(100%, 64rem);
+  margin: 0 auto;
+  padding: 3rem 1.2rem 4rem;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.heroi h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.05; color: var(--papel-claro); }
+.heroi .lema { margin: 0.9rem 0 1.4rem; font-size: 1.25rem; font-style: italic; color: var(--latao); }
+.heroi .chamada { max-width: 32rem; margin: 0 0 2rem; }
+
+.acoes { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.acoes .botao { padding: 0.85rem 1.6rem; }
+.botao { background: var(--papel); color: var(--tinta); }
+.botao:hover { background: var(--papel-claro); }
+.botao-claro { background: transparent; color: var(--papel); border: 1.5px solid var(--papel); }
+.botao-claro:hover { background: rgba(217, 199, 159, 0.14); }
+
+.foto {
+  margin: 0;
+  background: #000;
+  border: 8px solid var(--papel-claro);
+  border-bottom-width: 52px;
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.6);
+  transform: rotate(2deg);
+  position: relative;
+}
+.foto img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.foto figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: -44px;
+  text-align: center;
+  font-family: var(--fonte-maquina);
+  font-size: 0.95rem;
+  color: var(--tinta);
+}
+
+/* ---- seções ---- */
+.secao { width: min(100%, 64rem); margin: 0 auto; padding: 2.4rem 1.2rem; border-top: 1px dotted rgba(169, 131, 64, 0.5); }
+.secao h2 { margin-bottom: 1.3rem; font-size: 1.7rem; color: var(--papel-claro); }
+
+.duas-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.duas-colunas p, .destaque { margin: 0; }
+.destaque { margin-top: 1.6rem; font-style: italic; color: var(--latao); font-size: 1.15rem; }
+
+.notas { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr)); gap: 1.1rem; }
+.nota {
+  padding: 1.1rem 1.2rem 1.3rem;
+  background: var(--papel);
+  color: var(--tinta);
+  border-radius: 2px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+}
+.nota:nth-child(odd) { transform: rotate(-0.6deg); }
+.nota:nth-child(even) { transform: rotate(0.6deg); }
+.nota h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.nota p { margin: 0; font-size: 0.97rem; line-height: 1.5; }
+
+.elenco { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 2.4rem; }
+.elenco li { padding-left: 1rem; border-left: 2px solid var(--latao); }
+.elenco strong { font-family: var(--fonte-maquina); font-weight: 400; font-size: 1.1rem; color: var(--papel-claro); }
+.elenco span { display: block; font-size: 0.97rem; color: #cdbb94; }
+
+.chamada-final { width: min(100%, 64rem); margin: 0 auto; padding: 3.4rem 1.2rem 4rem; text-align: center; border-top: 1px dotted rgba(169, 131, 64, 0.5); }
+.chamada-final h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); color: var(--papel-claro); }
+.chamada-final p { margin: 0.8rem 0 1.8rem; font-style: italic; color: var(--latao); }
+.chamada-final .acoes { justify-content: center; }
+
+.rodape { width: min(100%, 64rem); margin: 0 auto; padding: 0 1.2rem 2.4rem; text-align: center; font-size: 0.88rem; color: #a99872; }
+.rodape p { margin: 0; }
+
+@media (max-width: 760px) {
+  .heroi { grid-template-columns: 1fr; gap: 2.6rem; padding-top: 2rem; }
+  .foto { max-width: 26rem; justify-self: center; border-bottom-width: 66px; }
+  .foto figcaption { bottom: -58px; padding: 0 0.6rem; font-size: 0.9rem; }
+  .duas-colunas, .elenco { grid-template-columns: 1fr; }
+  .acoes .botao { flex: 1 1 100%; text-align: center; }
+}

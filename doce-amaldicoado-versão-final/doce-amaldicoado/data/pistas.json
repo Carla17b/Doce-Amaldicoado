@@ -1,0 +1,212 @@
+[
+  {
+    "id": "foto_festa",
+    "caso": "leonardo",
+    "titulo": "Fotografia da festa",
+    "local": "Corredor das fotografias",
+    "descricao": "Uma fotografia da festa de três anos atrás mostra um copo quebrado junto à soleira da porta da varanda, que está aberta. A posição não combina com a versão de que Leonardo estava sozinho quando caiu."
+  },
+  {
+    "id": "fita_cassete",
+    "caso": "leonardo",
+    "titulo": "Fita de cassete",
+    "local": "Hall",
+    "descricao": "Uma fita com a etiqueta “Festa, sexta. Lado B.”, deixada num toca-fitas limpo, ligado hoje. Parece a música que tocava naquela noite. Pode reacender a memória de alguém."
+  },
+  {
+    "id": "encomenda_doces",
+    "caso": "mateus",
+    "titulo": "Livro de entregas da cozinha",
+    "local": "Cozinha",
+    "descricao": "Às 17h10, a cozinha registrou a chegada de uma caixa de 12 brigadeiros artesanais, encomendada e retirada por “L.”. As linhas seguintes do livro estão em branco, à espera de novas anotações."
+  },
+  {
+    "id": "mapa_de_lugares",
+    "caso": "mateus",
+    "titulo": "Cartões de lugar",
+    "local": "Sala de jantar",
+    "descricao": "Mateus na cabeceira, Carla à direita dele, Angélica à esquerda. Todos os cartões têm a mesma caligrafia redonda, menos o de Mateus."
+  },
+  {
+    "id": "gerador_alterado",
+    "caso": "mateus",
+    "titulo": "Temporizador no gerador",
+    "local": "Sala do gerador",
+    "descricao": "Um temporizador de cozinha foi preso ao painel do gerador com fita nova e fios novos. Quem o instalou controla quando o gerador falha."
+  },
+  {
+    "id": "caixa_fechada",
+    "caso": "mateus",
+    "titulo": "Caixa fechada à mesa",
+    "local": "Sala de jantar",
+    "descricao": "Quando o jantar começou, a caixa de brigadeiros estava fechada com um laço de fita dourada, sem marcas de dedos nem fita rasgada."
+  },
+  {
+    "id": "mancha_manga",
+    "caso": "mateus",
+    "titulo": "Mancha na manga de Carla",
+    "local": "Sala de jantar",
+    "descricao": "Antes de a caixa ser aberta, havia uma mancha marrom-escura na manga da blusa de Carla, perto do pulso. Ela a cobriu com o guardanapo ao perceber que olhavam."
+  },
+  {
+    "id": "forminha_triangular",
+    "caso": "mateus",
+    "titulo": "Forminha dobrada em triângulo",
+    "local": "Sala de jantar",
+    "descricao": "Entre os doze brigadeiros da caixa, só um estava numa forminha dobrada em triângulo. Foi esse que Mateus escolheu."
+  },
+  {
+    "id": "queda_de_luz",
+    "caso": "mateus",
+    "titulo": "A luz cai",
+    "local": "Sala de jantar",
+    "descricao": "O gerador falhou no mesmo instante em que Mateus caiu, às 22h37. Todos ficaram no escuro por alguns segundos."
+  },
+  {
+    "id": "camera_escondida",
+    "caso": "mateus",
+    "titulo": "Câmera escondida",
+    "local": "Sala de jantar",
+    "descricao": "No canto do teto da sala de jantar, atrás de uma moldura de gesso, há uma câmera do tamanho de uma moeda apontada para a mesa. O fio desce até uma tomada nova. Laís e Ícaro olharam para esse canto durante o jantar."
+  },
+  {
+    "id": "livro_guardanapos",
+    "caso": "mateus",
+    "titulo": "Livro de entregas: guardanapos",
+    "local": "Cozinha",
+    "descricao": "Duas linhas novas no livro de entregas: às 21h38, guardanapos de pano retirados por “C.”; às 21h50, doces levados à sala."
+  },
+  {
+    "id": "guardanapo_escondido",
+    "caso": "mateus",
+    "titulo": "Guardanapo escondido na despensa",
+    "local": "Despensa",
+    "descricao": "Atrás dos sacos de farinha, um guardanapo de pano amassado com uma mancha marrom, ainda macia nas bordas. Os guardanapos de pano ficam guardados dentro da despensa."
+  },
+  {
+    "id": "caderno_lais",
+    "caso": "mateus",
+    "titulo": "Caderno de Laís",
+    "local": "Quarto de Laís",
+    "descricao": "Laís planejou uma “noite de pressão” com falas, horários e o funcionamento do gerador. A morte de alguém não estava no plano. A última anotação, escrita depois do jantar, mostra que ela se assustou com a queda de Mateus."
+  },
+  {
+    "id": "dobras_de_lais",
+    "caso": "mateus",
+    "titulo": "Papéis dobrados em triângulo",
+    "local": "Quarto de Laís",
+    "descricao": "Laís tem dezenas de papéis dobrados na mesma dobra triangular da forminha de Mateus. A marca não prova quem adulterou o doce: só mostra quem sabia dobrar assim."
+  },
+  {
+    "id": "agenda_antiga",
+    "caso": "leonardo",
+    "titulo": "Agenda de três anos atrás",
+    "local": "Quarto de Angélica",
+    "descricao": "Na agenda daquele ano, Angélica anotou no próprio dia: “Festa do Léo. Cheguei 21h40. Saí 00h15.” O horário real em que ela saiu foi escrito antes de qualquer depoimento."
+  },
+  {
+    "id": "transferencia_bancaria",
+    "caso": "leonardo",
+    "titulo": "Transferências do projeto",
+    "local": "Escritório",
+    "descricao": "Cópias de transferências do projeto beneficente para uma conta pessoal de Carla, repetidas durante um ano. Provam o desvio, mas não provam, sozinhas, que ela empurrou Leonardo."
+  },
+  {
+    "id": "extrato_chamadas",
+    "caso": "leonardo",
+    "titulo": "Extrato das chamadas de Leonardo",
+    "local": "Escritório",
+    "descricao": "Um extrato impresso do celular de Leonardo mostra uma ligação às 23h41, para um número que o extrato não identifica, interrompida antes de completar."
+  },
+  {
+    "id": "carta_delegacia",
+    "caso": "mateus",
+    "titulo": "Carta à delegacia",
+    "local": "Escritório",
+    "descricao": "Uma carta sem data, assinada por Mateus e endereçada a uma delegacia, lista os anexos que ele pretendia entregar sobre a morte de Leonardo. Ele planejava ir à polícia."
+  },
+  {
+    "id": "gravacao_mateus",
+    "caso": "leonardo",
+    "titulo": "Gravação particular de Mateus",
+    "local": "Escritório",
+    "descricao": "Num gravador de bolso, Mateus diz que chegou à varanda antes de a música parar, ao contrário da versão que deu à polícia. Isso sugere que viu alguém sair dali."
+  },
+  {
+    "id": "versao_angelica",
+    "caso": "leonardo",
+    "titulo": "Versão de Angélica",
+    "local": "Conversa com Angélica",
+    "descricao": "Angélica sempre disse que saiu da festa às 23h30, antes da hora da queda."
+  },
+  {
+    "id": "carla_nega_cozinha",
+    "caso": "mateus",
+    "titulo": "Carla nega a cozinha",
+    "local": "Conversa com Carla",
+    "descricao": "Carla afirma que não entrou na cozinha nem na despensa em nenhum momento da noite e que ficou no hall o tempo todo antes do jantar."
+  },
+  {
+    "id": "confissao_lais",
+    "caso": "mateus",
+    "titulo": "Laís admite o experimento",
+    "local": "Conversa com Laís",
+    "descricao": "Confrontada com o caderno e a câmera, Laís admite que montou a mansão como um experimento para provocar uma confissão: gerador alterado, câmeras escondidas e pistas à vista. Jura que não pôs nada no doce e que nunca quis ninguém morto."
+  },
+  {
+    "id": "gravacao_camera",
+    "caso": "mateus",
+    "titulo": "Gravação da câmera da cozinha",
+    "local": "Conversa com Laís",
+    "descricao": "O arquivo recuperado, com um trecho apagado, mostra às 21h42 Carla sozinha junto à mesa da cozinha e, às 21h50, Laís levando a caixa de brigadeiros para a sala. A sequência prova oportunidade, não intenção."
+  },
+  {
+    "id": "audio_leonardo",
+    "caso": "leonardo",
+    "titulo": "Áudio do celular de Leonardo",
+    "local": "Conversa com Laís",
+    "descricao": "O celular de Leonardo, que Laís escondeu, guarda um áudio incompleto de 41 segundos: uma discussão, o ruído de uma porta, uma voz de mulher dizendo “me dá isso” e um impacto. Ao fundo, um estalo mecânico repetido: clique, pausa, clique."
+  },
+  {
+    "id": "lembranca_mariane",
+    "caso": "leonardo",
+    "titulo": "A lembrança de Mariane",
+    "local": "Conversa com Mariane",
+    "descricao": "Ao ouvir a fita, Mariane se lembra de duas vozes na varanda e de uma manga vermelha desaparecendo pelo corredor. Ela sabia mais do que dizia."
+  },
+  {
+    "id": "horario_angelica",
+    "caso": "leonardo",
+    "titulo": "O horário real de Angélica",
+    "local": "Conversa com Angélica",
+    "descricao": "Angélica admite que saiu da festa às 00h15 e que mentiu a pedido de Carla, para não ser chamada a depor sobre a noite inteira. Ela não sabia que Carla tinha causado a queda."
+  },
+  {
+    "id": "depoimento_icaro",
+    "caso": "mateus",
+    "titulo": "Pausa no gerador (Ícaro)",
+    "local": "Conversa com Ícaro",
+    "descricao": "Ícaro situa uma pausa de uns seis segundos no gerador por volta das 21h46, enquanto alguém passava da cozinha para a sala: primeiro passos leves, depois outros, mais pesados, de quem carregava algo. O som dá a ordem dos passos, mas não diz quem foi."
+  },
+  {
+    "id": "estalo_igual",
+    "caso": "leonardo",
+    "titulo": "O mesmo estalo",
+    "local": "Conversa com Ícaro",
+    "descricao": "O estalo mecânico repetido que se ouve na gravação da noite de Leonardo tem o mesmo compasso do gerador da mansão, segundo Ícaro."
+  },
+  {
+    "id": "confissao_carla_leonardo",
+    "caso": "leonardo",
+    "titulo": "Carla admite a discussão",
+    "local": "Conversa com Carla",
+    "descricao": "Diante do áudio, do horário real de Angélica e da lembrança de Mariane, Carla admite que discutiu com Leonardo na varanda, tentou tirar o envelope dele e fugiu depois da queda. Insiste que não quis matá-lo."
+  },
+  {
+    "id": "confissao_carla_mateus",
+    "caso": "mateus",
+    "titulo": "Carla admite o doce",
+    "local": "Conversa com Carla",
+    "descricao": "Diante da oportunidade, da mentira sobre a cozinha e da carta de Mateus à delegacia, Carla admite que mexeu no brigadeiro marcado. Diz que não queria que Mateus morresse tão depressa."
+  }
+]

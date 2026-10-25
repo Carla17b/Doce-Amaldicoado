@@ -1,0 +1,333 @@
+{
+  "titulo": "A mansão",
+  "inicio": "hall",
+  "herdaDe": "convite",
+  "horaInicial": "19:50",
+  "limite": {
+    "hora": "21:55",
+    "vai": "jantar_chamado"
+  },
+  "cenas": {
+    "hall": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "O hall é o centro da casa: todas as portas dão para ele ou para a escada. A lareira estala, a neve bate nas janelas e, de vez em quando, uma voz abafada chega de algum cômodo.",
+        "Sobre uma prateleira baixa, perto da lareira, há um velho toca-fitas com uma fita ainda dentro."
+      ],
+      "escolhas": [
+        {
+          "texto": "Examinar o toca-fitas",
+          "vai": "hall_volta",
+          "sem": [
+            "pista_fita_cassete"
+          ],
+          "minutos": 8,
+          "pista": "fita_cassete",
+          "resposta": [
+            "A fita é de uma marca antiga, com a etiqueta amarelada. Na capa, numa letra miúda: “Festa, sexta. Lado B.”",
+            "Você aperta o botão. A música é lenta demais para o barulho que as pessoas costumavam fazer em cima dela. Alguém deixou essa fita aqui para ser encontrada.",
+            {
+              "dica": "O toca-fitas está limpo demais para uma casa que ninguém usa. Alguém o ligou hoje.",
+              "se": [
+                "esp_lugares"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Subir ao corredor das fotografias",
+          "vai": "corredor",
+          "minutos": 4
+        },
+        {
+          "texto": "Ir à sala de jantar",
+          "vai": "sala_jantar",
+          "minutos": 4
+        },
+        {
+          "texto": "Ir à cozinha",
+          "vai": "cozinha",
+          "minutos": 4
+        },
+        {
+          "texto": "Descer à sala do gerador",
+          "vai": "gerador",
+          "minutos": 4
+        },
+        {
+          "texto": "Tentar a porta do escritório",
+          "vai": "escritorio",
+          "minutos": 4
+        },
+        {
+          "texto": "Esperar o jantar no hall",
+          "vai": "jantar_chamado"
+        }
+      ]
+    },
+    "hall_volta": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "De volta ao hall. Na lareira, uma tora cai e levanta faíscas. Ninguém olha."
+      ],
+      "escolhasDe": "hall"
+    },
+    "corredor": {
+      "local": "Corredor das fotografias",
+      "cenario": "corredor",
+      "texto": [
+        "Lá em cima, o corredor é longo e estreito. Dos dois lados, molduras iguais, penduradas na mesma altura, todas com a mesma festa: gente rindo, copos de plástico, uma sala cheia demais.",
+        "O piso range onde o tapete acaba. Perto do fim, uma das molduras está levemente torta, como se tivesse sido mexida há pouco.",
+        {
+          "dica": "A moldura torta está presa a um prego mais novo que os outros.",
+          "se": [
+            "esp_lugares"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Examinar a fotografia torta",
+          "vai": "corredor_volta",
+          "sem": [
+            "pista_foto_festa"
+          ],
+          "minutos": 8,
+          "pista": "foto_festa",
+          "resposta": [
+            "Você solta a moldura. Atrás do vidro, a festa em pleno movimento: pessoas de costas, um sofá, a porta de vidro da varanda ao fundo, aberta.",
+            "No chão, junto à soleira, um copo quebrado. Os cacos brilham sob o flash. Ninguém na foto parece ter reparado.",
+            {
+              "dica": "O carimbo de revelação no verso é de ontem. A foto é antiga, mas a cópia é nova.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Olhar as outras molduras",
+          "vai": "corredor_volta",
+          "sem": [
+            "viu_molduras"
+          ],
+          "marcar": [
+            "viu_molduras"
+          ],
+          "minutos": 5,
+          "resposta": [
+            "Há rostos que você reconhece da sala, três anos mais novos. Todas as molduras têm o mesmo carimbo de revelação, de ontem.",
+            "Alguém imprimiu tudo de uma vez e pendurou com cuidado. Parece uma exposição, não uma lembrança."
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 4
+        }
+      ]
+    },
+    "corredor_volta": {
+      "local": "Corredor das fotografias",
+      "cenario": "corredor",
+      "texto": [
+        "O corredor continua em silêncio. Lá embaixo, alguém ri, e o riso chega até aqui deformado."
+      ],
+      "escolhasDe": "corredor"
+    },
+    "cozinha": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "A cozinha da mansão é maior que a casa da maioria das pessoas. Panelas penduradas, bancada de mármore, uma porta de serviço que dá para o jardim. Cheiro de chocolate e de café requentado.",
+        "Perto da pia, um livro de registros pende de um prego. Uma porta estreita, a da despensa, está fechada com um trinco simples."
+      ],
+      "escolhas": [
+        {
+          "texto": "Folhear o livro de entregas",
+          "vai": "cozinha_volta",
+          "sem": [
+            "pista_encomenda_doces"
+          ],
+          "minutos": 8,
+          "pista": "encomenda_doces",
+          "resposta": [
+            "O livro tem capa preta e colunas escritas à mão: hora, o que chegou, quem recebeu.",
+            "A última linha, às 17h10: “Caixa de brigadeiros artesanais, 12 unidades. Encomenda e retirada: L.” Depois dela, só linhas em branco.",
+            {
+              "dica": "As linhas em branco foram deixadas com espaço de sobra, como se alguém esperasse novas anotações.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Chegar perto da despensa",
+          "vai": "cozinha_volta",
+          "sem": [
+            "viu_despensa"
+          ],
+          "marcar": [
+            "viu_despensa"
+          ],
+          "minutos": 4,
+          "resposta": [
+            "Do outro lado do trinco, o cheiro de chocolate é mais forte. Você pensa em abrir, mas ouve passos no corredor e desiste."
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 4
+        }
+      ]
+    },
+    "cozinha_volta": {
+      "local": "Cozinha",
+      "cenario": "cozinha",
+      "texto": [
+        "Na cozinha, o frio da porta de serviço continua entrando. O café requentado já não cheira a nada."
+      ],
+      "escolhasDe": "cozinha"
+    },
+    "sala_jantar": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "texto": [
+        "A sala de jantar tem uma mesa para dez, com toalha branca e castiçais acesos. No centro, um espaço vazio onde parece faltar alguma coisa.",
+        "Cada lugar tem um cartão escrito à mão. Na cabeceira, o de Mateus."
+      ],
+      "escolhas": [
+        {
+          "texto": "Ler os cartões de lugar",
+          "vai": "sala_jantar_volta",
+          "sem": [
+            "pista_mapa_de_lugares"
+          ],
+          "minutos": 6,
+          "pista": "mapa_de_lugares",
+          "resposta": [
+            "Mateus na cabeceira. À direita dele, Carla. À esquerda, Angélica, por causa do aniversário. Laís e Mariane de um lado; Ícaro e um lugar sem nome do outro, que deve ser o seu.",
+            "Todos os cartões têm a mesma caligrafia redonda. O de Mateus é o único escrito por outra mão.",
+            {
+              "dica": "A tinta do cartão de Carla está um pouco mais fresca que as outras, como se tivesse sido refeito.",
+              "se": [
+                "esp_documentos"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 4
+        }
+      ]
+    },
+    "sala_jantar_volta": {
+      "local": "Sala de jantar",
+      "cenario": "jantar",
+      "texto": [
+        "As velas pingam cera sobre a toalha. O espaço vazio no centro da mesa continua vazio."
+      ],
+      "escolhasDe": "sala_jantar"
+    },
+    "gerador": {
+      "local": "Sala do gerador",
+      "cenario": "gerador",
+      "texto": [
+        "A escada de serviço desce até um porão de teto baixo, com cheiro de óleo e umidade. No fundo, o gerador: um bloco verde, velho, sob uma lâmpada fraca.",
+        "Ele estala num ritmo regular: um clique seco, uma pausa, outro clique.",
+        {
+          "narra": "É o compasso de que Ícaro falou. Aqui embaixo, ele parece mais alto e mais deliberado.",
+          "se": [
+            "ouviu_gerador"
+          ]
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Examinar o painel do gerador",
+          "vai": "gerador_volta",
+          "sem": [
+            "pista_gerador_alterado"
+          ],
+          "minutos": 8,
+          "pista": "gerador_alterado",
+          "resposta": [
+            "Na lateral do painel, um pequeno aparelho foi preso com fita adesiva ainda limpa: um temporizador de cozinha, com fios novos ligados ao circuito.",
+            "Ele não faz parte do gerador. Alguém quis controlar quando ele falha.",
+            {
+              "dica": "A poeira ao redor tem o desenho de duas mãos. Alguém trabalhou aqui há menos de um dia.",
+              "se": [
+                "esp_lugares"
+              ]
+            }
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 4
+        }
+      ]
+    },
+    "gerador_volta": {
+      "local": "Sala do gerador",
+      "cenario": "gerador",
+      "texto": [
+        "O gerador continua no seu compasso. Clique, pausa, clique. Em algum momento, você percebe que está contando."
+      ],
+      "escolhasDe": "gerador"
+    },
+    "escritorio": {
+      "local": "Porta do escritório",
+      "cenario": "hall",
+      "texto": [
+        "A porta do escritório é de madeira escura, com uma fechadura antiga. Está trancada. Por baixo dela, passa uma faixa de luz amarela."
+      ],
+      "escolhas": [
+        {
+          "texto": "Bater na porta",
+          "vai": "hall_volta",
+          "sem": [
+            "bateu_escritorio"
+          ],
+          "marcar": [
+            "bateu_escritorio"
+          ],
+          "minutos": 5,
+          "resposta": [
+            "Ninguém responde. Do outro lado, você ouve o clique de uma gaveta sendo trancada, e depois silêncio.",
+            "Você espera um pouco. A luz por baixo da porta se apaga."
+          ]
+        },
+        {
+          "texto": "Voltar ao hall",
+          "vai": "hall_volta",
+          "minutos": 4
+        }
+      ]
+    },
+    "jantar_chamado": {
+      "local": "Hall",
+      "cenario": "hall",
+      "hora": "21:58",
+      "fim": true,
+      "texto": [
+        "O relógio de pé do hall marca quase dez horas. Do outro lado da casa, um sino toca duas vezes.",
+        {
+          "fala": "Mateus",
+          "texto": "Vamos? A mesa está posta."
+        },
+        "Ele aparece na porta do hall com um sorriso que parece custar esforço. Os convidados se levantam um a um, sem pressa, trocando olhares que não chegam a lugar nenhum.",
+        "À meia-noite, ele vai mostrar a todos o que guardou durante três anos."
+      ],
+      "rotulo": "Ir para o jantar",
+      "href": "/jantar"
+    }
+  }
+}

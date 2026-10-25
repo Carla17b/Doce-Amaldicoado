@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu · O doce amaldiçoado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/componentes.css">
+  <link rel="stylesheet" href="/static/css/menu.css">
+</head>
+<body>
+  <main class="mesa mesa-menu">
+    <div class="painel">
+      <header class="topo">
+        <h1>O doce amaldiçoado</h1>
+        <nav class="conta">
+          <a href="/caderno">Caderno</a>
+          <a href="/detetive">Editar ficha</a>
+          <button class="botao-simples" id="sair" type="button">Sair da conta</button>
+        </nav>
+      </header>
+
+      <div class="corpo">
+        <section class="cracha" id="cracha" aria-label="Seu detetive"></section>
+        <section class="casos" id="casos" aria-label="Casos"></section>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/static/js/paginas/menu.js"></script>
+</body>
+</html>

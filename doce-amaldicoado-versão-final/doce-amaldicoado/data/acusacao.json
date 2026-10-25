@@ -1,0 +1,224 @@
+{
+  "titulo": "A acusação",
+  "inicio": "hall",
+  "herdaDe": "interrogatorios",
+  "horaInicial": "07:20",
+  "cenas": {
+    "hall": {
+      "local": "Hall",
+      "cenario": "hall",
+      "hora": "07:20",
+      "texto": [
+        "Às sete e pouco, a neve para. Do vale sobe o barulho de uma máquina abrindo a estrada. A polícia chega em menos de uma hora.",
+        "Você reúne os cinco no hall pela última vez. Ninguém se senta. Mariane abraça o próprio corpo. Angélica não tem agenda nem piada. Laís segura a câmera como um escudo. Ícaro olha para a janela. Carla encara você.",
+        "Duas mortes. Você precisa dizer em voz alta o que acredita sobre cada uma, e decidir o que fazer com o que sabe.",
+        { "dica": "Ninguém aqui vai olhar para você enquanto você decide. Só uma pessoa vai tentar.", "se": ["esp_pessoas"] }
+      ],
+      "escolhas": [
+        { "texto": "Começar pela morte de Mateus", "vai": "tela_mateus",
+          "desmarcar": ["acusou_carla", "acusou_lais", "acusou_mariane", "acusou_angelica", "acusou_icaro", "l_acidente", "l_policia", "l_silencio", "provas_completas"] },
+        { "texto": "Ainda não: voltar e investigar mais", "vai": "saida" }
+      ]
+    },
+
+    "saida": {
+      "local": "Hall",
+      "cenario": "hall",
+      "fim": true,
+      "texto": [
+        "Você diz que precisa de mais um pouco de tempo. Ninguém discute. Há horas ainda até a estrada abrir de vez."
+      ],
+      "rotulo": "Voltar aos interrogatórios",
+      "href": "/interrogatorios"
+    },
+
+    "tela_mateus": {
+      "local": "A morte de Mateus",
+      "cenario": "jantar",
+      "texto": [
+        "Mateus morreu depois de comer o brigadeiro da forminha triangular, diante de todos. Alguém mexeu naquele doce antes de ele chegar à mesa.",
+        "Você tem a caixa fechada, a dobra de Laís, a mancha na manga, a despensa, a câmera, a mentira sobre a cozinha. Algumas dessas coisas apontam para uma pessoa. Outras só para quem sabia dobrar papel.",
+        "Quem matou Mateus?"
+      ],
+      "escolhas": [
+        { "texto": "Acusar Carla", "vai": "tela_leonardo", "desmarcar": ["acusou_lais", "acusou_mariane", "acusou_angelica", "acusou_icaro"], "marcar": ["acusou_carla"] },
+        { "texto": "Acusar Laís", "vai": "tela_leonardo", "desmarcar": ["acusou_carla", "acusou_mariane", "acusou_angelica", "acusou_icaro"], "marcar": ["acusou_lais"] },
+        { "texto": "Acusar Mariane", "vai": "tela_leonardo", "desmarcar": ["acusou_carla", "acusou_lais", "acusou_angelica", "acusou_icaro"], "marcar": ["acusou_mariane"] },
+        { "texto": "Acusar Angélica", "vai": "tela_leonardo", "desmarcar": ["acusou_carla", "acusou_lais", "acusou_mariane", "acusou_icaro"], "marcar": ["acusou_angelica"] },
+        { "texto": "Acusar Ícaro", "vai": "tela_leonardo", "desmarcar": ["acusou_carla", "acusou_lais", "acusou_mariane", "acusou_angelica"], "marcar": ["acusou_icaro"] },
+        { "texto": "Voltar", "vai": "hall" }
+      ]
+    },
+
+    "tela_leonardo": {
+      "local": "A morte de Leonardo",
+      "cenario": "varanda",
+      "texto": [
+        "Leonardo caiu de uma varanda de parapeito baixo, três anos atrás, sem testemunhas à vista. A polícia disse acidente. Cada pessoa neste hall ajudou a manter essa versão, por motivos diferentes.",
+        "Alguém causou a queda. Alguém chegou depois e calou. Alguém escondeu um celular, alguém mudou um horário, alguém preferiu esquecer.",
+        "O que você vai afirmar, e o que vai fazer com as provas?"
+      ],
+      "escolhas": [
+        { "texto": "Afirmar que foi um acidente: a versão oficial está certa", "vai": "confirma", "desmarcar": ["l_policia", "l_silencio"], "marcar": ["l_acidente"] },
+        { "texto": "Afirmar que Carla causou a queda e entregar tudo à polícia", "vai": "confirma", "desmarcar": ["l_acidente", "l_silencio"], "marcar": ["l_policia"] },
+        { "texto": "Afirmar que Carla causou a queda, mas destruir as provas para proteger Mariane e Angélica", "vai": "confirma", "desmarcar": ["l_acidente", "l_policia"], "marcar": ["l_silencio"] },
+        { "texto": "Voltar à morte de Mateus", "vai": "tela_mateus" }
+      ]
+    },
+
+    "confirma": {
+      "local": "Hall",
+      "cenario": "hall",
+      "texto": [
+        "Antes que a polícia chegue, você repassa o que vai afirmar:",
+        { "narra": "Que Carla adulterou o brigadeiro que matou Mateus.", "se": ["acusou_carla"] },
+        { "narra": "Que Laís matou Mateus.", "se": ["acusou_lais"] },
+        { "narra": "Que Mariane matou Mateus.", "se": ["acusou_mariane"] },
+        { "narra": "Que Angélica matou Mateus.", "se": ["acusou_angelica"] },
+        { "narra": "Que Ícaro matou Mateus.", "se": ["acusou_icaro"] },
+        { "narra": "Que Leonardo morreu num acidente, como diz a versão oficial.", "se": ["l_acidente"] },
+        { "narra": "Que Carla causou a queda de Leonardo, e que as provas vão para a polícia.", "se": ["l_policia"] },
+        { "narra": "Que Carla causou a queda de Leonardo, mas que ninguém além deste hall vai saber: as provas serão destruídas.", "se": ["l_silencio"] },
+        "Não há como voltar atrás depois que a polícia entrar."
+      ],
+      "escolhas": [
+        { "texto": "Confirmar", "vai": "avalia" },
+        { "texto": "Refazer a acusação", "vai": "tela_mateus" }
+      ]
+    },
+
+    "avalia": {
+      "roteia": [
+        { "se": ["pista_audio_leonardo", "pista_horario_angelica", "pista_lembranca_mariane", "pista_carla_nega_cozinha", "pista_carta_delegacia", "pista_gravacao_camera"], "marcar": ["provas_completas"], "vai": "veredito" },
+        { "se": ["pista_audio_leonardo", "pista_horario_angelica", "pista_lembranca_mariane", "pista_carla_nega_cozinha", "pista_carta_delegacia", "pista_livro_guardanapos"], "marcar": ["provas_completas"], "vai": "veredito" },
+        { "se": ["pista_audio_leonardo", "pista_horario_angelica", "pista_lembranca_mariane", "pista_carla_nega_cozinha", "pista_carta_delegacia", "pista_guardanapo_escondido", "pista_mancha_manga"], "marcar": ["provas_completas"], "vai": "veredito" },
+        { "vai": "veredito" }
+      ]
+    },
+
+    "veredito": {
+      "roteia": [
+        { "se": ["acusou_carla", "l_acidente"], "vai": "final_2" },
+        { "se": ["acusou_carla", "l_silencio"], "vai": "final_4" },
+        { "se": ["acusou_carla", "l_policia", "provas_completas"], "vai": "final_1" },
+        { "se": ["acusou_carla", "l_policia"], "vai": "final_5" },
+        { "sem": ["acusou_carla"], "vai": "final_3" }
+      ]
+    },
+
+    "final_1": {
+      "local": "A serra, de manhã",
+      "cenario": "mansao",
+      "final": "1",
+      "texto": [
+        { "selo": "Final 1 de 5", "titulo": "Verdade completa" },
+        "Você entrega à polícia tudo que reuniu: o áudio do celular de Leonardo, a carta de Mateus, o caderno de Laís, a agenda de Angélica, a gravação da cozinha. E fala por duas horas, sem pular nenhuma decisão.",
+        "A cadeia se mostra inteira: Carla, a briga na varanda e a fuga; Mateus, que chegou antes de a música parar e escolheu proteger a empresa; Laís, que escondeu um celular por três anos; Angélica, que mentiu um horário; Mariane, que preferiu esquecer. E, no fim, o brigadeiro.",
+        "Carla é responsabilizada pela morte de Mateus e pela queda de Leonardo. Fala pouco, e o pouco que diz confirma o que você já tinha. Laís responde por esconder provas e por manipular os convidados numa noite que saiu do controle. Angélica e Mariane assumem as mentiras que contaram, e as duas choram de alívio e de vergonha ao mesmo tempo.",
+        "Mateus, que você conheceu por uma carta e viu morrer, passa a ser visto como era: cúmplice do encobrimento, chantagista durante três anos e, só no fim, alguém que tentou consertar. A verdade é pública. Não há absolvição para ninguém, nem para ele.",
+        "Quando a estrada abre, você desce a serra com o caderno no colo. Pela janela do carro, a neve parece só neve.",
+        { "epigrafe": "O doce não estava amaldiçoado. A maldição era a história que todos escolheram repetir." }
+      ],
+      "proximo": "placar",
+      "rotulo": "Ver os finais"
+    },
+
+    "final_2": {
+      "local": "A serra, de manhã",
+      "cenario": "mansao",
+      "final": "2",
+      "texto": [
+        { "selo": "Final 2 de 5", "titulo": "O culpado certo, a história errada" },
+        "Você acusa Carla pela morte de Mateus, e a polícia a leva ainda no hall, sem resistência. Quando chega a vez de Leonardo, você diz que foi um acidente, como todos disseram há três anos.",
+        "A morte antiga permanece, oficialmente, sem solução. Ninguém pergunta a Carla sobre a varanda, e ninguém precisa explicar nada.",
+        { "narra": "Você tinha tudo para contar a história inteira. Escolheu não contar.", "se": ["provas_completas"] },
+        { "narra": "Você não tinha tudo para contar a história inteira, e talvez por isso tenha sido tão fácil não contar.", "sem": ["provas_completas"] },
+        "Mariane volta para casa com a lembrança inteira e já sem a desculpa de não lembrar. Angélica deixa de contar piadas sobre festas. Laís apaga os arquivos que a polícia não pediu. Ícaro, que ouviu o estalo, decide nunca mais ouvir aquela gravação.",
+        "O grupo continua a carregar a mentira. Agora com um nome a menos para dividir o peso.",
+        { "epigrafe": "O doce não estava amaldiçoado. A maldição era a história que todos escolheram repetir." }
+      ],
+      "proximo": "placar",
+      "rotulo": "Ver os finais"
+    },
+
+    "final_3": {
+      "local": "A serra, de manhã",
+      "cenario": "mansao",
+      "final": "3",
+      "texto": [
+        { "selo": "Final 3 de 5", "titulo": "A falsa culpada" },
+        { "narra": "Você acusa Laís. A forminha dobrada, o caderno, as câmeras: tudo está ali, e tudo aponta para ela. A polícia a leva, e ela não discute. Baixa a cabeça como quem já sabia que seria assim.", "se": ["acusou_lais"] },
+        { "narra": "Você acusa Mariane. Ela não resiste: já se acostumou a carregar culpas que não são dela.", "se": ["acusou_mariane"] },
+        { "narra": "Você acusa Angélica. Ela tenta uma piada, e a piada não sai. A polícia entende o silêncio como confissão.", "se": ["acusou_angelica"] },
+        { "narra": "Você acusa Ícaro. Ele ouve em silêncio, como ouve tudo, e só pergunta: “Você tem certeza?” Ninguém pergunta o contrário.", "se": ["acusou_icaro"] },
+        "A cronologia da cozinha fica de fora do que você disse: os guardanapos, a pausa de seis segundos no gerador, a mentira sobre a despensa. Ninguém a conta, e a polícia não a procura.",
+        { "narra": "Carla já tinha percebido, quando você a pressionou sem provas, que ainda havia tempo para se preparar. Está calma, e isso é a coisa mais assustadora da manhã.", "se": ["errou_carla"] },
+        "A pessoa que você acusou é detida, e ninguém acredita nas negativas. A confissão de Carla nunca vem à tona.",
+        "A última cena é pequena. Quando todos já foram, Carla fica sozinha no hall diante dos documentos de Mateus: a pasta azul, a carta, as transferências. Livres, enfim, da única pessoa que poderia provar a história inteira e que foi embora convencida do contrário. Ela abre a lareira e, um a um, os coloca no fogo.",
+        { "epigrafe": "O doce não estava amaldiçoado. A maldição era a história que todos escolheram repetir." }
+      ],
+      "proximo": "placar",
+      "rotulo": "Ver os finais"
+    },
+
+    "final_4": {
+      "local": "A serra, de manhã",
+      "cenario": "mansao",
+      "final": "4",
+      "texto": [
+        { "selo": "Final 4 de 5", "titulo": "O pacto de silêncio" },
+        "Você sabe das duas verdades. Sabe o que Carla fez na varanda e o que fez no jantar. E sabe o que a verdade faria com Mariane, que esqueceu por três anos, e com Angélica, que mentiu um horário a pedido de uma amiga.",
+        "Você junta o áudio, a agenda, a fita, o caderno de Laís. Ninguém diz nada. Alguém atiça a lareira. Um a um, os papéis e os arquivos vão para o fogo, e o celular, sem bateria, é jogado no meio das brasas.",
+        "Carla escapa da acusação pública. A morte de Mateus fica registrada como mal súbito, durante um jantar tenso numa casa isolada pela neve, e o brigadeiro vai para o lixo antes que alguém pense em pedir exame.",
+        { "narra": "Você tinha tudo para que ela pagasse. Escolheu que ninguém pagasse.", "se": ["provas_completas"] },
+        { "narra": "Você não tinha tudo, mas tinha o bastante para saber.", "sem": ["provas_completas"] },
+        "O grupo repete a versão antiga, agora sabendo exatamente o preço do silêncio. Ninguém brinda. Ninguém olha para ninguém.",
+        { "epigrafe": "O doce não estava amaldiçoado. A maldição era a história que todos escolheram repetir." }
+      ],
+      "proximo": "placar",
+      "rotulo": "Ver os finais"
+    },
+
+    "final_5": {
+      "local": "A serra, de manhã",
+      "cenario": "mansao",
+      "final": "5",
+      "texto": [
+        { "selo": "Final 5 de 5", "titulo": "Confissão sem provas" },
+        "Você acusa Carla pelas duas mortes, em voz alta, diante de todos. Pressionada, ela cede: admite a varanda, admite o doce.",
+        "Mas, quando a polícia chega, você descobre o que não reuniu: a admissão não tem provas que a sustentem. O áudio, os horários, as peças da cozinha não formam uma cadeia que aguente um tribunal.",
+        { "narra": "Carla já sabia, desde a noite, que você não tinha nada que a prendesse. Teve horas para preparar o advogado e a história.", "se": ["errou_carla"] },
+        "Carla volta atrás em menos de uma hora. “Eu disse aquilo sob pressão”, diz. O advogado dela chega à tarde.",
+        "A confissão é tratada como instável. Carla fica sob investigação, solta, e a casa de Mateus vira cena de um caso que continua aberto.",
+        "Você acertou a solução. Mas ela está incompleta: faltaram peças que estavam na casa o tempo todo.",
+        "Mariane e Angélica, sem terem sido cobradas, ainda carregam o que sabem. Laís espera ser chamada a depor. Ícaro volta a ouvir o estalo toda noite.",
+        { "epigrafe": "O doce não estava amaldiçoado. A maldição era a história que todos escolheram repetir." }
+      ],
+      "proximo": "placar",
+      "rotulo": "Ver os finais"
+    },
+
+    "placar": {
+      "local": "Os finais",
+      "texto": [
+        "Esta noite terminou. Há outras maneiras de ela terminar:",
+        { "narra": "1. Verdade completa", "se": ["final_1"] },
+        { "narra": "1. ???", "sem": ["final_1"] },
+        { "narra": "2. O culpado certo, a história errada", "se": ["final_2"] },
+        { "narra": "2. ???", "sem": ["final_2"] },
+        { "narra": "3. A falsa culpada", "se": ["final_3"] },
+        { "narra": "3. ???", "sem": ["final_3"] },
+        { "narra": "4. O pacto de silêncio", "se": ["final_4"] },
+        { "narra": "4. ???", "sem": ["final_4"] },
+        { "narra": "5. Confissão sem provas", "se": ["final_5"] },
+        { "narra": "5. ???", "sem": ["final_5"] }
+      ],
+      "escolhas": [
+        { "texto": "Ver os créditos", "href": "/creditos" },
+        { "texto": "Tentar outra acusação", "vai": "hall",
+          "desmarcar": ["acusou_carla", "acusou_lais", "acusou_mariane", "acusou_angelica", "acusou_icaro", "l_acidente", "l_policia", "l_silencio", "provas_completas"] },
+        { "texto": "Voltar ao menu", "href": "/menu" }
+      ]
+    }
+  }
+}
